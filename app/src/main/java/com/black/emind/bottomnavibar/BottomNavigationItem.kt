@@ -25,7 +25,7 @@ sealed class BottomNavigationItem(var route: Route, @DrawableRes var icon: Int){
     * TASK     - список задач
     * DOCUMENT - документы
     */
-    object Screen:   BottomNavigationItem(Route.NOTE,       R.drawable.note){
+    object Screen:   BottomNavigationItem(Route.NOTE, R.drawable.note){
         @JvmName("setRoute1")
         fun setRoute(route: Route) {
             this.route = route
