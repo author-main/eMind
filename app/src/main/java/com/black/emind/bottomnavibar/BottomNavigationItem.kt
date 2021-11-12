@@ -17,9 +17,17 @@ enum class Route {
  * DOCUMENT - документы
  */
 sealed class BottomNavigationItem(var route: Route, @DrawableRes var icon: Int){
-    @JvmName("setRoute1")
-    fun setRoute(route: Route) {
-        if (this is Screen) {
+
+    object Search:   BottomNavigationItem(Route.SEARCH,     R.drawable.search)
+    /*
+    * object Screen - активный экран:
+    * NOTE     - заметки
+    * TASK     - список задач
+    * DOCUMENT - документы
+    */
+    object Screen:   BottomNavigationItem(Route.NOTE,       R.drawable.note){
+        @JvmName("setRoute1")
+        fun setRoute(route: Route) {
             this.route = route
             Screen.icon = when (route) {
                 Route.TASK -> R.drawable.task
@@ -28,14 +36,6 @@ sealed class BottomNavigationItem(var route: Route, @DrawableRes var icon: Int){
             }
         }
     }
-    object Search:   BottomNavigationItem(Route.SEARCH,     R.drawable.search)
-    /*
-    * object Screen - активный экран:
-    * NOTE     - заметки
-    * TASK     - список задач
-    * DOCUMENT - документы
-    */
-    object Screen:   BottomNavigationItem(Route.NOTE,       R.drawable.note)
     object Insert:   BottomNavigationItem(Route.INSERT,     R.drawable.insert)
     object Favorite: BottomNavigationItem(Route.FAVORITE,   R.drawable.favorite)
     object Menu:     BottomNavigationItem(Route.MENU,       R.drawable.menu)
