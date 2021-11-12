@@ -10,7 +10,6 @@ enum class Route {
     FAVORITE,
     MENU
 }
-
 /*
  * object Screen - активный экран:
  * NOTE     - заметки
@@ -18,16 +17,17 @@ enum class Route {
  * DOCUMENT - документы
  */
 sealed class BottomNavigationItem(var route: Route, @DrawableRes var icon: Int){
-    fun setScreenRoute(route: Route) {
-        Screen.route = route
-        Screen.icon = when (route) {
-            Route.TASK      -> R.drawable.task
-            Route.DOCUMENT  -> R.drawable.document
-            else            -> R.drawable.note
+    @JvmName("setRoute1")
+    fun setRoute(route: Route) {
+        if (this is Screen) {
+            this.route = route
+            Screen.icon = when (route) {
+                Route.TASK -> R.drawable.task
+                Route.DOCUMENT -> R.drawable.document
+                else -> R.drawable.note
+            }
         }
     }
-    fun isScreenRoute(route: Route) =
-        route == Route.NOTE || route == Route.TASK || route == Route.DOCUMENT
     object Search:   BottomNavigationItem(Route.SEARCH,     R.drawable.search)
     /*
     * object Screen - активный экран:
