@@ -19,8 +19,8 @@ enum class Route {
  */
 sealed class BottomNavigationItem(var route: Route, @DrawableRes var icon: Int){
     fun setScreenRoute(route: Route) {
-        this.route = route
-        icon = when (route) {
+        Screen.route = route
+        Screen.icon = when (route) {
             Route.TASK -> R.drawable.task
             Route.DOCUMENT -> R.drawable.document
             else -> R.drawable.note
