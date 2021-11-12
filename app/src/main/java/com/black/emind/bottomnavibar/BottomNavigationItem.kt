@@ -21,9 +21,9 @@ sealed class BottomNavigationItem(var route: Route, @DrawableRes var icon: Int){
     fun setScreenRoute(route: Route) {
         Screen.route = route
         Screen.icon = when (route) {
-            Route.TASK -> R.drawable.task
-            Route.DOCUMENT -> R.drawable.document
-            else -> R.drawable.note
+            Route.TASK      -> R.drawable.task
+            Route.DOCUMENT  -> R.drawable.document
+            else            -> R.drawable.note
         }
     }
     fun isScreenRoute(route: Route) =
