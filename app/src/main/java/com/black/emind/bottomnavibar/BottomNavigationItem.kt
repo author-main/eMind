@@ -80,7 +80,7 @@ fun BottomNavigationBar() {
                 alwaysShowLabel = false,
                 selected = false,
                 onClick = {
-                    /* Add code later */
+
                 }
             )
         }
