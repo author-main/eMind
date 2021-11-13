@@ -34,9 +34,9 @@ sealed class BottomNavigationItem(var route: Route, var icon: ItemIcon){
         fun setScreen(route: Route) {
             this.route = route
             icon = when (route) {
-                Route.TASK -> ItemIcon.TASK
-                Route.DOCUMENT -> ItemIcon.DOCUMENT
-                else -> ItemIcon.NOTE
+                Route.TASK      -> ItemIcon.TASK
+                Route.DOCUMENT  -> ItemIcon.DOCUMENT
+                else            -> ItemIcon.NOTE
             }
         }
     }
