@@ -10,12 +10,7 @@ enum class Route {
     FAVORITE,
     MENU
 }
-/*
- * object Screen - активный экран:
- * NOTE     - заметки
- * TASK     - список задач
- * DOCUMENT - документы
- */
+
 sealed class BottomNavigationItem(var route: Route, @DrawableRes var icon: Int){
 
     object Search:   BottomNavigationItem(Route.SEARCH,     R.drawable.search)
