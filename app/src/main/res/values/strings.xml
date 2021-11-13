@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">eMind</string>
+    <string-array name="navigationItems">
+        <item>Поиск</item>
+        <item>Заметки</item>
+        <item>Список</item>
+        <item>Документы</item>
+        <item>Добавить</item>
+        <item>Избранное</item>
+        <item>Дополнгительно</item>
+    </string-array>
+    <string name="navigationItemSearch">Поиск</string>
+    <string name="navigationItemNote">Заметки</string>
+    <string name="navigationItemTask">Список</string>
+    <string name="navigationItemDocument">Документы</string>
+    <string name="navigationItemInsert">Добавить</string>
+    <string name="navigationItemFavorite">Избранное</string>
+    <string name="navigationItemMenu">Дополнительно</string>
 </resources>
