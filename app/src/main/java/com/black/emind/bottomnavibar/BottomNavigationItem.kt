@@ -26,7 +26,7 @@ enum class Route {
 
 enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val description: String) {
     SEARCH      (R.drawable.ic_search,                  description = itemsDescription[0]),
-    NOTE        (R.drawable.ic_note,   R.drawable.ic_note_on,     itemsDescription[1]),
+    NOTE        (R.drawable.ic_note,       R.drawable.ic_note_on,     itemsDescription[1]),
     TASK        (R.drawable.ic_task,       R.drawable.ic_task_on,     itemsDescription[2]),
     DOCUMENT    (R.drawable.ic_document,   R.drawable.ic_document_on, itemsDescription[3]),
     INSERT      (R.drawable.ic_insert,                  description = itemsDescription[4]),
