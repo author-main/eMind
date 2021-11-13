@@ -12,13 +12,13 @@ enum class Route {
 }
 
 enum class ItemIcon(@DrawableRes val icon: Int, @DrawableRes val iconSelect: Int) {
-    SEARCH(R.drawable.search, R.drawable.search_on),
-    INSERT(R.drawable.insert, R.drawable.insert_on),
-    FAVORITE(R.drawable.favorite, R.drawable.favorite_on),
-    MENU(R.drawable.menu, R.drawable.menu_on),
-    NOTE(R.drawable.note, R.drawable.note_on),
-    TASK(R.drawable.task, R.drawable.task_on),
-    DOCUMENT(R.drawable.document, R.drawable.document_on),
+    SEARCH      (R.drawable.search,     R.drawable.search_on),
+    NOTE        (R.drawable.note,       R.drawable.note_on),
+    TASK        (R.drawable.task,       R.drawable.task_on),
+    DOCUMENT    (R.drawable.document,   R.drawable.document_on),
+    INSERT      (R.drawable.insert,     R.drawable.insert_on),
+    FAVORITE    (R.drawable.favorite,   R.drawable.favorite_on),
+    MENU        (R.drawable.menu,       R.drawable.menu_on)
 }
 
 sealed class BottomNavigationItem(var route: Route, var icon: ItemIcon){
