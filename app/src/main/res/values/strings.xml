@@ -9,11 +9,4 @@
         <item>Избранное</item>
         <item>Дополнгительно</item>
     </string-array>
-    <string name="navigationItemSearch">Поиск</string>
-    <string name="navigationItemNote">Заметки</string>
-    <string name="navigationItemTask">Список</string>
-    <string name="navigationItemDocument">Документы</string>
-    <string name="navigationItemInsert">Добавить</string>
-    <string name="navigationItemFavorite">Избранное</string>
-    <string name="navigationItemMenu">Дополнительно</string>
 </resources>
