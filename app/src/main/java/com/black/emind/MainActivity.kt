@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.black.emind.bottomnavibar.BottomNavigationBar
 import com.black.emind.bottomnavibar.NavigationItem
 import com.black.emind.ui.theme.EMindTheme
@@ -29,11 +30,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen() {
+    val navController = rememberNavController()
     Scaffold(
      //   topBar = { TopBar() },
-        bottomBar = { BottomNavigationBar() }
+        bottomBar = { BottomNavigationBar(navController) }
     ) {
-        /* Add code later */
+        Navigation(navController)
     }
 }
 
@@ -53,7 +55,6 @@ fun Navigation(navController: NavHostController) {
             //BooksScreen()
         }
         composable(NavigationItem.Screen.route.id) {
-            log(NavigationItem.Screen.route.id)
             //BooksScreen()
         }
     }

@@ -4,17 +4,18 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import com.black.emind.*
 import com.black.emind.AppEMind.Companion.applicationContext
 import com.black.emind.R
-import com.black.emind.getStringArrayResource
-import com.black.emind.getStringResource
-import com.black.emind.itemsDescription
 
 
 const val ID_SEARCH      = "0"
@@ -68,7 +69,7 @@ sealed class NavigationItem(var route: Route, var icon: ItemIcon){
 }
 
 @Composable
-fun BottomNavigationBar() {
+fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
         NavigationItem.Search,
         NavigationItem.Screen,
@@ -80,6 +81,8 @@ fun BottomNavigationBar() {
         backgroundColor = MaterialTheme.colors.primary,
         contentColor = Color.White
     ) {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
         items.forEach { item ->
             BottomNavigationItem(
                 icon = { Icon(painterResource(id = item.icon.value), contentDescription = item.icon.description)},
@@ -90,15 +93,9 @@ fun BottomNavigationBar() {
                 alwaysShowLabel = false,
                 selected = false,
                 onClick = {
-
+                    log(currentRoute)
                 }
             )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun BottomNavigationBarPreview() {
-    BottomNavigationBar()
 }
