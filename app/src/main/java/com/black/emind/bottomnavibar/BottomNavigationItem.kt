@@ -16,12 +16,21 @@ import com.black.emind.getStringArrayResource
 import com.black.emind.getStringResource
 import com.black.emind.itemsDescription
 
-enum class Route {
-    SEARCH,
-    NOTE, TASK, DOCUMENT,
-    INSERT,
-    FAVORITE,
-    MENU
+
+const val ID_SEARCH      = "0"
+const val ID_NOTE        = "1_0"
+const val ID_TASK        = "1_1"
+const val ID_DOCUMENT    = "1_2"
+const val ID_INSERT      = "2"
+const val ID_FAVORITE    = "3"
+const val ID_MENU        = "4"
+
+enum class Route(val id: String) {
+    SEARCH(ID_SEARCH),
+    NOTE(ID_NOTE), TASK(ID_TASK), DOCUMENT(ID_DOCUMENT),
+    INSERT(ID_INSERT),
+    FAVORITE(ID_FAVORITE),
+    MENU(ID_MENU)
 }
 
 enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val description: String) {
@@ -73,10 +82,11 @@ fun BottomNavigationBar() {
     ) {
         items.forEach { item ->
             BottomNavigationItem(
-                icon = { Icon(painterResource(id = item.icon.value), contentDescription = item.icon.description) },
+                icon = { Icon(painterResource(id = item.icon.value), contentDescription = item.icon.description)},
               /*  label = { Text(text = item.icon.description) },
                 selectedContentColor = Color.White,
                 unselectedContentColor = Color.White.copy(0.4f),*/
+
                 alwaysShowLabel = false,
                 selected = false,
                 onClick = {
