@@ -93,7 +93,7 @@ fun BottomNavigationBar(navController: NavController) {
                 alwaysShowLabel = false,
                 selected = false,
                 onClick = {
-                    log(currentRoute)
+                    log(item.route.id)
                 }
             )
         }
