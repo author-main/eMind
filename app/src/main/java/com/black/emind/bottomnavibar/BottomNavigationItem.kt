@@ -90,7 +90,8 @@ fun BottomNavigationBar(navController: NavController) {
                 selectedContentColor = Color.White,
                 unselectedContentColor = Color.White.copy(0.4f),*/
                 alwaysShowLabel = false,
-                selected = false,
+                selected = currentRoute == item.route.id,
+                //selected = false,
                 onClick = {
                     if (item !is NavigationItem.Menu)
                     navController.navigate(item.route.id) {
