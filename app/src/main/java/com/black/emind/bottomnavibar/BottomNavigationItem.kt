@@ -1,20 +1,14 @@
 package com.black.emind.bottomnavibar
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringArrayResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.black.emind.*
-import com.black.emind.AppEMind.Companion.applicationContext
 import com.black.emind.R
 
 
@@ -81,32 +75,32 @@ fun BottomNavigationBar(navController: NavController) {
         backgroundColor = MaterialTheme.colors.primary,
         contentColor = Color.White
     ) {
+
+        /*val currentDestination = navController.currentDestination?.route
+        if (currentDestination == NavigationItem.Menu.route.id)
+            return@BottomNavigation*/
+
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
+        log(currentRoute)
         items.forEach { item ->
             BottomNavigationItem(
                 icon = { Icon(painterResource(id = item.icon.value), contentDescription = item.icon.description)},
               /*  label = { Text(text = item.icon.description) },
                 selectedContentColor = Color.White,
                 unselectedContentColor = Color.White.copy(0.4f),*/
-
                 alwaysShowLabel = false,
-                selected = false,
+                selected = currentRoute == item.route.id,
+                //selected = false,
                 onClick = {
-                    log(item.route.id)
+                    if (item !is NavigationItem.Menu)
                     navController.navigate(item.route.id) {
-                        // Pop up to the start destination of the graph to
-                        // avoid building up a large stack of destinations
-                        // on the back stack as users select items
                         navController.graph.startDestinationRoute?.let { route ->
                             popUpTo(route) {
                                 saveState = true
                             }
                         }
-                        // Avoid multiple copies of the same destination when
-                        // reselecting the same item
                         launchSingleTop = true
-                        // Restore state when reselecting a previously selected item
                         restoreState = true
                     }
                 }
