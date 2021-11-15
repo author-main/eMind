@@ -75,8 +75,10 @@ fun BottomNavigationBar(navController: NavController) {
         backgroundColor = MaterialTheme.colors.primary,
         contentColor = Color.White
     ) {
+
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
+        log("recompose $currentRoute")
         items.forEach { item ->
             BottomNavigationItem(
                 icon = { Icon(painterResource(id = item.icon.value), contentDescription = item.icon.description)},
@@ -87,17 +89,13 @@ fun BottomNavigationBar(navController: NavController) {
                 alwaysShowLabel = false,
                 selected = false,
                 onClick = {
-                    log(currentRoute)
                     navController.navigate(item.route.id) {
                         navController.graph.startDestinationRoute?.let { route ->
                             popUpTo(route) {
                                 saveState = true
                             }
                         }
-                        // Avoid multiple copies of the same destination when
-                        // reselecting the same item
                         launchSingleTop = true
-                        // Restore state when reselecting a previously selected item
                         restoreState = true
                     }
                 }

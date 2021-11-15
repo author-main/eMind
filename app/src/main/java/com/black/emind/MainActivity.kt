@@ -51,9 +51,9 @@ fun Navigation(navController: NavHostController) {
         composable(NavigationItem.Favorite.route.id) {
             //MoviesScreen()
         }
-      /*  composable(NavigationItem.Menu.route.id) {
+        composable(NavigationItem.Menu.route.id) {
             //BooksScreen()
-        }*/
+        }
         composable(NavigationItem.Screen.route.id) {
             //BooksScreen()
         }
