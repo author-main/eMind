@@ -76,19 +76,23 @@ fun BottomNavigationBar(navController: NavController) {
         contentColor = Color.White
     ) {
 
+        /*val currentDestination = navController.currentDestination?.route
+        if (currentDestination == NavigationItem.Menu.route.id)
+            return@BottomNavigation*/
+
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
-        log("recompose $currentRoute")
+        log(currentRoute)
         items.forEach { item ->
             BottomNavigationItem(
                 icon = { Icon(painterResource(id = item.icon.value), contentDescription = item.icon.description)},
               /*  label = { Text(text = item.icon.description) },
                 selectedContentColor = Color.White,
                 unselectedContentColor = Color.White.copy(0.4f),*/
-
                 alwaysShowLabel = false,
                 selected = false,
                 onClick = {
+                    if (item !is NavigationItem.Menu)
                     navController.navigate(item.route.id) {
                         navController.graph.startDestinationRoute?.let { route ->
                             popUpTo(route) {
