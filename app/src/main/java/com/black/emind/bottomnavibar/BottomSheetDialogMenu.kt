@@ -47,3 +47,17 @@ fun BottomSheetDialogMenu() {
         }
     }
 }
+
+/*
+Button(onClick = {
+    coroutineScope.launch {
+
+        if (bottomSheetScaffoldState.bottomSheetState.isCollapsed) {
+            bottomSheetScaffoldState.bottomSheetState.expand()
+        } else {
+            bottomSheetScaffoldState.bottomSheetState.collapse()
+        }
+    }
+}) {
+    Text(text = "Expand/Collapse Bottom Sheet")
+}*/
