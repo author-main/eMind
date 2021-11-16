@@ -73,7 +73,7 @@ fun BottomNavigationBar(navController: NavController) {
     )
     BottomNavigation(
         backgroundColor = MaterialTheme.colors.primary,
-        contentColor = Color.White
+        //contentColor = MaterialTheme.colors.secondary
     ) {
 
         /*val currentDestination = navController.currentDestination?.route
@@ -86,6 +86,8 @@ fun BottomNavigationBar(navController: NavController) {
         items.forEach { item ->
             BottomNavigationItem(
                 icon = { Icon(painterResource(id = item.icon.value), contentDescription = item.icon.description)},
+                selectedContentColor = Color.White,
+                unselectedContentColor = MaterialTheme.colors.secondary,
               /*  label = { Text(text = item.icon.description) },
                 selectedContentColor = Color.White,
                 unselectedContentColor = Color.White.copy(0.4f),*/
