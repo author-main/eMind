@@ -31,6 +31,11 @@ private val LightColorPalette = lightColors(
 
 @Composable
 fun EMindTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
+    /*Чтобы поделиться состоянием компоновки с объектами,
+    не управляемыми компоновкой, используйте компонент
+    Sideffect composable, так как он вызывается при каждой
+    успешной перекомпозиции.*/
+
 
     val systemUiController = rememberSystemUiController()
     if(darkTheme){
@@ -39,7 +44,7 @@ fun EMindTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable(
         )
     }else{
         systemUiController.setSystemBarsColor(
-            color = Color.White
+            color = Color(0xFFFF9100)
         )
     }
 
