@@ -29,7 +29,7 @@ enum class Route(val id: String) {
 }
 
 enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val description: String) {
-    SEARCH      (R.drawable.ic_search,                  description = itemsDescription[0]),
+    SEARCH      (R.drawable.ic_search,     R.drawable.ic_search_on,   itemsDescription[0]),
     NOTE        (R.drawable.ic_note,       R.drawable.ic_note_on,     itemsDescription[1]),
     TASK        (R.drawable.ic_task,       R.drawable.ic_task_on,     itemsDescription[2]),
     DOCUMENT    (R.drawable.ic_document,   R.drawable.ic_document_on, itemsDescription[3]),
@@ -76,46 +76,47 @@ fun BottomNavigationBar(navController: NavController) {
         //contentColor = MaterialTheme.colors.secondary
     ) {
 
-        /*val currentDestination = navController.currentDestination?.route
-        if (currentDestination == NavigationItem.Menu.route.id)
-            return@BottomNavigation*/
-
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
-        log(currentRoute)
+
         items.forEach { item ->
+            val iconId =
+            //log(currentRoute + " - ${item.route.id}")
+            if (currentRoute == item.route.id && item.icon.valueOn != null)
+                item.icon.valueOn!!
+
+            else
+                item.icon.value
             BottomNavigationItem(
-                icon = { Icon(painterResource(id = item.icon.value), contentDescription = item.icon.description)},
-                selectedContentColor = Color.White,
-                unselectedContentColor = MaterialTheme.colors.secondary,
-              /*  label = { Text(text = item.icon.description) },
-                selectedContentColor = Color.White,
-                unselectedContentColor = Color.White.copy(0.4f),*/
-                alwaysShowLabel = false,
-                selected = currentRoute == item.route.id,
-                //selected = false,
-                onClick = {
-                    when (item) {
-                        is NavigationItem.Menu -> {
+                icon = {Icon(painterResource(id = iconId), contentDescription = item.icon.description)},
+                    selectedContentColor = MaterialTheme.colors.onSecondary,
+                    unselectedContentColor = MaterialTheme.colors.secondary,
+                    alwaysShowLabel = false,
+                    selected = currentRoute == item.route.id,
+                    //selected = false,
+                    onClick = {
+                        when (item) {
+                            is NavigationItem.Menu -> {
 
-                        }
-                        is NavigationItem.Screen -> {
+                            }
+                            is NavigationItem.Screen -> {
 
-                        }
-                        else -> {
-                            navController.navigate(item.route.id) {
-                                navController.graph.startDestinationRoute?.let { route ->
-                                    popUpTo(route) {
-                                        saveState = true
+                            }
+                            else -> {
+                                navController.navigate(item.route.id) {
+                                    navController.graph.startDestinationRoute?.let { route ->
+                                        popUpTo(route) {
+                                            saveState = true
+                                        }
                                     }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
                             }
                         }
                     }
-                }
-            )
+                )
+
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.black.emind.ui.theme
 
+import android.R.id
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
@@ -7,17 +8,30 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import android.R.id.primary
+import android.R.id.primary
+
+
+
+
+
+
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
+    primary = DarkGray,
     primaryVariant = Purple700,
-    secondary = Teal200
+    secondary = White,
+    onSecondary = Orange
+
+
 )
 
 private val LightColorPalette = lightColors(
-    primary = DarkGray,//Purple500,
-    primaryVariant = DarkGray,
-    secondary = Orange,
+    primary = White,
+    //primaryVariant = Purple700,
+    secondary = Gray,
+    onSecondary = Orange
+
 
 /*
     background = Color.White,
@@ -43,9 +57,26 @@ fun EMindTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable(
             color = Color.Transparent
         )
     }else{
-        systemUiController.setSystemBarsColor(
-            color = Color(0xFFFF9100)
+
+       /* systemUiController.setSystemBarsColor(
+            color = LightColorPalette.primary
+        )*/
+        /*systemUiController.setStatusBarColor(
+            color = LightColorPalette.primary
         )
+        systemUiController.setNavigationBarColor(
+            color = LightColorPalette.primary
+        )*/
+        systemUiController.setSystemBarsColor(
+            color = LightColorPalette.primary,
+           /* transformColorForLightContent = {
+                Color.White
+            },*/
+          //  darkIcons = false
+            //isNavigationBarContrastEnforced = true
+        )
+
+
     }
 
 
