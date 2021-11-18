@@ -80,28 +80,27 @@ fun BottomNavigationBar(navController: NavController) {
         val currentRoute = navBackStackEntry?.destination?.route
 
         items.forEach { item ->
+            val selectedItem = currentRoute == item.route.id
             val iconId =
-            //log(currentRoute + " - ${item.route.id}")
-            if (currentRoute == item.route.id && item.icon.valueOn != null)
-                item.icon.valueOn!!
-
-            else
-                item.icon.value
+                if (selectedItem)
+                    item.icon.valueOn ?: item.icon.value
+                else
+                    item.icon.value
             BottomNavigationItem(
                 icon = {Icon(painterResource(id = iconId), contentDescription = item.icon.description)},
                     selectedContentColor = MaterialTheme.colors.onSecondary,
                     unselectedContentColor = MaterialTheme.colors.secondary,
                     alwaysShowLabel = false,
-                    selected = currentRoute == item.route.id,
+                    selected = selectedItem,//currentRoute == item.route.id,
                     //selected = false,
                     onClick = {
                         when (item) {
                             is NavigationItem.Menu -> {
 
                             }
-                            is NavigationItem.Screen -> {
+                          /*  is NavigationItem.Screen -> {
 
-                            }
+                            }*/
                             else -> {
                                 navController.navigate(item.route.id) {
                                     navController.graph.startDestinationRoute?.let { route ->
