@@ -77,8 +77,7 @@ fun BottomNavigationBar(navController: NavController) {
         NavigationItem.Menu
     )
     BottomNavigation(
-        backgroundColor = MaterialTheme.colors.primary,
-        //contentColor = MaterialTheme.colors.secondary
+        backgroundColor = MaterialTheme.colors.primary
     ) {
 
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -91,10 +90,6 @@ fun BottomNavigationBar(navController: NavController) {
                     item.icon.valueOn ?: item.icon.value
                 else
                     item.icon.value
-            /*val unselectColor = if (item is NavigationItem.Insert)
-                    MaterialTheme.colors.onSecondary
-                else
-                    MaterialTheme.colors.secondary*/
             BottomNavigationItem(
                 icon = {Icon(painterResource(id = iconId), contentDescription = item.icon.description)},
                     selectedContentColor = MaterialTheme.colors.onSecondary,
