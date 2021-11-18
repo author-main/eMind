@@ -37,7 +37,7 @@ enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val d
     TASK        (R.drawable.ic_task,       R.drawable.ic_task_on,     itemsDescription[2]),
     DOCUMENT    (R.drawable.ic_document,   R.drawable.ic_document_on, itemsDescription[3]),*/
     EMIND       (R.drawable.ic_note,       R.drawable.ic_note_on,     itemsDescription[1]),
-    INSERT      (R.drawable.ic_insert,                  description = itemsDescription[2]),
+    INSERT      (R.drawable.ic_insert,     R.drawable.ic_insert_on,   itemsDescription[2]),
     FAVORITE    (R.drawable.ic_favorite,   R.drawable.ic_favorite_on, itemsDescription[3]),
     MENU        (R.drawable.ic_menu,                    description = itemsDescription[4])
 }
