@@ -32,7 +32,7 @@ enum class Route(val id: String) {
 }
 
 enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val description: String) {
-    SEARCH      (R.drawable.ic_search,     R.drawable.ic_search_on,   itemsDescription[0]),
+    SEARCH      (R.drawable.ic_search,                  description = itemsDescription[0]),
     /*NOTE        (R.drawable.ic_note,       R.drawable.ic_note_on,     itemsDescription[1]),
     TASK        (R.drawable.ic_task,       R.drawable.ic_task_on,     itemsDescription[2]),
     DOCUMENT    (R.drawable.ic_document,   R.drawable.ic_document_on, itemsDescription[3]),*/
@@ -91,6 +91,10 @@ fun BottomNavigationBar(navController: NavController) {
                     item.icon.valueOn ?: item.icon.value
                 else
                     item.icon.value
+            /*val unselectColor = if (item is NavigationItem.Insert)
+                    MaterialTheme.colors.onSecondary
+                else
+                    MaterialTheme.colors.secondary*/
             BottomNavigationItem(
                 icon = {Icon(painterResource(id = iconId), contentDescription = item.icon.description)},
                     selectedContentColor = MaterialTheme.colors.onSecondary,
