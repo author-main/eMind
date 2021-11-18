@@ -13,16 +13,19 @@ import com.black.emind.R
 
 
 const val ID_SEARCH      = "0"
-const val ID_NOTE        = "1_0"
+const val ID_EMIND       = "1"
+/*const val ID_NOTE        = "1_0"
 const val ID_TASK        = "1_1"
-const val ID_DOCUMENT    = "1_2"
+const val ID_DOCUMENT    = "1_2"*/
+
 const val ID_INSERT      = "2"
 const val ID_FAVORITE    = "3"
 const val ID_MENU        = "4"
 
 enum class Route(val id: String) {
     SEARCH(ID_SEARCH),
-    NOTE(ID_NOTE), TASK(ID_TASK), DOCUMENT(ID_DOCUMENT),
+    EMIND(ID_EMIND),
+    //NOTE(ID_NOTE), TASK(ID_TASK), DOCUMENT(ID_DOCUMENT),
     INSERT(ID_INSERT),
     FAVORITE(ID_FAVORITE),
     MENU(ID_MENU)
@@ -30,12 +33,13 @@ enum class Route(val id: String) {
 
 enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val description: String) {
     SEARCH      (R.drawable.ic_search,     R.drawable.ic_search_on,   itemsDescription[0]),
-    NOTE        (R.drawable.ic_note,       R.drawable.ic_note_on,     itemsDescription[1]),
+    /*NOTE        (R.drawable.ic_note,       R.drawable.ic_note_on,     itemsDescription[1]),
     TASK        (R.drawable.ic_task,       R.drawable.ic_task_on,     itemsDescription[2]),
-    DOCUMENT    (R.drawable.ic_document,   R.drawable.ic_document_on, itemsDescription[3]),
-    INSERT      (R.drawable.ic_insert,                  description = itemsDescription[4]),
-    FAVORITE    (R.drawable.ic_favorite,   R.drawable.ic_favorite_on, itemsDescription[5]),
-    MENU        (R.drawable.ic_menu,                    description = itemsDescription[6])
+    DOCUMENT    (R.drawable.ic_document,   R.drawable.ic_document_on, itemsDescription[3]),*/
+    EMIND       (R.drawable.ic_note,       R.drawable.ic_note_on,     itemsDescription[1]),
+    INSERT      (R.drawable.ic_insert,                  description = itemsDescription[2]),
+    FAVORITE    (R.drawable.ic_favorite,   R.drawable.ic_favorite_on, itemsDescription[3]),
+    MENU        (R.drawable.ic_menu,                    description = itemsDescription[4])
 }
 
 sealed class NavigationItem(var route: Route, var icon: ItemIcon){
@@ -46,7 +50,7 @@ sealed class NavigationItem(var route: Route, var icon: ItemIcon){
     * TASK     - список задач
     * DOCUMENT - документы
     */
-    object Screen:   NavigationItem(Route.NOTE,       ItemIcon.NOTE){
+    /*object Screen:   NavigationItem(Route.NOTE,       ItemIcon.NOTE){
         @JvmName("setRoute1")
         fun setScreen(route: Route) {
             this.route = route
@@ -56,7 +60,8 @@ sealed class NavigationItem(var route: Route, var icon: ItemIcon){
                 else            -> ItemIcon.NOTE
             }
         }
-    }
+    }*/
+    object Emind:    NavigationItem(Route.EMIND,     ItemIcon.EMIND)
     object Insert:   NavigationItem(Route.INSERT,     ItemIcon.INSERT)
     object Favorite: NavigationItem(Route.FAVORITE,   ItemIcon.FAVORITE)
     object Menu:     NavigationItem(Route.MENU,       ItemIcon.MENU)
@@ -66,7 +71,7 @@ sealed class NavigationItem(var route: Route, var icon: ItemIcon){
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
         NavigationItem.Search,
-        NavigationItem.Screen,
+        NavigationItem.Emind,
         NavigationItem.Insert,
         NavigationItem.Favorite,
         NavigationItem.Menu

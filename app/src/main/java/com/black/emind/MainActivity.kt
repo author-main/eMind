@@ -41,7 +41,7 @@ fun MainScreen() {
 
 @Composable
 fun Navigation(navController: NavHostController) {
-    NavHost(navController, startDestination = NavigationItem.Screen.route.id) {
+    NavHost(navController, startDestination = NavigationItem.Emind.route.id) {
         composable(NavigationItem.Search.route.id) {
             //HomeScreen()
         }
@@ -54,7 +54,7 @@ fun Navigation(navController: NavHostController) {
       /*  composable(NavigationItem.Menu.route.id) {
             //BooksScreen()
         }*/
-        composable(NavigationItem.Screen.route.id) {
+        composable(NavigationItem.Emind.route.id) {
             //BooksScreen()
         }
     }
