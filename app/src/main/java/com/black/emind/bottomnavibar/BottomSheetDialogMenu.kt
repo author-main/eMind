@@ -20,7 +20,7 @@ fun BottomSheetDialogMenu() {
     ModalBottomSheetLayout(
         sheetState = state,
         sheetContent = {
-            LazyColumn {
+            LazyColumn(        modifier = Modifier.height(320.dp)) {
                 items(50) {
                     ListItem(
                         text = { Text("Item $it") },
@@ -34,7 +34,12 @@ fun BottomSheetDialogMenu() {
                 }
             }
         }
+
     ) {
+
+        scope.launch { state.show() }
+
+    }/*{
         Column(
             modifier = Modifier.fillMaxSize().padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -45,7 +50,7 @@ fun BottomSheetDialogMenu() {
                 Text("Click to show sheet")
             }
         }
-    }
+    }*/
 }
 
 /*

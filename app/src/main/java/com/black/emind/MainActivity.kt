@@ -3,31 +3,38 @@ package com.black.emind
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.black.emind.bottomnavibar.BottomNavigationBar
+import com.black.emind.bottomnavibar.BottomSheetDialogMenu
 import com.black.emind.bottomnavibar.NavigationItem
 import com.black.emind.ui.theme.EMindTheme
 
+private lateinit var mainViewModel: MainViewModel
+
 class MainActivity : ComponentActivity() {
+
+    @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mainViewModel =
+            ViewModelProvider(this).get(MainViewModel::class.java)
         setContent {
             EMindTheme {
                 MainScreen()
             }
         }
     }
+
 }
 
+@ExperimentalMaterialApi
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
@@ -39,11 +46,13 @@ fun MainScreen() {
     }
 }
 
+@ExperimentalMaterialApi
 @Composable
 fun Navigation(navController: NavHostController) {
     NavHost(navController, startDestination = NavigationItem.Emind.route.id) {
         composable(NavigationItem.Search.route.id) {
-            //HomeScreen()
+            BottomSheetDialogMenu()
+        //HomeScreen()
         }
         composable(NavigationItem.Insert.route.id) {
             //MusicScreen()
