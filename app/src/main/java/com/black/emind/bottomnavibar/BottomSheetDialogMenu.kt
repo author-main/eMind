@@ -2,6 +2,7 @@ package com.black.emind.bottomnavibar
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -18,6 +19,7 @@ fun BottomSheetDialogMenu() {
     val state = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
     val scope = rememberCoroutineScope()
     ModalBottomSheetLayout(
+        sheetShape = RoundedCornerShape(50),
         sheetState = state,
         sheetContent = {
             LazyColumn(        modifier = Modifier.height(320.dp)) {
