@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
@@ -19,7 +21,6 @@ import com.black.emind.ui.theme.EMindTheme
 private lateinit var mainViewModel: MainViewModel
 
 class MainActivity : ComponentActivity() {
-
     @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,10 +50,10 @@ fun MainScreen() {
 @ExperimentalMaterialApi
 @Composable
 fun Navigation(navController: NavHostController) {
+
     NavHost(navController, startDestination = NavigationItem.Emind.route.id) {
         composable(NavigationItem.Search.route.id) {
             BottomSheetDialogMenu()
-        //HomeScreen()
         }
         composable(NavigationItem.Insert.route.id) {
             //MusicScreen()
@@ -67,4 +68,9 @@ fun Navigation(navController: NavHostController) {
             //BooksScreen()
         }
     }
+    /*SideEffect {
+        currentRoute = navController.currentDestination?.route
+        log("currentRoute after = $currentRoute")
+    }*/
+
 }
