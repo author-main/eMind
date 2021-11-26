@@ -14,10 +14,6 @@ import com.black.emind.R
 
 const val ID_SEARCH      = "0"
 const val ID_EMIND       = "1"
-/*const val ID_NOTE        = "1_0"
-const val ID_TASK        = "1_1"
-const val ID_DOCUMENT    = "1_2"*/
-
 const val ID_INSERT      = "2"
 const val ID_FAVORITE    = "3"
 const val ID_MENU        = "4"
@@ -25,7 +21,6 @@ const val ID_MENU        = "4"
 enum class Route(val id: String) {
     SEARCH(ID_SEARCH),
     EMIND(ID_EMIND),
-    //NOTE(ID_NOTE), TASK(ID_TASK), DOCUMENT(ID_DOCUMENT),
     INSERT(ID_INSERT),
     FAVORITE(ID_FAVORITE),
     MENU(ID_MENU)
@@ -33,9 +28,6 @@ enum class Route(val id: String) {
 
 enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val description: String) {
     SEARCH      (R.drawable.ic_search,                  description = itemsDescription[0]),
-    /*NOTE        (R.drawable.ic_note,       R.drawable.ic_note_on,     itemsDescription[1]),
-    TASK        (R.drawable.ic_task,       R.drawable.ic_task_on,     itemsDescription[2]),
-    DOCUMENT    (R.drawable.ic_document,   R.drawable.ic_document_on, itemsDescription[3]),*/
     EMIND       (R.drawable.ic_note,       R.drawable.ic_note_on,     itemsDescription[1]),
     INSERT      (R.drawable.ic_insert,     R.drawable.ic_insert_on,   itemsDescription[2]),
     FAVORITE    (R.drawable.ic_favorite,   R.drawable.ic_favorite_on, itemsDescription[3]),
@@ -61,7 +53,7 @@ sealed class NavigationItem(var route: Route, var icon: ItemIcon){
             }
         }
     }*/
-    object Emind:    NavigationItem(Route.EMIND,     ItemIcon.EMIND)
+    object Emind:    NavigationItem(Route.EMIND,      ItemIcon.EMIND)
     object Insert:   NavigationItem(Route.INSERT,     ItemIcon.INSERT)
     object Favorite: NavigationItem(Route.FAVORITE,   ItemIcon.FAVORITE)
     object Menu:     NavigationItem(Route.MENU,       ItemIcon.MENU)
