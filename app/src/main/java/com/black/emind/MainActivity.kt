@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
@@ -41,7 +39,9 @@ fun MainScreen() {
     val navController = rememberNavController()
     Scaffold(
      //   topBar = { TopBar() },
-        bottomBar = { BottomNavigationBar(navController) }
+        bottomBar = {
+            BottomNavigationBar(navController)
+        }
     ) {
         Navigation(navController)
     }
@@ -50,8 +50,7 @@ fun MainScreen() {
 @ExperimentalMaterialApi
 @Composable
 fun Navigation(navController: NavHostController) {
-
-    NavHost(navController, startDestination = NavigationItem.Emind.route.id) {
+   NavHost(navController, startDestination = NavigationItem.Emind.route.id) {
         composable(NavigationItem.Search.route.id) {
             BottomSheetDialogMenu()
         }
@@ -62,6 +61,7 @@ fun Navigation(navController: NavHostController) {
             //MoviesScreen()
         }
         composable(NavigationItem.Menu.route.id) {
+          //  BottomSheetDialogMenu()
             //BooksScreen()
         }
         composable(NavigationItem.Emind.route.id) {
