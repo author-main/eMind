@@ -5,7 +5,7 @@
     <data>
         <variable
             name="eventhandler"
-            type="com.black.emind.BottomSheetMenu"/>
+            type="com.black.emind.bottomnavibar.BottomSheetMenu"/>
     </data>
 
     <LinearLayout

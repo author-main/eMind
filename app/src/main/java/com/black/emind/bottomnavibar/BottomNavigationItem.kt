@@ -3,14 +3,11 @@ package com.black.emind.bottomnavibar
 import androidx.annotation.DrawableRes
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.black.emind.*
-import com.black.emind.AppEMind.Companion.applicationContext
 import com.black.emind.R
 
 

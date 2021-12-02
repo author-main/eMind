@@ -13,7 +13,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.black.emind.bottomnavibar.BottomNavigationBar
-import com.black.emind.bottomnavibar.BottomSheetDialogMenu
 import com.black.emind.bottomnavibar.NavigationItem
 import com.black.emind.ui.theme.EMindTheme
 
@@ -48,12 +47,11 @@ fun MainScreen() {
     }
 }
 
-@ExperimentalMaterialApi
 @Composable
 fun Navigation(navController: NavHostController) {
    NavHost(navController, startDestination = NavigationItem.Emind.route.id) {
         composable(NavigationItem.Search.route.id) {
-            BottomSheetDialogMenu()
+
         }
         composable(NavigationItem.Insert.route.id) {
             //MusicScreen()
