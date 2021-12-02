@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
@@ -58,7 +59,6 @@ fun Navigation(navController: NavHostController) {
             //MusicScreen()
         }
         composable(NavigationItem.Favorite.route.id) {
-            //MoviesScreen()
         }
         composable(NavigationItem.Menu.route.id) {
           //  BottomSheetDialogMenu()

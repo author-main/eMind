@@ -1,6 +1,7 @@
 package com.black.emind
 
 import android.app.Application
+import android.content.Context
 
 class AppEMind: Application() {
     init {
@@ -8,7 +9,7 @@ class AppEMind: Application() {
     }
     companion object {
         private var instance: AppEMind? = null
-        fun applicationContext() =
+        fun applicationContext(): Context =
             instance!!.applicationContext
     }
 }
