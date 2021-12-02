@@ -2,8 +2,7 @@ package com.black.emind.bottomnavibar
 
 import androidx.annotation.DrawableRes
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
@@ -59,6 +58,7 @@ sealed class NavigationItem(var route: Route, var icon: ItemIcon){
     object Menu:     NavigationItem(Route.MENU,       ItemIcon.MENU)
 }
 
+@ExperimentalMaterialApi
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
@@ -68,6 +68,10 @@ fun BottomNavigationBar(navController: NavController) {
         NavigationItem.Favorite,
         NavigationItem.Menu
     )
+  /*  val showDialog = remember{mutableStateOf(false)}
+    if (showDialog.value)
+        BottomSheetDialogMenu()*/
+
     BottomNavigation(
         backgroundColor = MaterialTheme.colors.primary
     ) {
@@ -92,14 +96,14 @@ fun BottomNavigationBar(navController: NavController) {
                     onClick = {
                         when (item) {
                             is NavigationItem.Menu -> {
-
+                               //showDialog.value = !showDialog.value
                             }
                           /*  is NavigationItem.Screen -> {
 
                             }*/
                             else -> {
                                 navController.navigate(item.route.id) {
-                                    log(item.route.id)
+                                    //log(item.route.id)
                                     launchSingleTop = true
                                     restoreState = true
                                     navController.graph.startDestinationRoute?.let { route ->

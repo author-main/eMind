@@ -9,18 +9,30 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.view.MenuItemCompat
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.black.emind.MainViewModel
 import com.black.emind.log
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
-fun BottomSheetDialogMenu() {
+fun BottomSheetDialogMenu(){
+/*    val viewModel = viewModel<MainViewModel>()
+    val isShowMenu by viewModel.isShowMenu.observeAsState()*/
     val state = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
+
+   /* val dismissState = rememberDismissState(DismissValue.DismissedToStart) { value ->
+        log(value.toString())
+        true
+    }*/
+    //log(dismissState.toString())
     val scope = rememberCoroutineScope()
     ModalBottomSheetLayout(
         sheetShape = AbsoluteRoundedCornerShape(5,5,0,0),
@@ -45,7 +57,8 @@ fun BottomSheetDialogMenu() {
     ) {
 
         scope.launch {
-            state.show()
+
+                state.show()
         }
 
     }/*{
@@ -60,6 +73,8 @@ fun BottomSheetDialogMenu() {
             }
         }
     }*/
+
+
 }
 
 /*
