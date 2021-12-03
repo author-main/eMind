@@ -47,6 +47,7 @@ fun MainScreen() {
     }
 }
 
+@ExperimentalMaterialApi
 @Composable
 fun Navigation(navController: NavHostController) {
    NavHost(navController, startDestination = NavigationItem.Emind.route.id) {
@@ -70,5 +71,4 @@ fun Navigation(navController: NavHostController) {
         currentRoute = navController.currentDestination?.route
         log("currentRoute after = $currentRoute")
     }*/
-
 }
