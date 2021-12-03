@@ -26,8 +26,8 @@ enum class Route(val id: String) {
 }
 
 enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val description: String) {
-    SEARCH      (R.drawable.ic_search,                  description =   itemsDescription[0]),
-    EMIND       (R.drawable.ic_files,       R.drawable.ic_files_on,     itemsDescription[1]),
+    SEARCH      (R.drawable.ic_search,     R.drawable.ic_search_on,     itemsDescription[0]),
+    EMIND       (R.drawable.ic_files,      R.drawable.ic_files_on,      itemsDescription[1]),
     INSERT      (R.drawable.ic_insert,     R.drawable.ic_insert_on,     itemsDescription[2]),
     FAVORITE    (R.drawable.ic_favorite,   R.drawable.ic_favorite_on,   itemsDescription[3]),
     SETTINGS    (R.drawable.ic_setting,    R.drawable.ic_setting_on,    itemsDescription[4])
@@ -61,7 +61,7 @@ sealed class NavigationItem(var route: Route, var icon: ItemIcon){
 @ExperimentalMaterialApi
 @Composable
 fun BottomNavigationBar(navController: NavController) {
-    val context = LocalContext.current
+    //val context = LocalContext.current
     val items = listOf(
         NavigationItem.Settings,
         NavigationItem.Search,
@@ -95,16 +95,12 @@ fun BottomNavigationBar(navController: NavController) {
                     selected = selectedItem,//currentRoute == item.route.id,
                     //selected = false,
                     onClick = {
-                        when (item) {
+                      /*  when (item) {
                             is NavigationItem.Settings -> {
-                               //showDialog.value = !showDialog.value
                                 val dialogMenuDoc = BottomSheetMenu(context, R.style.BottomSheetDialog)
                                 dialogMenuDoc.show()
                             }
-                          /*  is NavigationItem.Screen -> {
-
-                            }*/
-                            else -> {
+                            else -> {*/
                                 navController.navigate(item.route.id) {
                                     //log(item.route.id)
                                     launchSingleTop = true
@@ -115,8 +111,8 @@ fun BottomNavigationBar(navController: NavController) {
                                         }
                                     }
                                 }
-                            }
-                        }
+                            //}
+                       // }
                     }
                 )
 
