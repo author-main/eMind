@@ -30,7 +30,7 @@ enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val d
     EMIND       (R.drawable.ic_files,      R.drawable.ic_files_on,      itemsDescription[1]),
     INSERT      (R.drawable.ic_insert,     R.drawable.ic_insert_on,     itemsDescription[2]),
     FAVORITE    (R.drawable.ic_favorite,   R.drawable.ic_favorite_on,   itemsDescription[3]),
-    SETTINGS    (R.drawable.ic_setting,    R.drawable.ic_setting_on,    itemsDescription[4])
+    SETTINGS    (R.drawable.ic_settings,    R.drawable.ic_settings_on,    itemsDescription[4])
 }
 
 sealed class NavigationItem(var route: Route, var icon: ItemIcon){
