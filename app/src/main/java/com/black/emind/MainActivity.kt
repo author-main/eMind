@@ -58,7 +58,7 @@ fun Navigation(navController: NavHostController) {
         }
         composable(NavigationItem.Favorite.route.id) {
         }
-        composable(NavigationItem.Menu.route.id) {
+        composable(NavigationItem.Settings.route.id) {
           //  BottomSheetDialogMenu()
             //BooksScreen()
         }

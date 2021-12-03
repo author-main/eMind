@@ -15,22 +15,22 @@ const val ID_SEARCH      = "0"
 const val ID_EMIND       = "1"
 const val ID_INSERT      = "2"
 const val ID_FAVORITE    = "3"
-const val ID_MENU        = "4"
+const val ID_SETTINGS    = "4"
 
 enum class Route(val id: String) {
     SEARCH(ID_SEARCH),
     EMIND(ID_EMIND),
     INSERT(ID_INSERT),
     FAVORITE(ID_FAVORITE),
-    MENU(ID_MENU)
+    SETTINGS(ID_SETTINGS)
 }
 
 enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val description: String) {
-    SEARCH      (R.drawable.ic_search,                  description = itemsDescription[0]),
-    EMIND       (R.drawable.ic_note,       R.drawable.ic_note_on,     itemsDescription[1]),
-    INSERT      (R.drawable.ic_insert,     R.drawable.ic_insert_on,   itemsDescription[2]),
-    FAVORITE    (R.drawable.ic_favorite,   R.drawable.ic_favorite_on, itemsDescription[3]),
-    MENU        (R.drawable.ic_menu,                    description = itemsDescription[4])
+    SEARCH      (R.drawable.ic_search,                  description =   itemsDescription[0]),
+    EMIND       (R.drawable.ic_files,       R.drawable.ic_files_on,     itemsDescription[1]),
+    INSERT      (R.drawable.ic_insert,     R.drawable.ic_insert_on,     itemsDescription[2]),
+    FAVORITE    (R.drawable.ic_favorite,   R.drawable.ic_favorite_on,   itemsDescription[3]),
+    SETTINGS    (R.drawable.ic_setting,    R.drawable.ic_setting_on,    itemsDescription[4])
 }
 
 sealed class NavigationItem(var route: Route, var icon: ItemIcon){
@@ -55,7 +55,7 @@ sealed class NavigationItem(var route: Route, var icon: ItemIcon){
     object Emind:    NavigationItem(Route.EMIND,      ItemIcon.EMIND)
     object Insert:   NavigationItem(Route.INSERT,     ItemIcon.INSERT)
     object Favorite: NavigationItem(Route.FAVORITE,   ItemIcon.FAVORITE)
-    object Menu:     NavigationItem(Route.MENU,       ItemIcon.MENU)
+    object Settings: NavigationItem(Route.SETTINGS,   ItemIcon.SETTINGS)
 }
 
 @ExperimentalMaterialApi
@@ -63,11 +63,11 @@ sealed class NavigationItem(var route: Route, var icon: ItemIcon){
 fun BottomNavigationBar(navController: NavController) {
     val context = LocalContext.current
     val items = listOf(
+        NavigationItem.Settings,
         NavigationItem.Search,
-        NavigationItem.Emind,
         NavigationItem.Insert,
         NavigationItem.Favorite,
-        NavigationItem.Menu
+        NavigationItem.Emind
     )
   /*  val showDialog = remember{mutableStateOf(false)}
     if (showDialog.value)
@@ -96,7 +96,7 @@ fun BottomNavigationBar(navController: NavController) {
                     //selected = false,
                     onClick = {
                         when (item) {
-                            is NavigationItem.Menu -> {
+                            is NavigationItem.Settings -> {
                                //showDialog.value = !showDialog.value
                                 val dialogMenuDoc = BottomSheetMenu(context, R.style.BottomSheetDialog)
                                 dialogMenuDoc.show()
