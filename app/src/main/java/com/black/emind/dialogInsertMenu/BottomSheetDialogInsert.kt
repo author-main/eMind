@@ -9,7 +9,7 @@ class BottomSheetMenu(context: Context, attr: Int): BottomSheetDialog(context, a
         ITEM_TASK(1),
         ITEM_DOC (2)
     }
-    private var onClickItemInsertMenu: ((value: ItemMenuInsert) -> Unit)? = null
+    var onClickItemInsertMenu: ((item: ItemMenuInsert) -> Unit)? = null
     /*fun setOnClickItemInsertMenu(value: ((value: ItemMenuInsert) -> Unit)){
         onClickItemInsertMenu = value
     }*/
