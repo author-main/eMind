@@ -1,20 +1,20 @@
-package com.black.emind.bottomnavibar
+package com.black.emind.dialogInsertMenu
 
 import android.content.Context
-import android.view.View
-import androidx.databinding.DataBindingUtil
-import com.black.emind.R
-import com.black.emind.databinding.BottomsheetMenuBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
-
 class BottomSheetMenu(context: Context, attr: Int): BottomSheetDialog(context, attr) {
-    val ITEM0 = 0
-    val ITEM1 = 1
-    val ITEM2 = 2
-    val ITEM3 = 3
-    val ITEM4 = 4
-    private val dataBinding: BottomsheetMenuBinding = DataBindingUtil.inflate(layoutInflater,
+    enum class ItemMenuInsert(val index: Int) {
+        ITEM_NOTE(0),
+        ITEM_TASK(1),
+        ITEM_DOC (2)
+    }
+    private var onClickItemInsertMenu: ((value: ItemMenuInsert) -> Unit)? = null
+    /*fun setOnClickItemInsertMenu(value: ((value: ItemMenuInsert) -> Unit)){
+        onClickItemInsertMenu = value
+    }*/
+
+    /*  private val dataBinding: BottomsheetMenuBinding = DataBindingUtil.inflate(layoutInflater,
         R.layout.bottomsheet_menu, null, false)
     init{
         dataBinding.eventhandler = this
@@ -24,5 +24,5 @@ class BottomSheetMenu(context: Context, attr: Int): BottomSheetDialog(context, a
     fun onClick(v: View){
         onClickMenuItem?.invoke(v.tag.toString().toInt())
         dismiss()
-    }
+    }*/
 }
