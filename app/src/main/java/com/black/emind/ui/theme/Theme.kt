@@ -22,8 +22,6 @@ private val DarkColorPalette = darkColors(
     primaryVariant = Purple700,
     secondary = White,
     onSecondary = Orange
-
-
 )
 
 private val LightColorPalette = lightColors(
