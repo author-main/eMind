@@ -8,3 +8,6 @@ class MainViewModel: ViewModel() {
     private val _isShowMenu = MutableLiveData(false)
     val isShowMenu: LiveData<Boolean> = _isShowMenu
 }
+
+/*tint = if (MaterialTheme.colors.isLight) textColorLight
+else textColorDark*/
