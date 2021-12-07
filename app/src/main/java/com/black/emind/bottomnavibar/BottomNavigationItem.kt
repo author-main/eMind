@@ -1,8 +1,11 @@
 package com.black.emind.bottomnavibar
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
@@ -30,7 +33,7 @@ enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val d
     EMIND       (R.drawable.ic_files,      R.drawable.ic_files_on,      itemsDescription[1]),
     INSERT      (R.drawable.ic_insert,     R.drawable.ic_insert_on,     itemsDescription[2]),
     FAVORITE    (R.drawable.ic_favorite,   R.drawable.ic_favorite_on,   itemsDescription[3]),
-    SETTINGS    (R.drawable.ic_settings,    R.drawable.ic_settings_on,    itemsDescription[4])
+    SETTINGS    (R.drawable.ic_settings,   R.drawable.ic_settings_on,  itemsDescription[4])
 }
 
 sealed class NavigationItem(var route: Route, var icon: ItemIcon){
@@ -74,9 +77,11 @@ fun BottomNavigationBar(navController: NavController) {
         BottomSheetDialogMenu()*/
 
     BottomNavigation(
+        /*Modifier.onGloballyPositioned {
+            log("${it.size.height}")
+        },*/
         backgroundColor = MaterialTheme.colors.primary
     ) {
-
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 

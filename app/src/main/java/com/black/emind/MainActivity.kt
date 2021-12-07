@@ -3,10 +3,16 @@ package com.black.emind
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -14,6 +20,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.black.emind.bottomnavibar.BottomNavigationBar
 import com.black.emind.bottomnavibar.NavigationItem
+import com.black.emind.dialogInsertMenu.BottomInsertButtons
 import com.black.emind.ui.theme.EMindTheme
 
 private lateinit var mainViewModel: MainViewModel
@@ -43,7 +50,21 @@ fun MainScreen() {
             BottomNavigationBar(navController)
         }
     ) {
-        Navigation(navController)
+        Box(modifier = Modifier.padding(it)//.absoluteOffset(y = (-5).dp)
+        ) {
+            Navigation(navController)
+            Box(modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                BottomInsertButtons()
+            }
+        }
+        /*Box(modifier = Modifier.fillMaxSize()
+            .background(Color.Gray),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            BottomInsertButtons()
+        }*/
     }
 }
 
