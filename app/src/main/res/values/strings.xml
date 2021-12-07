@@ -12,4 +12,10 @@
     <string name="itemdoc2">item eMind 2</string>
     <string name="itemdoc3">item eMind 3</string>
     <string name="itemdoc4">item eMind 4</string>
+
+    <string name="button_insert_note">Добавить заметку</string>
+    <string name="button_insert_task">Создать задачу</string>
+    <string name="button_insert_doc">Добавить документ</string>
+
+
 </resources>
