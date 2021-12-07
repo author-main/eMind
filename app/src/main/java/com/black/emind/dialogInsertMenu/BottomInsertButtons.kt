@@ -4,6 +4,7 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ShapeDrawable
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,13 +23,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.res.ResourcesCompat
-import com.black.emind.AppEMind
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.Role
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.black.emind.*
 import com.black.emind.R
-import com.black.emind.getColorTheme
-import com.black.emind.log
 import com.black.emind.ui.theme.Orange
 
 
@@ -41,26 +41,38 @@ fun Clickable(
     children.invoke()
 }*/
 
+const val ID_BUTTON_NOTE = 0
+const val ID_BUTTON_TASK = 1
+const val ID_BUTTON_DOC  = 2
+
+sealed class InsertButton(val id: Int, @DrawableRes val icon: Int, @StringRes val description: Int){
+    object ButtonNote: InsertButton(ID_BUTTON_NOTE, R.drawable.ic_insert_note, R.string.button_insert_note)
+    object ButtonTask: InsertButton(ID_BUTTON_TASK, R.drawable.ic_insert_task, R.string.button_insert_task)
+    object ButtonDoc : InsertButton(ID_BUTTON_DOC,  R.drawable.ic_insert_doc,  R.string.button_insert_doc)
+}
+
 @Composable
-fun ButtonInsert(@DrawableRes icon: Int, description: String?) {
+fun ButtonInsert(button: InsertButton) {
+    val viewModel: MainViewModel = viewModel()
     Box(modifier = Modifier
         .padding(3.dp)
         .size(56.dp, 56.dp)
         .background(Orange, CircleShape)
-        .clickable (
+        .clickable(
             interactionSource = remember { MutableInteractionSource() },
-            indication = rememberRipple(bounded = false, radius = 32.dp),
+            indication = rememberRipple(bounded = false, radius = 28.dp),
             enabled = true,
-            role = Role.Image){
-            log("Click")
+            role = Role.Image
+        ) {
+            viewModel.insertObject(button)
         }
     ) {
-    Image(
-            ImageVector.vectorResource(icon),
+        Image(
+            imageVector = ImageVector.vectorResource(button.icon),
             modifier = Modifier.fillMaxSize(),
             alignment = Alignment.Center,
             contentScale = ContentScale.None,
-            contentDescription = description
+            contentDescription = stringResource(id = button.description)
         )
     }
 }
@@ -72,9 +84,9 @@ fun BottomInsertButtons() {
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.Center
     ){
-        ButtonInsert(icon = R.drawable.ic_insert_note, description = stringResource(id = R.string.button_insert_note))
-        ButtonInsert(icon = R.drawable.ic_insert_task, description = stringResource(id = R.string.button_insert_task))
-        ButtonInsert(icon = R.drawable.ic_insert_doc, description = stringResource(id = R.string.button_insert_doc))
+        ButtonInsert(InsertButton.ButtonNote)
+        ButtonInsert(InsertButton.ButtonTask)
+        ButtonInsert(InsertButton.ButtonDoc)
     }
 }
 

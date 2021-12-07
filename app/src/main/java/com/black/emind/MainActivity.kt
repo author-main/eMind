@@ -21,21 +21,35 @@ import androidx.navigation.compose.rememberNavController
 import com.black.emind.bottomnavibar.BottomNavigationBar
 import com.black.emind.bottomnavibar.NavigationItem
 import com.black.emind.dialogInsertMenu.BottomInsertButtons
+import com.black.emind.dialogInsertMenu.OnInsertObjectListener
 import com.black.emind.ui.theme.EMindTheme
 
 private lateinit var mainViewModel: MainViewModel
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), OnInsertObjectListener{
     @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel =
             ViewModelProvider(this).get(MainViewModel::class.java)
+        mainViewModel.addInsertObjectListener(this)
         setContent {
             EMindTheme {
                 MainScreen()
             }
         }
+    }
+
+    override fun insertNote() {
+        log("Insert Note")
+    }
+
+    override fun insertTask() {
+        log("Insert Task")
+    }
+
+    override fun insertDoc() {
+        log("Insert Doc")
     }
 
 }
@@ -92,4 +106,5 @@ fun Navigation(navController: NavHostController) {
         currentRoute = navController.currentDestination?.route
         log("currentRoute after = $currentRoute")
     }*/
+
 }
