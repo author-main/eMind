@@ -33,28 +33,11 @@ enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val d
     EMIND       (R.drawable.ic_files,      R.drawable.ic_files_on,      itemsDescription[1]),
     INSERT      (R.drawable.ic_insert,     R.drawable.ic_insert_on,     itemsDescription[2]),
     FAVORITE    (R.drawable.ic_favorite,   R.drawable.ic_favorite_on,   itemsDescription[3]),
-    SETTINGS    (R.drawable.ic_settings,   R.drawable.ic_settings_on,  itemsDescription[4])
+    SETTINGS    (R.drawable.ic_settings,   R.drawable.ic_settings_on,   itemsDescription[4])
 }
 
 sealed class NavigationItem(var route: Route, var icon: ItemIcon){
     object Search:   NavigationItem(Route.SEARCH,     ItemIcon.SEARCH)
-    /*
-    * object Screen - активный экран:
-    * NOTE     - заметки
-    * TASK     - список задач
-    * DOCUMENT - документы
-    */
-    /*object Screen:   NavigationItem(Route.NOTE,       ItemIcon.NOTE){
-        @JvmName("setRoute1")
-        fun setScreen(route: Route) {
-            this.route = route
-            icon = when (route) {
-                Route.TASK      -> ItemIcon.TASK
-                Route.DOCUMENT  -> ItemIcon.DOCUMENT
-                else            -> ItemIcon.NOTE
-            }
-        }
-    }*/
     object Emind:    NavigationItem(Route.EMIND,      ItemIcon.EMIND)
     object Insert:   NavigationItem(Route.INSERT,     ItemIcon.INSERT)
     object Favorite: NavigationItem(Route.FAVORITE,   ItemIcon.FAVORITE)

@@ -41,14 +41,10 @@ fun Clickable(
     children.invoke()
 }*/
 
-const val ID_BUTTON_NOTE = 0
-const val ID_BUTTON_TASK = 1
-const val ID_BUTTON_DOC  = 2
-
-sealed class InsertButton(val id: Int, @DrawableRes val icon: Int, @StringRes val description: Int){
-    object ButtonNote: InsertButton(ID_BUTTON_NOTE, R.drawable.ic_insert_note, R.string.button_insert_note)
-    object ButtonTask: InsertButton(ID_BUTTON_TASK, R.drawable.ic_insert_task, R.string.button_insert_task)
-    object ButtonDoc : InsertButton(ID_BUTTON_DOC,  R.drawable.ic_insert_doc,  R.string.button_insert_doc)
+sealed class InsertButton(@DrawableRes val icon: Int, @StringRes val description: Int){
+    object ButtonNote: InsertButton(R.drawable.ic_insert_note, R.string.button_insert_note)
+    object ButtonTask: InsertButton(R.drawable.ic_insert_task, R.string.button_insert_task)
+    object ButtonDoc : InsertButton(R.drawable.ic_insert_doc,  R.string.button_insert_doc)
 }
 
 @Composable
@@ -60,9 +56,8 @@ fun ButtonInsert(button: InsertButton) {
         .background(Orange, CircleShape)
         .clickable(
             interactionSource = remember { MutableInteractionSource() },
-            indication = rememberRipple(bounded = false, radius = 28.dp),
-            enabled = true,
-            role = Role.Image
+            indication = rememberRipple(bounded = false, radius = 28.dp, color = Color.Yellow),
+            enabled = true
         ) {
             viewModel.insertObject(button)
         }
