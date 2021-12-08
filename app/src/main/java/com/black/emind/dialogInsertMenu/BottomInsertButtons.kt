@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -77,19 +78,17 @@ fun ButtonInsert(button: InsertButton) {
 @Composable
 fun BottomInsertButtons() {
     val viewModel: MainViewModel = viewModel()
-    val visibled = viewModel.isShowInsertButton.observeAsState()
+    val visibled: Boolean by viewModel.isShowInsertButton.observeAsState(false)
     Row(modifier = Modifier
         .padding(bottom = 5.dp),
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.Center
     ){
-        visibled.value?.let {
-            if (it) {
-                ButtonInsert(InsertButton.ButtonNote)
-                ButtonInsert(InsertButton.ButtonTask)
-                ButtonInsert(InsertButton.ButtonDoc)
-            }
-        }
+         if (visibled) {
+             ButtonInsert(InsertButton.ButtonNote)
+             ButtonInsert(InsertButton.ButtonTask)
+             ButtonInsert(InsertButton.ButtonDoc)
+         }
 
     }
 }

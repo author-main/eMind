@@ -118,7 +118,7 @@ fun Navigation(navController: NavHostController) {
 
         }
         composable(NavigationItem.Insert.route.id) {
-            //BottomInsertButtons(true)
+
         }
         composable(NavigationItem.Favorite.route.id) {
         }

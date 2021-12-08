@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -31,7 +32,7 @@ enum class Route(val id: String) {
     SETTINGS(ID_SETTINGS)
 }
 
-enum class ItemIcon(@DrawableRes val value: Int, val valueOn: Int? = null, val description: String) {
+enum class ItemIcon(@DrawableRes var value: Int, val valueOn: Int? = null, val description: String) {
     SEARCH      (R.drawable.ic_search,     R.drawable.ic_search_on,     itemsDescription[0]),
     EMIND       (R.drawable.ic_files,      R.drawable.ic_files_on,      itemsDescription[1]),
     INSERT      (R.drawable.ic_insert,     R.drawable.ic_insert_on,     itemsDescription[2]),
@@ -51,6 +52,11 @@ sealed class NavigationItem(var route: Route, var icon: ItemIcon){
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     //val context = LocalContext.current
+    val viewModel: MainViewModel = viewModel()
+    val visibled: Boolean by viewModel.isShowInsertButton.observeAsState(false)
+    //log("visibled $visibled")
+    /*var counter by remember { mutableStateOf(1) }
+    log("counter = $counter")*/
     val items = listOf(
         NavigationItem.Settings,
         NavigationItem.Search,
@@ -58,7 +64,10 @@ fun BottomNavigationBar(navController: NavController) {
         NavigationItem.Favorite,
         NavigationItem.Emind
     )
-    val viewModel: MainViewModel = viewModel()
+    if (!visibled)
+        NavigationItem.Insert.icon.value = R.drawable.ic_insert
+    else
+        NavigationItem.Insert.icon.value = R.drawable.ic_insert_on
   /*  val showDialog = remember{mutableStateOf(false)}
     if (showDialog.value)
         BottomSheetDialogMenu()*/
@@ -71,7 +80,6 @@ fun BottomNavigationBar(navController: NavController) {
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
-
         items.forEach { item ->
             val selectedItem = currentRoute == item.route.id
             val iconId =
@@ -97,13 +105,16 @@ fun BottomNavigationBar(navController: NavController) {
                     onClick = {
                         when (item) {
                             is NavigationItem.Insert -> {
+                                //item.icon.value = R.drawable.ic_insert_on
                                 viewModel.showInsertButtons()
+                                //counter++
                             }
                             /*is NavigationItem.Settings -> {
                                 val dialogMenuDoc = BottomSheetMenu(context, R.style.BottomSheetDialog)
                                 dialogMenuDoc.show()
                             }*/
                             else -> {
+                                //NavigationItem.Insert.icon.value = R.drawable.ic_insert
                                 viewModel.showInsertButtons(false)
                                 navController.navigate(item.route.id) {
                                     //log(item.route.id)
