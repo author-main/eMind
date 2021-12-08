@@ -133,8 +133,6 @@ fun BottomInsertButtons() {
         )
     )
 
-
-
     Row(modifier = Modifier
         .padding(bottom = 5.dp),
         verticalAlignment = Alignment.Bottom,
