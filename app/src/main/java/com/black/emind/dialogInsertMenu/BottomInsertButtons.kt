@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -56,7 +58,7 @@ fun ButtonInsert(button: InsertButton) {
         .background(Orange, CircleShape)
         .clickable(
             interactionSource = remember { MutableInteractionSource() },
-            indication = rememberRipple(bounded = false, radius = 28.dp, color = Color.Yellow),
+            indication = rememberRipple(bounded = false, radius = 28.dp),
             enabled = true
         ) {
             viewModel.insertObject(button)
@@ -74,14 +76,21 @@ fun ButtonInsert(button: InsertButton) {
 
 @Composable
 fun BottomInsertButtons() {
+    val viewModel: MainViewModel = viewModel()
+    val visibled = viewModel.isShowInsertButton.observeAsState()
     Row(modifier = Modifier
         .padding(bottom = 5.dp),
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.Center
     ){
-        ButtonInsert(InsertButton.ButtonNote)
-        ButtonInsert(InsertButton.ButtonTask)
-        ButtonInsert(InsertButton.ButtonDoc)
+        visibled.value?.let {
+            if (it) {
+                ButtonInsert(InsertButton.ButtonNote)
+                ButtonInsert(InsertButton.ButtonTask)
+                ButtonInsert(InsertButton.ButtonDoc)
+            }
+        }
+
     }
 }
 

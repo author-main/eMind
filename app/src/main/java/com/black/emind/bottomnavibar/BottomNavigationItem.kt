@@ -5,13 +5,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.black.emind.*
 import com.black.emind.R
+import com.black.emind.ui.theme.Orange
 
 
 const val ID_SEARCH      = "0"
@@ -55,6 +58,7 @@ fun BottomNavigationBar(navController: NavController) {
         NavigationItem.Favorite,
         NavigationItem.Emind
     )
+    val viewModel: MainViewModel = viewModel()
   /*  val showDialog = remember{mutableStateOf(false)}
     if (showDialog.value)
         BottomSheetDialogMenu()*/
@@ -75,20 +79,32 @@ fun BottomNavigationBar(navController: NavController) {
                     item.icon.valueOn ?: item.icon.value
                 else
                     item.icon.value
+           /* val unselectedColor =
+                if (item is NavigationItem.Insert)
+                        Orange
+                    else
+                        MaterialTheme.colors.secondary*/
+
             BottomNavigationItem(
-                icon = {Icon(painterResource(id = iconId), contentDescription = item.icon.description)},
+                icon = {
+                        Icon(painterResource(id = iconId), contentDescription = item.icon.description)
+                    },
                     selectedContentColor = MaterialTheme.colors.onSecondary,
                     unselectedContentColor = MaterialTheme.colors.secondary,
                     alwaysShowLabel = false,
                     selected = selectedItem,//currentRoute == item.route.id,
                     //selected = false,
                     onClick = {
-                      /*  when (item) {
-                            is NavigationItem.Settings -> {
+                        when (item) {
+                            is NavigationItem.Insert -> {
+                                viewModel.showInsertButtons()
+                            }
+                            /*is NavigationItem.Settings -> {
                                 val dialogMenuDoc = BottomSheetMenu(context, R.style.BottomSheetDialog)
                                 dialogMenuDoc.show()
-                            }
-                            else -> {*/
+                            }*/
+                            else -> {
+                                viewModel.showInsertButtons(false)
                                 navController.navigate(item.route.id) {
                                     //log(item.route.id)
                                     launchSingleTop = true
@@ -99,8 +115,8 @@ fun BottomNavigationBar(navController: NavController) {
                                         }
                                     }
                                 }
-                            //}
-                       // }
+                            }
+                        }
                     }
                 )
 

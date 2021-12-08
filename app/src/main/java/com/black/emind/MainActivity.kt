@@ -4,8 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,6 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -57,6 +61,7 @@ class MainActivity : ComponentActivity(), OnInsertObjectListener{
 @ExperimentalMaterialApi
 @Composable
 fun MainScreen() {
+    val viewModel: MainViewModel = viewModel()
     val navController = rememberNavController()
     Scaffold(
      //   topBar = { TopBar() },
@@ -67,8 +72,31 @@ fun MainScreen() {
         Box(modifier = Modifier.padding(it)//.absoluteOffset(y = (-5).dp)
         ) {
             Navigation(navController)
-            Box(modifier = Modifier.fillMaxSize(),
+
+            /*
+            Box(modifier = Modifier
+        .padding(3.dp)
+        .size(56.dp, 56.dp)
+        .background(Orange, CircleShape)
+        .clickable(
+            interactionSource = remember { MutableInteractionSource() },
+            indication = rememberRipple(bounded = false, radius = 28.dp),
+            enabled = true
+        ) {
+            viewModel.insertObject(button)
+        }
+             */
+
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null
+                ) {
+                    viewModel.showInsertButtons(false)
+                },
                 contentAlignment = Alignment.BottomCenter
+
             ) {
                 BottomInsertButtons()
             }
@@ -90,7 +118,7 @@ fun Navigation(navController: NavHostController) {
 
         }
         composable(NavigationItem.Insert.route.id) {
-            //MusicScreen()
+            //BottomInsertButtons(true)
         }
         composable(NavigationItem.Favorite.route.id) {
         }

@@ -8,12 +8,17 @@ import com.black.emind.dialogInsertMenu.InsertButton
 import com.black.emind.dialogInsertMenu.OnInsertObjectListener
 
 class MainViewModel: ViewModel() {
-    /*private val _isShowMenu = MutableLiveData(false)
-    val isShowMenu: LiveData<Boolean> = _isShowMenu*/
+    private val _isShowInsertButtons = MutableLiveData(false)
+    val isShowInsertButton: LiveData<Boolean> = _isShowInsertButtons
     private var onInsertObjectListener: OnInsertObjectListener? = null
     fun addInsertObjectListener(listener: OnInsertObjectListener){
         onInsertObjectListener = listener
     }
+
+    fun showInsertButtons(value: Boolean = true){
+        _isShowInsertButtons.value = value
+    }
+
     fun insertObject(button: InsertButton){
         when (button) {
             is InsertButton.ButtonNote ->{
@@ -26,6 +31,7 @@ class MainViewModel: ViewModel() {
                 onInsertObjectListener?.insertDoc()
             }
         }
+        showInsertButtons(false)
     }
 }
 
