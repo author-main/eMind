@@ -13,11 +13,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ripple.rememberRipple
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -109,29 +106,20 @@ fun BottomInsertButtons() {
             delayMillis = 200
         )
     )*/
+
+    val indexes = if (visibled) arrayOf(0,1,2)
+                  else arrayOf(2,1,0)
     val duration = 100
-    val animatedSize: Dp by animateDpAsState(
-        targetValue = if (visibled) 56.dp else 0.dp,
-        animationSpec = tween(
-            durationMillis = duration
+    var animation =  emptyArray<State<Dp>>()
+    for (i in 0..2){
+        animation += animateDpAsState(
+            targetValue = if (visibled) 56.dp else 0.dp,
+            animationSpec = tween(
+                durationMillis = duration,
+                delayMillis = i * 50
+            )
         )
-    )
-
-    val animatedSize1: Dp by animateDpAsState(
-        targetValue = if (visibled) 56.dp else 0.dp,
-        animationSpec = tween(
-            durationMillis = duration,
-            delayMillis = 50
-        )
-    )
-
-    val animatedSize2: Dp by animateDpAsState(
-        targetValue = if (visibled) 56.dp else 0.dp,
-        animationSpec = tween(
-            durationMillis = duration,
-            delayMillis = 100
-        )
-    )
+    }
 
     Row(modifier = Modifier
         .padding(bottom = 5.dp),
@@ -139,9 +127,9 @@ fun BottomInsertButtons() {
         horizontalArrangement = Arrangement.Center
     ){
          //if (visibled) {
-             ButtonInsert(InsertButton.ButtonNote, animatedSize)
-             ButtonInsert(InsertButton.ButtonTask, animatedSize1)
-             ButtonInsert(InsertButton.ButtonDoc,  animatedSize2)
+             ButtonInsert(InsertButton.ButtonNote, animation[indexes[0]].value)
+             ButtonInsert(InsertButton.ButtonTask, animation[indexes[1]].value)
+             ButtonInsert(InsertButton.ButtonDoc,  animation[indexes[2]].value)
         // }
 
     }
