@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ShapeDrawable
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -29,6 +31,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.unit.Dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.black.emind.*
 import com.black.emind.R
@@ -51,11 +54,11 @@ sealed class InsertButton(@DrawableRes val icon: Int, @StringRes val description
 }
 
 @Composable
-fun ButtonInsert(button: InsertButton) {
+fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = Modifier) {
     val viewModel: MainViewModel = viewModel()
     Box(modifier = Modifier
         .padding(3.dp)
-        .size(56.dp, 56.dp)
+        .size(animatedSize)
         .background(Orange, CircleShape)
         .clickable(
             interactionSource = remember { MutableInteractionSource() },
@@ -79,16 +82,69 @@ fun ButtonInsert(button: InsertButton) {
 fun BottomInsertButtons() {
     val viewModel: MainViewModel = viewModel()
     val visibled: Boolean by viewModel.isShowInsertButton.observeAsState(false)
+    /*val value by animateFloatAsState(
+        targetValue = 1f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioHighBouncy,
+            stiffness = Spring.StiffnessMedium
+        )
+    )*/
+    /*val rotationAngle by animateFloatAsState(
+        targetValue = if (visibled) 360F else 0f,
+        animationSpec = tween(
+            durationMillis = 1500
+        )
+    )
+    val rotationAngle1 by animateFloatAsState(
+        targetValue = if (visibled) 360F else 0f,
+        animationSpec = tween(
+            durationMillis = 1500,
+            delayMillis = 100
+        )
+    )
+    val rotationAngle2 by animateFloatAsState(
+        targetValue = if (visibled) 360F else 0f,
+        animationSpec = tween(
+            durationMillis = 1500,
+            delayMillis = 200
+        )
+    )*/
+    val duration = 100
+    val animatedSize: Dp by animateDpAsState(
+        targetValue = if (visibled) 56.dp else 0.dp,
+        animationSpec = tween(
+            durationMillis = duration
+        )
+    )
+
+    val animatedSize1: Dp by animateDpAsState(
+        targetValue = if (visibled) 56.dp else 0.dp,
+        animationSpec = tween(
+            durationMillis = duration,
+            delayMillis = 50
+        )
+    )
+
+    val animatedSize2: Dp by animateDpAsState(
+        targetValue = if (visibled) 56.dp else 0.dp,
+        animationSpec = tween(
+            durationMillis = duration,
+            delayMillis = 100
+        )
+    )
+
+
+
     Row(modifier = Modifier
         .padding(bottom = 5.dp),
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.Center
     ){
-         if (visibled) {
-             ButtonInsert(InsertButton.ButtonNote)
-             ButtonInsert(InsertButton.ButtonTask)
-             ButtonInsert(InsertButton.ButtonDoc)
-         }
+         //if (visibled) {
+             ButtonInsert(InsertButton.ButtonNote, animatedSize)
+             ButtonInsert(InsertButton.ButtonTask, animatedSize1)
+             ButtonInsert(InsertButton.ButtonDoc,  animatedSize2)
+        // }
 
     }
 }
