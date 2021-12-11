@@ -125,20 +125,24 @@ fun BottomInsertButtons() {
             animationSpec = tween(
                 durationMillis = duration,
                 delayMillis = i * 50
-            )
+            ),
+            finishedListener = {
+                if (i == indexes[2]) {
+
+                }
+            }
         )
     }
-
     Row(modifier = Modifier
         .padding(bottom = 5.dp),
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.Center
     ){
-         if (visibled) {
+        // if (visibled) {
              ButtonInsert(InsertButton.ButtonNote, animation[indexes[0]].value)
              ButtonInsert(InsertButton.ButtonTask, animation[indexes[1]].value)
              ButtonInsert(InsertButton.ButtonDoc,  animation[indexes[2]].value)
-         }
+        // }
 
     }
 }
