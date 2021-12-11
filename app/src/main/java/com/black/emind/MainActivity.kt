@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -71,8 +72,11 @@ fun MainScreen() {
     ) {
         Box(modifier = Modifier.padding(it)
         ) {
+            val visibledPanelInsertButtons: Boolean by viewModel.isShowPanelInsertButton.observeAsState(false)
             Navigation(navController)
+            if (visibledPanelInsertButtons)
             Box(modifier = Modifier
+                .background(Color.Transparent)
                 .fillMaxSize()
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
