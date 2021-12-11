@@ -53,21 +53,24 @@ sealed class InsertButton(@DrawableRes val icon: Int, @StringRes val description
 @Composable
 fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = Modifier) {
     val viewModel: MainViewModel = viewModel()
-    Box(modifier = Modifier
+    Box(contentAlignment = Alignment.Center,
+        modifier = Modifier
         .padding(3.dp)
-        .size(animatedSize)
-        .background(Orange, CircleShape)
+        .size(56.dp, 56.dp)
+        //.background(Orange, CircleShape)
         .clickable(
             interactionSource = remember { MutableInteractionSource() },
             indication = rememberRipple(bounded = false, radius = 28.dp),
             enabled = true
-        ) {
+        ){
             viewModel.insertObject(button)
         }
     ) {
         Image(
             imageVector = ImageVector.vectorResource(button.icon),
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .size(animatedSize)
+                .background(Orange, CircleShape),
             alignment = Alignment.Center,
             contentScale = ContentScale.None,
             contentDescription = stringResource(id = button.description)

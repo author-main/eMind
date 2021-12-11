@@ -69,24 +69,9 @@ fun MainScreen() {
             BottomNavigationBar(navController)
         }
     ) {
-        Box(modifier = Modifier.padding(it)//.absoluteOffset(y = (-5).dp)
+        Box(modifier = Modifier.padding(it)
         ) {
             Navigation(navController)
-
-            /*
-            Box(modifier = Modifier
-        .padding(3.dp)
-        .size(56.dp, 56.dp)
-        .background(Orange, CircleShape)
-        .clickable(
-            interactionSource = remember { MutableInteractionSource() },
-            indication = rememberRipple(bounded = false, radius = 28.dp),
-            enabled = true
-        ) {
-            viewModel.insertObject(button)
-        }
-             */
-
             Box(modifier = Modifier
                 .fillMaxSize()
                 .clickable(
@@ -101,12 +86,6 @@ fun MainScreen() {
                 BottomInsertButtons()
             }
         }
-        /*Box(modifier = Modifier.fillMaxSize()
-            .background(Color.Gray),
-            contentAlignment = Alignment.BottomCenter
-        ) {
-            BottomInsertButtons()
-        }*/
     }
 }
 
