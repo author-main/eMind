@@ -66,15 +66,20 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
             viewModel.insertObject(button)
         }
     ) {
-        Image(
-            imageVector = ImageVector.vectorResource(button.icon),
-            modifier = Modifier
-                .size(animatedSize)
-                .background(Orange, CircleShape),
-            alignment = Alignment.Center,
-            contentScale = ContentScale.None,
-            contentDescription = stringResource(id = button.description)
-        )
+        Box(modifier = Modifier
+            .size(animatedSize)
+            .background(Orange, CircleShape)) {
+            Image(
+                imageVector = ImageVector.vectorResource(button.icon),
+                modifier = Modifier
+                    .padding(16.dp)
+                    .size(animatedSize),
+//                    .background(Orange, CircleShape),
+//                alignment = Alignment.Center,
+                contentScale = ContentScale.Fit,
+                contentDescription = stringResource(id = button.description)
+            )
+        }
     }
 }
 
@@ -112,7 +117,7 @@ fun BottomInsertButtons() {
 
     val indexes = if (visibled) arrayOf(0,1,2)
                   else arrayOf(2,1,0)
-    val duration = 100
+    val duration = 150
     var animation =  emptyArray<State<Dp>>()
     for (i in 0..2){
         animation += animateDpAsState(
@@ -129,11 +134,11 @@ fun BottomInsertButtons() {
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.Center
     ){
-         //if (visibled) {
+         if (visibled) {
              ButtonInsert(InsertButton.ButtonNote, animation[indexes[0]].value)
              ButtonInsert(InsertButton.ButtonTask, animation[indexes[1]].value)
              ButtonInsert(InsertButton.ButtonDoc,  animation[indexes[2]].value)
-        // }
+         }
 
     }
 }
