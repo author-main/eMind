@@ -55,16 +55,16 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
     val viewModel: MainViewModel = viewModel()
     Box(contentAlignment = Alignment.Center,
         modifier = Modifier
-        .padding(3.dp)
-        .size(56.dp, 56.dp)
-        //.background(Orange, CircleShape)
-        .clickable(
-            interactionSource = remember { MutableInteractionSource() },
-            indication = rememberRipple(bounded = false, radius = 28.dp),
-            enabled = true
-        ){
-            viewModel.insertObject(button)
-        }
+            .padding(3.dp)
+            .size(56.dp, 56.dp)
+            //.background(Orange, CircleShape)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = rememberRipple(bounded = false, radius = 28.dp),
+                enabled = true
+            ) {
+                viewModel.insertObject(button)
+            }
     ) {
         Box(modifier = Modifier
             .size(animatedSize)
@@ -87,6 +87,9 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
 fun BottomInsertButtons() {
     val viewModel: MainViewModel = viewModel()
     val visibled: Boolean by viewModel.isShowInsertButton.observeAsState(false)
+    var visibledPanel by remember{mutableStateOf(false)}
+    if (visibled)
+        visibledPanel = true
     /*val value by animateFloatAsState(
         targetValue = 1f,
         animationSpec = spring(
@@ -128,7 +131,7 @@ fun BottomInsertButtons() {
             ),
             finishedListener = {
                 if (i == indexes[2]) {
-
+                    visibledPanel = false
                 }
             }
         )
@@ -138,11 +141,11 @@ fun BottomInsertButtons() {
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.Center
     ){
-        // if (visibled) {
+         if (visibledPanel) {
              ButtonInsert(InsertButton.ButtonNote, animation[indexes[0]].value)
              ButtonInsert(InsertButton.ButtonTask, animation[indexes[1]].value)
              ButtonInsert(InsertButton.ButtonDoc,  animation[indexes[2]].value)
-        // }
+         }
 
     }
 }
