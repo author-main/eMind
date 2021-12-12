@@ -72,11 +72,11 @@ fun MainScreen() {
     ) {
         Box(modifier = Modifier.padding(it)
         ) {
-            val visibledPanelInsertButtons: Boolean by viewModel.isShowPanelInsertButton.observeAsState(false)
+            val visibledPanelInsertObj: Boolean by viewModel.isShowPanelInsertObj.observeAsState(false)
             Navigation(navController)
-            if (visibledPanelInsertButtons)
+            if (visibledPanelInsertObj)
             Box(modifier = Modifier
-                .background(Color.Transparent)
+                .background(Color.Transparent)//Color(0x30A0A0A0))
                 .fillMaxSize()
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
@@ -87,6 +87,7 @@ fun MainScreen() {
                 contentAlignment = Alignment.BottomCenter
 
             ) {
+
                 BottomInsertButtons()
             }
         }

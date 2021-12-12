@@ -87,9 +87,9 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
 fun BottomInsertButtons() {
     val viewModel: MainViewModel = viewModel()
     val visibled: Boolean by viewModel.isShowInsertButton.observeAsState(false)
-  /*  var visibledPanel by remember{mutableStateOf(false)}
+    var visibledPanel by remember{mutableStateOf(false)}
     if (visibled)
-        visibledPanel = true*/
+        visibledPanel = true
     /*val value by animateFloatAsState(
         targetValue = 1f,
         animationSpec = spring(
@@ -131,7 +131,8 @@ fun BottomInsertButtons() {
             ),
             finishedListener = {
                 if (!visibled && i == 0) {
-                    viewModel.showPanelInsertButtons(false)
+                    visibledPanel = false
+                   // viewModel.showPanelInsertObj(false)
                 }
             }
         )
@@ -141,12 +142,11 @@ fun BottomInsertButtons() {
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.Center
     ){
-//         if (visibledPanel) {
+         if (visibledPanel) {
              ButtonInsert(InsertButton.ButtonNote, animation[indexes[0]].value)
              ButtonInsert(InsertButton.ButtonTask, animation[indexes[1]].value)
              ButtonInsert(InsertButton.ButtonDoc,  animation[indexes[2]].value)
-//         }
-
+         }
     }
 }
 

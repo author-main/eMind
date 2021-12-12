@@ -11,8 +11,8 @@ class MainViewModel: ViewModel() {
     private val _isShowInsertButtons = MutableLiveData(false)
     val isShowInsertButton: LiveData<Boolean> = _isShowInsertButtons
 
-    private val _isShowPanelInsertButtons = MutableLiveData(false)
-    val isShowPanelInsertButton: LiveData<Boolean> = _isShowPanelInsertButtons
+    private val _isShowPanelInsertObj = MutableLiveData(false)
+    val isShowPanelInsertObj: LiveData<Boolean> = _isShowPanelInsertObj
 
     private var onInsertObjectListener: OnInsertObjectListener? = null
     fun addInsertObjectListener(listener: OnInsertObjectListener){
@@ -22,10 +22,10 @@ class MainViewModel: ViewModel() {
     fun showInsertButtons(value: Boolean = true){
         _isShowInsertButtons.value = value
         if (value)
-            _isShowPanelInsertButtons.value = true
+            _isShowPanelInsertObj.value = true
     }
-    fun showPanelInsertButtons(value: Boolean = true){
-        _isShowPanelInsertButtons.value = value
+    fun showPanelInsertObj(value: Boolean = true){
+        _isShowPanelInsertObj.value = value
     }
 
     fun insertObject(button: InsertButton){
