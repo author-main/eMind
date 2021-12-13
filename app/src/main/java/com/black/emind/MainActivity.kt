@@ -90,7 +90,7 @@ fun MainScreen() {
             ) {
                 BottomInsertButtons()
             }
-            ColorDialog(3)
+            //ColorDialog(3)
         }
     }
 }
@@ -100,7 +100,7 @@ fun MainScreen() {
 fun Navigation(navController: NavHostController) {
    NavHost(navController, startDestination = NavigationItem.Emind.route.id) {
         composable(NavigationItem.Search.route.id) {
-
+            ColorDialog()
         }
         composable(NavigationItem.Insert.route.id) {
 
