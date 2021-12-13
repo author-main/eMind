@@ -8,6 +8,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.AlertDialog
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
@@ -31,7 +32,27 @@ val COLOR_OBJ = longArrayOf(
     0xffffcc80, 0xffe1bee8, 0xffb2dfdc, 0xffcddc39, 0xffe2e2e5
 )
 
+/*val COLOR_OBJ_LIGHT = longArrayOf(
+    0xffdc4437, 0xffaa47bc, 0xff4286f5, 0xff109d58, 0xff79797d,
+    0xfffe5722, 0xffb968c7, 0xff00bcd5, 0xff32ac71, 0xff96969b,
+    0xffffa827, 0xfff48fb1, 0xff80deea, 0xff8bc24a, 0xffbebec3,
+    0xffffcc80, 0xffe1bee8, 0xffb2dfdc, 0xffcddc39, 0xffe2e2e5
+)
 
+val COLOR_OBJ_DARK = longArrayOf(
+    0xffdc4437, 0xffaa47bc, 0xff4286f5, 0xff109d58, 0xff79797d,
+    0xfffe5722, 0xffb968c7, 0xff00bcd5, 0xff32ac71, 0xff96969b,
+    0xffffa827, 0xfff48fb1, 0xff80deea, 0xff8bc24a, 0xffbebec3,
+    0xffffcc80, 0xffe1bee8, 0xffb2dfdc, 0xffcddc39, 0xffe2e2e5
+)
+
+@Composable
+fun getColorObj(index: Int): Color{
+    return if (MaterialTheme.colors.isLight)
+        Color(COLOR_OBJ_LIGHT[index])
+    else
+        Color(COLOR_OBJ_DARK[index])
+}*/
 
 @Composable
 fun CircleColor(index: Int, checked: Boolean = false, onClick: () -> Unit){
