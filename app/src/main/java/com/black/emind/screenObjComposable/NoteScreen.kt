@@ -1,4 +1,4 @@
-package com.black.emind.ScreenObjComposable
+package com.black.emind.screenObjComposable
 
 import androidx.compose.runtime.Composable
 

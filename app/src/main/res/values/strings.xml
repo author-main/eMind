@@ -16,6 +16,7 @@
     <string name="button_insert_note">Добавить заметку</string>
     <string name="button_insert_task">Создать задачу</string>
     <string name="button_insert_doc">Добавить документ</string>
+    <string name="title_change_color">Выбор цвета</string>
 
 
 </resources>

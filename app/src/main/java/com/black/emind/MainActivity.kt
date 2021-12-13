@@ -27,6 +27,7 @@ import com.black.emind.bottomnavibar.BottomNavigationBar
 import com.black.emind.bottomnavibar.NavigationItem
 import com.black.emind.dialogInsertMenu.BottomInsertButtons
 import com.black.emind.dialogInsertMenu.OnInsertObjectListener
+import com.black.emind.screenObjComposable.ColorDialog
 import com.black.emind.ui.theme.EMindTheme
 
 private lateinit var mainViewModel: MainViewModel
@@ -87,9 +88,9 @@ fun MainScreen() {
                 contentAlignment = Alignment.BottomCenter
 
             ) {
-
                 BottomInsertButtons()
             }
+            ColorDialog(3)
         }
     }
 }
