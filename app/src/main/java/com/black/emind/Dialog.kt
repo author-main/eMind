@@ -15,10 +15,10 @@ object DialogRouter {
     var currentDialog : Dialog by mutableStateOf(Dialog.None)
     fun navigateTo(destination: Dialog){
         currentDialog = destination
-        log("change route")
+//        log("change route")
     }
     fun reset(){
         currentDialog = Dialog.None
-        log("reset")
+//        log("reset")
     }
 }

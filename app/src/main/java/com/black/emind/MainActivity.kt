@@ -26,6 +26,7 @@ import androidx.navigation.compose.rememberNavController
 import com.black.emind.bottomnavibar.BottomNavigationBar
 import com.black.emind.bottomnavibar.NavigationItem
 import com.black.emind.dialogInsertMenu.BottomInsertButtons
+import com.black.emind.dialogInsertMenu.InsertButtonDialog
 import com.black.emind.dialogInsertMenu.OnInsertObjectListener
 import com.black.emind.screenObjComposable.ColorDialog
 import com.black.emind.ui.theme.EMindTheme
@@ -47,7 +48,7 @@ class MainActivity : ComponentActivity(), OnInsertObjectListener{
     }
 
     override fun insertNote() {
-        log("Insert Note")
+        DialogRouter.navigateTo(Dialog.Color)
     }
 
     override fun insertTask() {
@@ -75,49 +76,11 @@ fun MainScreen() {
         ) {
             Navigation(navController)
             when (DialogRouter.currentDialog) {
-                is Dialog.None -> {
-
-                }
+                is Dialog.None -> {}
                 is Dialog.Color -> ColorDialog()
-                is Dialog.InsertButtons -> {
-                    Box(modifier = Modifier
-                        .background(Color.Transparent)//Color(0x30A0A0A0))
-                        .fillMaxSize()
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null
-                        ) {
-                            viewModel.showPanelInsertObj(false)
-                            //DialogRouter.reset()
-                        },
-                        contentAlignment = Alignment.BottomCenter
-
-                    ) {
-                        BottomInsertButtons()
-                        viewModel.showPanelInsertObj(true)
-                    }
-                }
+                is Dialog.InsertButtons -> InsertButtonDialog()
             }
-            /*
-            val visibledPanelInsertObj: Boolean by viewModel.isShowPanelInsertObj.observeAsState(false)
-            Navigation(navController)
-            if (visibledPanelInsertObj)
-            Box(modifier = Modifier
-                .background(Color.Transparent)//Color(0x30A0A0A0))
-                .fillMaxSize()
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = null
-                ) {
-                    viewModel.showInsertButtons(false)
-                },
-                contentAlignment = Alignment.BottomCenter
-
-            ) {
-                BottomInsertButtons()
-            }
-            ColorDialog(3)*/
-        }
+       }
     }
 }
 

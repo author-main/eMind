@@ -73,7 +73,7 @@ fun BottomNavigationBar(navController: NavController) {
         BottomSheetDialogMenu()*/
 
     BottomNavigation(
-        /*Modifier.onGloballyPositioned {
+      /*  Modifier.onGloballyPositioned {
             log("${it.size.height}")
         },*/
         backgroundColor = MaterialTheme.colors.primary

@@ -58,7 +58,7 @@ fun getColorObj(index: Int): Color{
 }*/
 
 @Composable
-fun CircleColor(index: Int, checked: Boolean = false, onClick: () -> Unit){
+fun CircleColor(index: Int, checked: Boolean = false, clickable: Boolean, onClick: () -> Unit){
     val size = 46.dp
     val color = Color(COLOR_OBJ[index])
     val borderColor = if (checked) {
@@ -75,8 +75,8 @@ fun CircleColor(index: Int, checked: Boolean = false, onClick: () -> Unit){
         .border(1.dp, borderColor, CircleShape)
         .clickable(
             interactionSource = remember { MutableInteractionSource() },
-            indication = rememberRipple(bounded = true, radius = 20.dp),
-            enabled = true
+            indication = rememberRipple(bounded = false, radius = 23.dp),
+            enabled = clickable
         ) {
             onClick.invoke()
         },
@@ -105,19 +105,14 @@ fun CircleColorPreview() {
 fun ColorDialog(startIndex: Int = 15/*,
     onPositiveClick: (Color) -> Unit*/
 ) {
+    var clickable = remember{true}
     val route = remember{DialogRouter.currentDialog}
-
     var indexColor by remember { mutableStateOf(startIndex) }
-    //log("indexcolor = $indexColor")
     val scope = rememberCoroutineScope()
-
     if (route is Dialog.Color) {
-
         AlertDialog(
             onDismissRequest = {
                 DialogRouter.reset()
-                //router = Dialog.None
-             //   openDialog = false
             },
             title = {
                 Text(stringResource(id = R.string.title_change_color))
@@ -125,27 +120,20 @@ fun ColorDialog(startIndex: Int = 15/*,
             text = {
 
                 Column(modifier = Modifier.offset(y = (-12).dp)) {
-                    //Text(modifier = Modifier.padding(start = 8.dp, bottom = 8.dp), text = stringResource(id = R.string.title_change_color))
                     COLOR_OBJ.forEachIndexed { index, _ ->
                         if ((index) % 5 == 0) {
-                            //log("new row")
-
                             val currentRow: Int = index / 5
-                            //log("index = $index, row = $currentRow")
                             val startIndexRow = currentRow * 5//currentRow * 5
                             val bottomPadding = if (currentRow < 3)
                                 8.dp else 0.dp
                             Row(modifier = Modifier.padding(bottom = bottomPadding)) {
                                 for (i in 0..4) {
-                                    CircleColor(index + i, startIndexRow + i == indexColor) {
-
+                                    CircleColor(index + i, startIndexRow + i == indexColor, clickable) {
                                         scope.launch {
+                                            clickable = false
                                             indexColor = index + i
-                                            delay(300)
+                                            delay(400)
                                             DialogRouter.reset()
-                                            //router = Dialog.None
-
-                                            //router = Dialog.None
                                         }
                                     }
                                     if (i < 4)

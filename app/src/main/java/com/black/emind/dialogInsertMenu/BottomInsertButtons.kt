@@ -12,6 +12,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Surface
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
@@ -62,7 +63,7 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
             //.background(Orange, CircleShape)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
-                indication = rememberRipple(bounded = true, radius = 28.dp),
+                indication = rememberRipple(bounded = false, radius = 28.dp),
                 enabled = true
             ) {
                 viewModel.insertObject(button)
@@ -76,8 +77,6 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
                 modifier = Modifier
                     .padding(16.dp)
                     .size(animatedSize),
-//                    .background(Orange, CircleShape),
-//                alignment = Alignment.Center,
                 contentScale = ContentScale.Fit,
                 contentDescription = stringResource(id = button.description)
             )
@@ -90,46 +89,9 @@ fun BottomInsertButtons() {
    /* var visibled by rememberSaveable {
         mutableStateOf(false)
     }*/
-
     val viewModel: MainViewModel = viewModel()
     val visibled: Boolean by viewModel.isShowPanelInsertObj.observeAsState(false)
-    /*var visibledPanel by remember{mutableStateOf(false)}*/
     val route = remember{DialogRouter.currentDialog}
-    /*if (visibled)
-        visibledPanel = true*/
-    /*val value by animateFloatAsState(
-        targetValue = 1f,
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioHighBouncy,
-            stiffness = Spring.StiffnessMedium
-        )
-    )*/
-    /*val rotationAngle by animateFloatAsState(
-        targetValue = if (visibled) 360F else 0f,
-        animationSpec = tween(
-            durationMillis = 1500
-        )
-    )
-    val rotationAngle1 by animateFloatAsState(
-        targetValue = if (visibled) 360F else 0f,
-        animationSpec = tween(
-            durationMillis = 1500,
-            delayMillis = 100
-        )
-    )
-    val rotationAngle2 by animateFloatAsState(
-        targetValue = if (visibled) 360F else 0f,
-        animationSpec = tween(
-            durationMillis = 1500,
-            delayMillis = 200
-        )
-    )*/
-
-     /*if (visibled and (route is Dialog.None)) {
-         visibled = false
-         log("off")
-     }*/
-
     val indexes = if (visibled) arrayOf(0,1,2)
                   else arrayOf(2,1,0)
     val duration = 150
@@ -142,12 +104,8 @@ fun BottomInsertButtons() {
                 delayMillis = i * 50
             ),
             finishedListener = {
-                if (!visibled && i == 0) {
-                    //visibledPanel = false
+                if (!visibled && i == 0)
                     DialogRouter.reset()
-
-                   // viewModel.showPanelInsertObj(false)
-                }
             }
         )
     }
@@ -156,16 +114,30 @@ fun BottomInsertButtons() {
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.Center
     ){
-         //if (visibledPanel) {
-       //  if (route is Dialog.InsertButtons) {
              ButtonInsert(InsertButton.ButtonNote, animation[indexes[0]].value)
              ButtonInsert(InsertButton.ButtonTask, animation[indexes[1]].value)
              ButtonInsert(InsertButton.ButtonDoc,  animation[indexes[2]].value)
-             //viewModel.showPanelInsertObj(true)
-       //  }
-
     }
 }
+
+@Composable
+fun InsertButtonDialog(){
+    val viewModel: MainViewModel = viewModel()
+    Surface(modifier = Modifier
+        .fillMaxSize()
+        .clickable(
+            interactionSource = remember { MutableInteractionSource() },
+            indication = null
+        ) {
+            viewModel.showPanelInsertObj(false)
+        }
+        //,color = Color(0x30A0A0A0)
+    ) {
+        BottomInsertButtons()
+        viewModel.showPanelInsertObj(true)
+    }
+}
+
 
 /*
 @Composable
