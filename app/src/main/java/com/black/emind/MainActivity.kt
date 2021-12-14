@@ -54,6 +54,7 @@ class MainActivity : ComponentActivity(), OnInsertObjectListener{
             delay(200)
             DialogRouter.navigateTo(Dialog.Color)
         }*/
+        log("Insert Note")
         DialogRouter.navigateTo(Dialog.Color)
     }
 

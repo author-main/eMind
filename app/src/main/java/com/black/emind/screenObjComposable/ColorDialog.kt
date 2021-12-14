@@ -106,8 +106,8 @@ fun ColorDialog(startIndex: Int = 15/*,
     onPositiveClick: (Color) -> Unit*/
 ) {
     var clickable = remember{true}
-    val route = remember{DialogRouter.currentDialog}
-    var indexColor by remember { mutableStateOf(startIndex) }
+    val route: Dialog = DialogRouter.currentDialog
+    var indexColor by remember{mutableStateOf(startIndex)}
     val scope = rememberCoroutineScope()
     if (route is Dialog.Color) {
         AlertDialog(

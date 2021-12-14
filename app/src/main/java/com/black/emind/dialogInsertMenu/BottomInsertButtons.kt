@@ -69,11 +69,12 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
                 indication = rememberRipple(bounded = false, radius = 28.dp),
                 enabled = true
             ) {
-                scope.launch {
+                /*scope.launch {
                     viewModel.showPanelInsertObj(false)
                     delay(200)
                     viewModel.insertObject(button)
-                }
+                }*/
+                viewModel.insertObject(button)
             }
     ) {
         Box(modifier = Modifier
@@ -98,14 +99,15 @@ fun BottomInsertButtons() {
     }*/
     val viewModel: MainViewModel = viewModel()
     val visibled: Boolean by viewModel.isShowPanelInsertObj.observeAsState(false)
-    val route = remember{DialogRouter.currentDialog}
+  //  val route = remember{DialogRouter.currentDialog}
     val indexes = if (visibled) arrayOf(0,1,2)
                   else arrayOf(2,1,0)
     val duration = 150
     var animation =  emptyArray<State<Dp>>()
+    val target = if (visibled) 56.dp else 0.dp
     for (i in 0..2){
         animation += animateDpAsState(
-            targetValue = if (visibled) 56.dp else 0.dp,
+            targetValue = target,
             animationSpec = tween(
                 durationMillis = duration,
                 delayMillis = i * 50
@@ -124,7 +126,13 @@ fun BottomInsertButtons() {
              ButtonInsert(InsertButton.ButtonNote, animation[indexes[0]].value)
              ButtonInsert(InsertButton.ButtonTask, animation[indexes[1]].value)
              ButtonInsert(InsertButton.ButtonDoc,  animation[indexes[2]].value)
+             //viewModel.showPanelInsertObj(true)
     }
+  /*  SideEffect {
+        if (!visibled)
+            viewModel.showPanelInsertObj(true)
+    }*/
+
 }
 
 @Composable
@@ -140,8 +148,8 @@ fun InsertButtonDialog(){
         }
         //,color = Color(0x30A0A0A0)
     ) {
-        BottomInsertButtons()
-        viewModel.showPanelInsertObj(true)
+       BottomInsertButtons()
+       viewModel.showPanelInsertObj(true)
     }
 }
 
