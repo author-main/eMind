@@ -56,6 +56,7 @@ fun getColorObj(index: Int): Color{
 
 @Composable
 fun CircleColor(index: Int, checked: Boolean = false, onClick: () -> Unit){
+    val size = 46.dp
     val color = Color(COLOR_OBJ[index])
     val borderColor = if (checked) {
         val hsv = FloatArray(3)
@@ -65,13 +66,13 @@ fun CircleColor(index: Int, checked: Boolean = false, onClick: () -> Unit){
     } else
         Color.Transparent
     Box(modifier = Modifier
-        .size(40.dp, 40.dp)
+        .size(size, size)
         //.clip(CircleShape)
         .background(color, CircleShape)
         .border(1.dp, borderColor, CircleShape)
         .clickable(
             interactionSource = remember { MutableInteractionSource() },
-            indication = rememberRipple(bounded = false, radius = 20.dp),
+            indication = rememberRipple(bounded = true, radius = 20.dp),
             enabled = true
         ) {
             onClick.invoke()
@@ -132,7 +133,7 @@ fun ColorDialog(startIndex: Int = 15/*,
                                         indexColor = index + i
                                         scope.launch {
                                             delay(300)
-                                            openDialog = false
+                                          //  openDialog = false
                                         }
                                     }
                                     if (i < 4)
