@@ -93,7 +93,7 @@ fun BottomInsertButtons() {
     /*val viewModel: MainViewModel = viewModel()
     val visibled: Boolean by viewModel.isShowInsertButton.observeAsState(false)
     var visibledPanel by remember{mutableStateOf(false)}*/
-    val route = remember{DialogRouter.currentDialog}
+    var route = remember{DialogRouter.currentDialog}
     /*if (visibled)
         visibledPanel = true*/
     /*val value by animateFloatAsState(
@@ -124,10 +124,10 @@ fun BottomInsertButtons() {
         )
     )*/
 
-     if (visibled and (route is Dialog.None)) {
+     /*if (visibled and (route is Dialog.None)) {
          visibled = false
          log("off")
-     }
+     }*/
 
     val indexes = if (visibled) arrayOf(0,1,2)
                   else arrayOf(2,1,0)
@@ -144,6 +144,7 @@ fun BottomInsertButtons() {
                 if (!visibled && i == 0) {
                     //visibledPanel = false
                     DialogRouter.reset()
+
                    // viewModel.showPanelInsertObj(false)
                 }
             }
