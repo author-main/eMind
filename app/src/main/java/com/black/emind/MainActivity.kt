@@ -30,6 +30,8 @@ import com.black.emind.dialogInsertMenu.InsertButtonDialog
 import com.black.emind.dialogInsertMenu.OnInsertObjectListener
 import com.black.emind.screenObjComposable.ColorDialog
 import com.black.emind.ui.theme.EMindTheme
+import kotlinx.coroutines.*
+import kotlin.coroutines.coroutineContext
 
 private lateinit var mainViewModel: MainViewModel
 
@@ -48,6 +50,10 @@ class MainActivity : ComponentActivity(), OnInsertObjectListener{
     }
 
     override fun insertNote() {
+        /*CoroutineScope(Dispatchers.Default).launch {
+            delay(200)
+            DialogRouter.navigateTo(Dialog.Color)
+        }*/
         DialogRouter.navigateTo(Dialog.Color)
     }
 

@@ -35,6 +35,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.black.emind.*
 import com.black.emind.R
 import com.black.emind.ui.theme.Orange
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 /*@Composable
@@ -56,6 +58,7 @@ sealed class InsertButton(@DrawableRes val icon: Int, @StringRes val description
 fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = Modifier) {
     val viewModel: MainViewModel = viewModel()
     //log("animatedsize $animatedSize")
+    val scope = rememberCoroutineScope()
     Box(contentAlignment = Alignment.Center,
         modifier = Modifier
             .padding(3.dp)
@@ -66,7 +69,11 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
                 indication = rememberRipple(bounded = false, radius = 28.dp),
                 enabled = true
             ) {
-                viewModel.insertObject(button)
+                scope.launch {
+                    viewModel.showPanelInsertObj(false)
+                    delay(200)
+                    viewModel.insertObject(button)
+                }
             }
     ) {
         Box(modifier = Modifier

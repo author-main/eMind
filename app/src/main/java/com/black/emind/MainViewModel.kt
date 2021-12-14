@@ -22,6 +22,7 @@ class MainViewModel: ViewModel() {
 
     fun insertObject(button: InsertButton){
         //DialogRouter.reset()
+        //showPanelInsertObj(false)
         when (button) {
             is InsertButton.ButtonNote ->{
                 onInsertObjectListener?.insertNote()
@@ -33,7 +34,6 @@ class MainViewModel: ViewModel() {
                 onInsertObjectListener?.insertDoc()
             }
         }
-        showPanelInsertObj(false)
     }
 }
 
