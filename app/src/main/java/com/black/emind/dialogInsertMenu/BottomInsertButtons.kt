@@ -157,12 +157,12 @@ fun BottomInsertButtons() {
         horizontalArrangement = Arrangement.Center
     ){
          //if (visibledPanel) {
-         if (route is Dialog.InsertButtons) {
+       //  if (route is Dialog.InsertButtons) {
              ButtonInsert(InsertButton.ButtonNote, animation[indexes[0]].value)
              ButtonInsert(InsertButton.ButtonTask, animation[indexes[1]].value)
              ButtonInsert(InsertButton.ButtonDoc,  animation[indexes[2]].value)
              //viewModel.showPanelInsertObj(true)
-         }
+       //  }
 
     }
 }
