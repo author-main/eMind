@@ -53,7 +53,7 @@ sealed class NavigationItem(var route: Route, var icon: ItemIcon){
 fun BottomNavigationBar(navController: NavController) {
     //val context = LocalContext.current
     val viewModel: MainViewModel = viewModel()
-    val visibled: Boolean by viewModel.isShowInsertButton.observeAsState(false)
+   // val visibled: Boolean by viewModel.isShowInsertButton.observeAsState(false)
     //log("visibled $visibled")
     /*var counter by remember { mutableStateOf(1) }
     log("counter = $counter")*/
@@ -119,7 +119,8 @@ fun BottomNavigationBar(navController: NavController) {
                             else -> {
                                 //NavigationItem.Insert.icon.value = R.drawable.ic_insert
                                 //viewModel.showInsertButtons(false)
-                                DialogRouter.reset()
+                                //DialogRouter.reset()
+                                viewModel.showPanelInsertObj(false)
                                 navController.navigate(item.route.id) {
                                     //log(item.route.id)
                                     launchSingleTop = true

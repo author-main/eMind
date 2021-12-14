@@ -87,13 +87,14 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
 
 @Composable
 fun BottomInsertButtons() {
-    var visibled by rememberSaveable {
+   /* var visibled by rememberSaveable {
         mutableStateOf(false)
-    }
-    /*val viewModel: MainViewModel = viewModel()
-    val visibled: Boolean by viewModel.isShowInsertButton.observeAsState(false)
-    var visibledPanel by remember{mutableStateOf(false)}*/
-    var route = remember{DialogRouter.currentDialog}
+    }*/
+
+    val viewModel: MainViewModel = viewModel()
+    val visibled: Boolean by viewModel.isShowPanelInsertObj.observeAsState(false)
+    /*var visibledPanel by remember{mutableStateOf(false)}*/
+    val route = remember{DialogRouter.currentDialog}
     /*if (visibled)
         visibledPanel = true*/
     /*val value by animateFloatAsState(
@@ -160,7 +161,7 @@ fun BottomInsertButtons() {
              ButtonInsert(InsertButton.ButtonNote, animation[indexes[0]].value)
              ButtonInsert(InsertButton.ButtonTask, animation[indexes[1]].value)
              ButtonInsert(InsertButton.ButtonDoc,  animation[indexes[2]].value)
-             visibled = true
+             //viewModel.showPanelInsertObj(true)
          }
 
     }

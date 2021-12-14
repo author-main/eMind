@@ -87,13 +87,14 @@ fun MainScreen() {
                             interactionSource = remember { MutableInteractionSource() },
                             indication = null
                         ) {
-                            //viewModel.showInsertButtons(false)
-                          DialogRouter.reset()
+                            viewModel.showPanelInsertObj(false)
+                            //DialogRouter.reset()
                         },
                         contentAlignment = Alignment.BottomCenter
 
                     ) {
                         BottomInsertButtons()
+                        viewModel.showPanelInsertObj(true)
                     }
                 }
             }
