@@ -21,7 +21,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.black.emind.Dialog
+import com.black.emind.DialogRouter
 import com.black.emind.R
+import com.black.emind.log
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -102,14 +105,19 @@ fun CircleColorPreview() {
 fun ColorDialog(startIndex: Int = 15/*,
     onPositiveClick: (Color) -> Unit*/
 ) {
-    var openDialog by remember { mutableStateOf(true) }
+    val route = remember{DialogRouter.currentDialog}
+
     var indexColor by remember { mutableStateOf(startIndex) }
+    //log("indexcolor = $indexColor")
     val scope = rememberCoroutineScope()
-    if (openDialog) {
+
+    if (route is Dialog.Color) {
 
         AlertDialog(
             onDismissRequest = {
-                openDialog = false
+                DialogRouter.reset()
+                //router = Dialog.None
+             //   openDialog = false
             },
             title = {
                 Text(stringResource(id = R.string.title_change_color))
@@ -130,10 +138,14 @@ fun ColorDialog(startIndex: Int = 15/*,
                             Row(modifier = Modifier.padding(bottom = bottomPadding)) {
                                 for (i in 0..4) {
                                     CircleColor(index + i, startIndexRow + i == indexColor) {
-                                        indexColor = index + i
+
                                         scope.launch {
+                                            indexColor = index + i
                                             delay(300)
-                                          //  openDialog = false
+                                            DialogRouter.reset()
+                                            //router = Dialog.None
+
+                                            //router = Dialog.None
                                         }
                                     }
                                     if (i < 4)

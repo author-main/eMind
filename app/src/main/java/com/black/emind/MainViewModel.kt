@@ -29,6 +29,7 @@ class MainViewModel: ViewModel() {
     }
 
     fun insertObject(button: InsertButton){
+        DialogRouter.reset()
         when (button) {
             is InsertButton.ButtonNote ->{
                 onInsertObjectListener?.insertNote()

@@ -64,10 +64,10 @@ fun BottomNavigationBar(navController: NavController) {
         NavigationItem.Favorite,
         NavigationItem.Emind
     )
-    if (!visibled)
-        NavigationItem.Insert.icon.value = R.drawable.ic_insert
-    else
+    if (DialogRouter.currentDialog is Dialog.InsertButtons)
         NavigationItem.Insert.icon.value = R.drawable.ic_insert_on
+    else
+        NavigationItem.Insert.icon.value = R.drawable.ic_insert
   /*  val showDialog = remember{mutableStateOf(false)}
     if (showDialog.value)
         BottomSheetDialogMenu()*/
@@ -105,8 +105,11 @@ fun BottomNavigationBar(navController: NavController) {
                     onClick = {
                         when (item) {
                             is NavigationItem.Insert -> {
-                                //item.icon.value = R.drawable.ic_insert_on
-                                viewModel.showInsertButtons()
+
+                                item.icon.value = R.drawable.ic_insert_on
+                                //DialogRouter.navigateTo(Dialog.Color)
+                                DialogRouter.navigateTo(Dialog.InsertButtons)
+                                //viewModel.showInsertButtons()*/
                                 //counter++
                             }
                             /*is NavigationItem.Settings -> {
@@ -115,7 +118,8 @@ fun BottomNavigationBar(navController: NavController) {
                             }*/
                             else -> {
                                 //NavigationItem.Insert.icon.value = R.drawable.ic_insert
-                                viewModel.showInsertButtons(false)
+                                //viewModel.showInsertButtons(false)
+                                DialogRouter.reset()
                                 navController.navigate(item.route.id) {
                                     //log(item.route.id)
                                     launchSingleTop = true

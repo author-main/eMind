@@ -73,6 +73,31 @@ fun MainScreen() {
     ) {
         Box(modifier = Modifier.padding(it)
         ) {
+            Navigation(navController)
+            when (DialogRouter.currentDialog) {
+                is Dialog.None -> {
+
+                }
+                is Dialog.Color -> ColorDialog()
+                is Dialog.InsertButtons -> {
+                    Box(modifier = Modifier
+                        .background(Color.Transparent)//Color(0x30A0A0A0))
+                        .fillMaxSize()
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null
+                        ) {
+                            //viewModel.showInsertButtons(false)
+                          DialogRouter.reset()
+                        },
+                        contentAlignment = Alignment.BottomCenter
+
+                    ) {
+                        BottomInsertButtons()
+                    }
+                }
+            }
+            /*
             val visibledPanelInsertObj: Boolean by viewModel.isShowPanelInsertObj.observeAsState(false)
             Navigation(navController)
             if (visibledPanelInsertObj)
@@ -90,7 +115,7 @@ fun MainScreen() {
             ) {
                 BottomInsertButtons()
             }
-            //ColorDialog(3)
+            ColorDialog(3)*/
         }
     }
 }
@@ -100,10 +125,11 @@ fun MainScreen() {
 fun Navigation(navController: NavHostController) {
    NavHost(navController, startDestination = NavigationItem.Emind.route.id) {
         composable(NavigationItem.Search.route.id) {
-            ColorDialog()
+            //DialogRouter.navigateTo(Dialog.Color)
+            //log("navigation search update")
         }
         composable(NavigationItem.Insert.route.id) {
-
+            //DialogRouter.navigateTo(Dialog.InsertButtons)
         }
         composable(NavigationItem.Favorite.route.id) {
         }

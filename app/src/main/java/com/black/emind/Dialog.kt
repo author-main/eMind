@@ -1,7 +1,9 @@
 package com.black.emind
 
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 
 sealed class Dialog {
     object None         : Dialog()
@@ -9,9 +11,14 @@ sealed class Dialog {
     object InsertButtons: Dialog()
 }
 
-object Router {
-    var currentDialog: MutableState<Dialog> = mutableStateOf(Dialog.None)
+object DialogRouter {
+    var currentDialog : Dialog by mutableStateOf(Dialog.None)
     fun navigateTo(destination: Dialog){
-        currentDialog.value = destination
+        currentDialog = destination
+        log("change route")
+    }
+    fun reset(){
+        currentDialog = Dialog.None
+        log("reset")
     }
 }

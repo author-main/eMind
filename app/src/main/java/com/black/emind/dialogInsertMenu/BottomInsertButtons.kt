@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -53,6 +54,7 @@ sealed class InsertButton(@DrawableRes val icon: Int, @StringRes val description
 @Composable
 fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = Modifier) {
     val viewModel: MainViewModel = viewModel()
+    //log("animatedsize $animatedSize")
     Box(contentAlignment = Alignment.Center,
         modifier = Modifier
             .padding(3.dp)
@@ -85,11 +87,15 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
 
 @Composable
 fun BottomInsertButtons() {
-    val viewModel: MainViewModel = viewModel()
+    var visibled by rememberSaveable {
+        mutableStateOf(false)
+    }
+    /*val viewModel: MainViewModel = viewModel()
     val visibled: Boolean by viewModel.isShowInsertButton.observeAsState(false)
-    var visibledPanel by remember{mutableStateOf(false)}
-    if (visibled)
-        visibledPanel = true
+    var visibledPanel by remember{mutableStateOf(false)}*/
+    val route = remember{DialogRouter.currentDialog}
+    /*if (visibled)
+        visibledPanel = true*/
     /*val value by animateFloatAsState(
         targetValue = 1f,
         animationSpec = spring(
@@ -118,6 +124,11 @@ fun BottomInsertButtons() {
         )
     )*/
 
+     if (visibled and (route is Dialog.None)) {
+         visibled = false
+         log("off")
+     }
+
     val indexes = if (visibled) arrayOf(0,1,2)
                   else arrayOf(2,1,0)
     val duration = 150
@@ -131,7 +142,8 @@ fun BottomInsertButtons() {
             ),
             finishedListener = {
                 if (!visibled && i == 0) {
-                    visibledPanel = false
+                    //visibledPanel = false
+                    DialogRouter.reset()
                    // viewModel.showPanelInsertObj(false)
                 }
             }
@@ -142,11 +154,14 @@ fun BottomInsertButtons() {
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.Center
     ){
-         if (visibledPanel) {
+         //if (visibledPanel) {
+         if (route is Dialog.InsertButtons) {
              ButtonInsert(InsertButton.ButtonNote, animation[indexes[0]].value)
              ButtonInsert(InsertButton.ButtonTask, animation[indexes[1]].value)
              ButtonInsert(InsertButton.ButtonDoc,  animation[indexes[2]].value)
+             visibled = true
          }
+
     }
 }
 
