@@ -118,7 +118,6 @@ fun ColorDialog(startIndex: Int = 15/*,
                 Text(stringResource(id = R.string.title_change_color))
             },
             text = {
-
                 Column(modifier = Modifier.offset(y = (-12).dp)) {
                     COLOR_OBJ.forEachIndexed { index, _ ->
                         if ((index) % 5 == 0) {

@@ -6,17 +6,17 @@ import androidx.compose.runtime.setValue
 
 sealed class SaveScreen {
     object None:           SaveScreen()
-    object SaveNoteScreen: SaveScreen()
-    object SaveTaskScreen: SaveScreen()
-    object SaveDocScreen:  SaveScreen()
+    object NoteScreen: SaveScreen()
+    object TaskScreen: SaveScreen()
+    object DocScreen:  SaveScreen()
 }
 
 object SaveScreenRouter {
-    var currentSaveScreen : SaveScreen by mutableStateOf(SaveScreen.None)
+    var currentScreen : SaveScreen by mutableStateOf(SaveScreen.None)
     fun navigateTo(destination: SaveScreen){
-        currentSaveScreen = destination
+        currentScreen = destination
     }
     fun reset(){
-        currentSaveScreen = SaveScreen.None
+        currentScreen = SaveScreen.None
     }
 }

@@ -82,9 +82,15 @@ fun MainScreen() {
         Box(modifier = Modifier.padding(it)
         ) {
             Navigation(navController)
+            when (SaveScreenRouter.currentScreen) {
+                is SaveScreen.None          -> {}
+                is SaveScreen.NoteScreen    -> {}
+                is SaveScreen.TaskScreen    -> {}
+                is SaveScreen.DocScreen     -> {}
+            }
             when (DialogRouter.currentDialog) {
-                is Dialog.None -> {}
-                is Dialog.Color -> ColorDialog()
+                is Dialog.None          -> {}
+                is Dialog.Color         -> ColorDialog()
                 is Dialog.InsertButtons -> InsertButtonDialog()
             }
        }
