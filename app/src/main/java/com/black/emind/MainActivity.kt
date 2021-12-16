@@ -29,6 +29,10 @@ import com.black.emind.dialogInsertMenu.BottomInsertButtons
 import com.black.emind.dialogInsertMenu.InsertButtonDialog
 import com.black.emind.dialogInsertMenu.OnInsertObjectListener
 import com.black.emind.screenObjComposable.ColorDialog
+import com.black.emind.screenObjComposable.screenUI.Dialog
+import com.black.emind.screenObjComposable.screenUI.DialogRouter
+import com.black.emind.screenObjComposable.screenUI.SaveScreen
+import com.black.emind.screenObjComposable.screenUI.SaveScreenRouter
 import com.black.emind.ui.theme.EMindTheme
 import kotlinx.coroutines.*
 import kotlin.coroutines.coroutineContext

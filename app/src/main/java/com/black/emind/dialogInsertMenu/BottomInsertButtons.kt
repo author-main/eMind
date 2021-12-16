@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.black.emind.*
 import com.black.emind.R
+import com.black.emind.screenObjComposable.screenUI.DialogRouter
 import com.black.emind.ui.theme.Orange
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -126,9 +127,10 @@ fun BottomInsertButtons() {
              ButtonInsert(InsertButton.ButtonNote, animation[indexes[0]].value)
              ButtonInsert(InsertButton.ButtonTask, animation[indexes[1]].value)
              ButtonInsert(InsertButton.ButtonDoc,  animation[indexes[2]].value)
-             //viewModel.showPanelInsertObj(true)
+        /*if (!visibled)
+            viewModel.showPanelInsertObj(true)*/
     }
-  /*  SideEffect {
+   /* SideEffect {
         if (!visibled)
             viewModel.showPanelInsertObj(true)
     }*/

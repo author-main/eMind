@@ -15,6 +15,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.black.emind.*
 import com.black.emind.R
+import com.black.emind.screenObjComposable.screenUI.Dialog
+import com.black.emind.screenObjComposable.screenUI.DialogRouter
 import com.black.emind.ui.theme.Orange
 
 
