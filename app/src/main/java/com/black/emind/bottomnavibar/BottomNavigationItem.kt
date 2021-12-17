@@ -1,21 +1,16 @@
 package com.black.emind.bottomnavibar
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.layout.height
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.black.emind.*
 import com.black.emind.R
-import com.black.emind.ui.theme.Orange
+import com.black.emind.screenObjComposable.enumScreen.Dialog
+import com.black.emind.screenObjComposable.enumScreen.DialogRouter
 
 
 const val ID_SEARCH      = "0"

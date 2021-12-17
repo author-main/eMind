@@ -1,4 +1,4 @@
-package com.black.emind
+package com.black.emind.screenObjComposable.enumScreen
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
