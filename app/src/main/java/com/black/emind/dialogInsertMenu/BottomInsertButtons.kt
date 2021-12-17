@@ -94,6 +94,20 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
 
 @Composable
 fun BottomInsertButtons() {
+
+    val animate = rememberInfiniteTransition()
+    val angle = animate.animateFloat(
+        initialValue = 0f,
+        targetValue = 56.dp.,
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                durationMillis = 1000,
+                easing = LinearEasing
+            ),
+            repeatMode = RepeatMode.Restart
+        )
+    )
+
    /* var visibled by rememberSaveable {
         mutableStateOf(false)
     }*/

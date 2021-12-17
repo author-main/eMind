@@ -14,12 +14,10 @@ import kotlinx.coroutines.launch
 class MainViewModel: ViewModel() {
     private val _isShowPanelInsertObj = MutableLiveData(false)
     val isShowPanelInsertObj: LiveData<Boolean> = _isShowPanelInsertObj
-
     private var onInsertObjectListener: OnInsertObjectListener? = null
     fun addInsertObjectListener(listener: OnInsertObjectListener){
         onInsertObjectListener = listener
     }
-
     fun showPanelInsertObj(value: Boolean = true){
         _isShowPanelInsertObj.value = value
     }
