@@ -11,6 +11,8 @@ import com.black.emind.*
 import com.black.emind.R
 import com.black.emind.screenObjComposable.enumScreen.Dialog
 import com.black.emind.screenObjComposable.enumScreen.DialogRouter
+import com.black.emind.ui.theme.Gray
+import com.black.emind.ui.theme.Orange
 
 
 const val ID_SEARCH      = "0"
@@ -92,20 +94,16 @@ fun BottomNavigationBar(navController: NavController) {
                 icon = {
                         Icon(painterResource(id = iconId), contentDescription = item.icon.description)
                     },
-                    selectedContentColor = MaterialTheme.colors.onSecondary,
-                    unselectedContentColor = MaterialTheme.colors.secondary,
+                    selectedContentColor = Orange, //MaterialTheme.colors.onSecondary,
+                    unselectedContentColor = Gray, //MaterialTheme.colors.secondary,
                     alwaysShowLabel = false,
                     selected = selectedItem,//currentRoute == item.route.id,
                     //selected = false,
                     onClick = {
                         when (item) {
                             is NavigationItem.Insert -> {
-
                                 item.icon.value = R.drawable.ic_insert_on
-                                //DialogRouter.navigateTo(Dialog.Color)
                                 DialogRouter.navigateTo(Dialog.InsertButtons)
-                                //viewModel.showInsertButtons()*/
-                                //counter++
                             }
                             /*is NavigationItem.Settings -> {
                                 val dialogMenuDoc = BottomSheetMenu(context, R.style.BottomSheetDialog)

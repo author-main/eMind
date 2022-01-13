@@ -15,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -84,10 +85,10 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
 @Composable
 fun BottomInsertButtons() {
 
-    val animate = rememberInfiniteTransition()
+   /*val animate = rememberInfiniteTransition()
     val angle = animate.animateFloat(
         initialValue = 0f,
-        targetValue = 56.dp.,
+        targetValue = 56.dp,
         animationSpec = infiniteRepeatable(
             animation = tween(
                 durationMillis = 1000,
@@ -95,7 +96,7 @@ fun BottomInsertButtons() {
             ),
             repeatMode = RepeatMode.Restart
         )
-    )
+    )*/
 
    /* var visibled by rememberSaveable {
         mutableStateOf(false)
@@ -143,6 +144,7 @@ fun BottomInsertButtons() {
 fun InsertButtonDialog(){
     val viewModel: MainViewModel = viewModel()
     Surface(modifier = Modifier
+        .background(Color.Red)
         .fillMaxSize()
         .clickable(
             interactionSource = remember { MutableInteractionSource() },
