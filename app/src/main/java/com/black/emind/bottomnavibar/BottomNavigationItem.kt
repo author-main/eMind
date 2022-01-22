@@ -98,7 +98,6 @@ fun BottomNavigationBar(navController: NavController) {
                     unselectedContentColor = Gray, //MaterialTheme.colors.secondary,
                     alwaysShowLabel = false,
                     selected = selectedItem,//currentRoute == item.route.id,
-                    //selected = false,
                     onClick = {
                         when (item) {
                             is NavigationItem.Insert -> {
