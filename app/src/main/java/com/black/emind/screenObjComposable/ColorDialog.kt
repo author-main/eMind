@@ -145,7 +145,6 @@ fun ColorDialog(startIndex: Int = 15/*,
   //  }
 }
 
-
 @Preview
 @Composable
 fun ColorDialogPreview() {
