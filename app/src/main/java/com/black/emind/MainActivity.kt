@@ -21,6 +21,7 @@ import com.black.emind.screenObjComposable.enumScreen.Dialog
 import com.black.emind.screenObjComposable.enumScreen.DialogRouter
 import com.black.emind.screenObjComposable.enumScreen.SaveScreen
 import com.black.emind.screenObjComposable.enumScreen.SaveScreenRouter
+import com.black.emind.screenObjComposable.saveScreen.SaveNoteScreen
 import com.black.emind.ui.theme.EMindTheme
 
 private lateinit var mainViewModel: MainViewModel
@@ -45,7 +46,8 @@ class MainActivity : ComponentActivity(), OnInsertObjectListener{
             DialogRouter.navigateTo(Dialog.Color)
         }*/
         log("Insert Note")
-        DialogRouter.navigateTo(Dialog.Color)
+        SaveScreenRouter.navigateTo(SaveScreen.NoteScreen)
+        //DialogRouter.navigateTo(Dialog.Color)
     }
 
     override fun insertTask() {
@@ -59,6 +61,7 @@ class MainActivity : ComponentActivity(), OnInsertObjectListener{
 }
 
 @ExperimentalMaterialApi
+
 @Composable
 fun MainScreen() {
     //val viewModel: MainViewModel = viewModel()
@@ -74,7 +77,9 @@ fun MainScreen() {
             Navigation(navController)
             when (SaveScreenRouter.currentScreen) {
                 is SaveScreen.None          -> {}
-                is SaveScreen.NoteScreen    -> {}
+                is SaveScreen.NoteScreen    -> {
+                    SaveNoteScreen(id = SaveScreen.NoteScreen.id)
+                }
                 is SaveScreen.TaskScreen    -> {}
                 is SaveScreen.DocScreen     -> {}
             }
