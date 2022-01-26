@@ -52,10 +52,12 @@ class MainActivity : ComponentActivity(), OnInsertObjectListener{
 
     override fun insertTask() {
         log("Insert Task")
+        SaveScreenRouter.navigateTo(SaveScreen.TaskScreen)
     }
 
     override fun insertDoc() {
         log("Insert Doc")
+        SaveScreenRouter.navigateTo(SaveScreen.DocScreen)
     }
 
 }
