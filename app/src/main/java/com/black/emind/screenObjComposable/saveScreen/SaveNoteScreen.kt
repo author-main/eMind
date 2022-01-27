@@ -38,9 +38,7 @@ private fun SaveNoteTopAppBar(
         title = {
             Text(
                 text = "Save Note",
-                color = Orange,//MaterialTheme.colors.onPrimary
-                fontSize = 25.sp
-
+                color = Orange//MaterialTheme.colors.onPrimary
             )
         }
     )

@@ -3,10 +3,12 @@ package com.black.emind
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -46,8 +48,8 @@ class MainActivity : ComponentActivity(), OnInsertObjectListener{
             DialogRouter.navigateTo(Dialog.Color)
         }*/
         log("Insert Note")
-        SaveScreenRouter.navigateTo(SaveScreen.NoteScreen)
-        //DialogRouter.navigateTo(Dialog.Color)
+        //SaveScreenRouter.navigateTo(SaveScreen.NoteScreen)
+        DialogRouter.navigateTo(Dialog.Color)
     }
 
     override fun insertTask() {

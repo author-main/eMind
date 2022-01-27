@@ -144,7 +144,7 @@ fun BottomInsertButtons() {
 fun InsertButtonDialog(){
     val viewModel: MainViewModel = viewModel()
     Surface(modifier = Modifier
-        .background(Color.Red)
+      //  .background(Color.Red)
         .fillMaxSize()
         .clickable(
             interactionSource = remember { MutableInteractionSource() },
@@ -152,7 +152,7 @@ fun InsertButtonDialog(){
         ) {
             viewModel.showPanelInsertObj(false)
         }
-        //,color = Color(0x30A0A0A0)
+        ,color = Color.Transparent
     ) {
        BottomInsertButtons()
        viewModel.showPanelInsertObj(true)
