@@ -6,6 +6,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import com.black.emind.NEW_ENTITY
+import com.black.emind.ui.theme.Orange
 
 @Composable
 fun SaveNoteScreen(id: Int){
@@ -33,7 +34,7 @@ private fun SaveNoteTopAppBar(
         title = {
             Text(
                 text = "Save Note",
-                color = MaterialTheme.colors.onPrimary
+                color = Orange//MaterialTheme.colors.onPrimary
             )
         }
     )
