@@ -48,8 +48,8 @@ class MainActivity : ComponentActivity(), OnInsertObjectListener{
             DialogRouter.navigateTo(Dialog.Color)
         }*/
         log("Insert Note")
-        //SaveScreenRouter.navigateTo(SaveScreen.NoteScreen)
-        DialogRouter.navigateTo(Dialog.Color)
+        SaveScreenRouter.navigateTo(SaveScreen.NoteScreen)
+        //DialogRouter.navigateTo(Dialog.Color)
     }
 
     override fun insertTask() {
