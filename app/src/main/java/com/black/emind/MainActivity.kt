@@ -80,9 +80,7 @@ fun MainScreen() {
         ) {
             Navigation(navController)
             when (SaveScreenRouter.currentScreen) {
-                is SaveScreen.None          -> {
-                    log("screen none")
-                }
+                is SaveScreen.None          -> {}
                 is SaveScreen.NoteScreen    -> {
                     SaveNoteScreen(id = SaveScreen.NoteScreen.id)
                 }
