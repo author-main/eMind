@@ -14,7 +14,7 @@ val itemsDescription: Array<String> = getStringArrayResource(R.array.navigationI
 
 fun log(message: String?){
     message?.let{
-        Log.v("appemind", message)
+        Log.v("appemind", it.uppercase())
     }
 }
 

@@ -63,3 +63,13 @@ private fun SaveNoteTopAppBar(
 
     )
 }
+
+/*
+{
+    "editor.fontFamily": "JetBrains Mono Light",
+    "workbench.colorTheme": "GitHub Dark Dimmed",
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.fontSize": 15,
+    "editor.fontLigatures":true
+}
+*/
