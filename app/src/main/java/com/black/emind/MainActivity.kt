@@ -99,21 +99,21 @@ fun MainScreen() {
 @ExperimentalMaterialApi
 @Composable
 fun Navigation(navController: NavHostController) {
-   NavHost(navController, startDestination = NavigationItem.Emind.route.id) {
-        composable(NavigationItem.Search.route.id) {
+   NavHost(navController, startDestination = NavigationItem.Emind.data.route) {
+        composable(NavigationItem.Search.data.route) {
             //DialogRouter.navigateTo(Dialog.Color)
             //log("navigation search update")
         }
-        composable(NavigationItem.Insert.route.id) {
+        composable(NavigationItem.Insert.data.route) {
             //DialogRouter.navigateTo(Dialog.InsertButtons)
         }
-        composable(NavigationItem.Favorite.route.id) {
+        composable(NavigationItem.Favorite.data.route) {
         }
-        composable(NavigationItem.Settings.route.id) {
+        composable(NavigationItem.Settings.data.route) {
           //  BottomSheetDialogMenu()
             //BooksScreen()
         }
-        composable(NavigationItem.Emind.route.id) {
+        composable(NavigationItem.Emind.data.route) {
             //BooksScreen()
         }
     }
