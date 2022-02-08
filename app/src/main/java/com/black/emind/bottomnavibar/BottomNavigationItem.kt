@@ -15,12 +15,6 @@ import com.black.emind.ui.theme.Gray
 import com.black.emind.ui.theme.Orange
 
 
-const val ID_SEARCH      = "0"
-const val ID_EMIND       = "1"
-const val ID_INSERT      = "2"
-const val ID_FAVORITE    = "3"
-const val ID_SETTINGS    = "4"
-
 /*enum class Route(val id: String) {
     SEARCH(ID_SEARCH),
     EMIND(ID_EMIND),
