@@ -1,10 +1,15 @@
 package com.black.emind.screenObjComposable.saveScreen
 
+import com.black.emind.R
 import androidx.activity.compose.BackHandler
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -57,6 +62,23 @@ private fun SaveNoteTopAppBar(
                     imageVector = Icons.Default.ArrowBack,
                     contentDescription = "Save Note Button",
                     tint = Orange//MaterialTheme.colors.onPrimary
+                )
+            }
+        },
+        actions = {
+            IconButton(onClick = onSaveNoteClick) {
+                Icon(
+                    imageVector = Icons.Default.Check,
+                    tint = MaterialTheme.colors.onPrimary,
+                    contentDescription = "Save Note"
+                )
+            }
+
+            IconButton(onClick = onOpenColorPickerClick) {
+                Icon(
+                    ImageVector.vectorResource(R.drawable.ic_note),
+                    contentDescription = "Open Color Picker Button",
+                    tint = MaterialTheme.colors.onPrimary
                 )
             }
         }
