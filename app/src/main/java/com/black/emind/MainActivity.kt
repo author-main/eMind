@@ -29,11 +29,12 @@ import com.black.emind.ui.theme.EMindTheme
 private lateinit var mainViewModel: MainViewModel
 
 class MainActivity : ComponentActivity(), OnInsertObjectListener{
-    @ExperimentalMaterialApi
+   // @ExperimentalMaterialApi
+    @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel =
-            ViewModelProvider(this).get(MainViewModel::class.java)
+            ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.addInsertObjectListener(this)
         setContent {
             EMindTheme {
