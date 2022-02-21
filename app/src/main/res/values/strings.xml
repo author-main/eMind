@@ -8,6 +8,7 @@
         <item>Настройка</item>
     </string-array>
 
+    <string name="new_note">Новая заметка</string>
     <string name="category_note">Категория</string>
 
 

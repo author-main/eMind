@@ -2,16 +2,19 @@ package com.black.emind.screenObjComposable.saveScreen
 
 import com.black.emind.R
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,10 +23,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.black.emind.DEFAULT_CATEGORY
 import com.black.emind.NEW_ENTITY
+import com.black.emind.getStringResource
 import com.black.emind.screenObjComposable.enumScreen.SaveScreen
 import com.black.emind.screenObjComposable.enumScreen.SaveScreenRouter
 import com.black.emind.ui.theme.Gray
 import com.black.emind.ui.theme.Orange
+import java.lang.reflect.Modifier
 
 @Composable
 fun SaveNoteScreen(id: Int){
@@ -56,7 +61,25 @@ fun SaveNoteScreen(id: Int){
 
 @Composable
 private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
-
+    val value = if (id == NEW_ENTITY)
+                    getStringResource(R.string.new_note)
+                else
+                    "Edit Note"
+    var nameNote by remember {
+        mutableStateOf(value)
+    }
+    TextField(value = nameNote,
+        textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = Color.Transparent,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            cursorColor = Color.LightGray
+        ),
+        onValueChange = {
+            nameNote = it
+        }
+    )
 }
 
 @Preview
