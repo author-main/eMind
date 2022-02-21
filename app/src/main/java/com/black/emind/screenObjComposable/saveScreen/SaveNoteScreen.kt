@@ -66,21 +66,21 @@ fun SaveNoteScreen(id: Int){
 @Composable
 private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
     val MAX_SIZE = 40
-    val value_note = if (id == NEW_ENTITY)
+    val valueNote = if (id == NEW_ENTITY)
                         getStringResource(R.string.new_note)
                     else
                         "Edit Note"
 
-    val value_category = if (category == DEFAULT_CATEGORY)
+    val valueCategory = if (category == DEFAULT_CATEGORY)
         getStringResource(R.string.category_note)
     else
         "Edit category"
 
     var nameNote by remember {
-        mutableStateOf(value_note)
+        mutableStateOf(valueNote)
     }
     var categoryNote by remember {
-        mutableStateOf(value_category)
+        mutableStateOf(valueCategory)
     }
     Column(modifier = Modifier.padding(start = 16.dp)) {
         TextField(value = nameNote,
