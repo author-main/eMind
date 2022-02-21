@@ -65,6 +65,7 @@ fun SaveNoteScreen(id: Int){
 
 @Composable
 private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
+    val MAX_SIZE = 40
     val value_note = if (id == NEW_ENTITY)
                         getStringResource(R.string.new_note)
                     else
@@ -103,6 +104,7 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
             )
             TextField(value = categoryNote,
                 modifier = Modifier.offset(x = -16.dp),
+                singleLine = true,
                 //textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
@@ -111,7 +113,8 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
                     cursorColor = Color.LightGray
                 ),
                 onValueChange = {
-                    categoryNote = it
+                    if (it.length <=MAX_SIZE)
+                        categoryNote = it
                 }
             )
 
