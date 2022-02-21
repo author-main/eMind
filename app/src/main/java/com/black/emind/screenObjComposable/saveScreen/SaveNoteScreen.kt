@@ -33,6 +33,7 @@ fun SaveNoteScreen(id: Int){
         topBar = {
             SaveNoteTopAppBar(id == NEW_ENTITY,
                 {SaveScreenRouter.reset()},
+                //::actionBack,
                 {},
                 {},
                 {})
@@ -40,6 +41,10 @@ fun SaveNoteScreen(id: Int){
         content = {}
     )
 }
+
+/*fun actionBack(){
+    SaveScreenRouter.reset()
+}*/
 
 @Composable
 private fun SaveNoteTopAppBar(
