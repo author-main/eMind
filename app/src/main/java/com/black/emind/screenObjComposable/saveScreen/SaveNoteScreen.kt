@@ -6,17 +6,23 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.black.emind.DEFAULT_CATEGORY
 import com.black.emind.NEW_ENTITY
 import com.black.emind.screenObjComposable.enumScreen.SaveScreen
 import com.black.emind.screenObjComposable.enumScreen.SaveScreenRouter
+import com.black.emind.ui.theme.Gray
 import com.black.emind.ui.theme.Orange
 
 @Composable
@@ -38,13 +44,30 @@ fun SaveNoteScreen(id: Int){
                 {},
                 {})
         },
-        content = {}
+        content = {
+            TitleNote(id)
+        }
     )
 }
 
 /*fun actionBack(){
     SaveScreenRouter.reset()
 }*/
+
+@Composable
+private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
+
+}
+
+@Preview
+@Composable
+private fun TitleNotePreview(){
+    TitleNote(id = -1)
+}
+
+
+
+
 
 @Composable
 private fun SaveNoteTopAppBar(
@@ -57,6 +80,7 @@ private fun SaveNoteTopAppBar(
     TopAppBar(
         title = {
             Text(
+                fontStyle = FontStyle.Normal,
                 text = "Save Note",
                 color = Orange//MaterialTheme.colors.onPrimary
             )
@@ -64,9 +88,9 @@ private fun SaveNoteTopAppBar(
         navigationIcon = {
             IconButton(onClick = onBackClick) {
                 Icon(
-                    imageVector = Icons.Default.ArrowBack,
+                    imageVector = Icons.Default.Close,//ArrowBack,
                     contentDescription = "Save Note Button",
-                    tint = Orange//MaterialTheme.colors.onPrimary
+                    tint = Gray//MaterialTheme.colors.onPrimary
                 )
             }
         },
@@ -74,7 +98,7 @@ private fun SaveNoteTopAppBar(
             IconButton(onClick = onSaveNoteClick) {
                 Icon(
                     imageVector = Icons.Default.Check,
-                    tint = Orange,
+                    tint = Gray,
                     contentDescription = "Save Note"
                 )
             }
@@ -83,7 +107,7 @@ private fun SaveNoteTopAppBar(
                 Icon(
                     ImageVector.vectorResource(R.drawable.ic_note),
                     contentDescription = "Open Color Picker Button",
-                    tint = Orange//MaterialTheme.colors.onPrimary
+                    tint = Gray//MaterialTheme.colors.onPrimary
                 )
             }
         }
