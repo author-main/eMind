@@ -9,7 +9,8 @@
     </string-array>
 
     <string name="new_note">Новая заметка</string>
-    <string name="category_note">Категория</string>
+    <string name="category_note_label">Категория</string>
+    <string name="category_note">Основная</string>
 
 
     <string name="itemdoc0">item eMind 0</string>

@@ -3,6 +3,9 @@ package com.black.emind.screenObjComposable.saveScreen
 import com.black.emind.R
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -10,6 +13,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
@@ -28,7 +32,7 @@ import com.black.emind.screenObjComposable.enumScreen.SaveScreen
 import com.black.emind.screenObjComposable.enumScreen.SaveScreenRouter
 import com.black.emind.ui.theme.Gray
 import com.black.emind.ui.theme.Orange
-import java.lang.reflect.Modifier
+import androidx.compose.ui.Modifier
 
 @Composable
 fun SaveNoteScreen(id: Int){
@@ -61,25 +65,57 @@ fun SaveNoteScreen(id: Int){
 
 @Composable
 private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
-    val value = if (id == NEW_ENTITY)
-                    getStringResource(R.string.new_note)
-                else
-                    "Edit Note"
+    val value_note = if (id == NEW_ENTITY)
+                        getStringResource(R.string.new_note)
+                    else
+                        "Edit Note"
+
+    val value_category = if (category == DEFAULT_CATEGORY)
+        getStringResource(R.string.category_note)
+    else
+        "Edit category"
+
     var nameNote by remember {
-        mutableStateOf(value)
+        mutableStateOf(value_note)
     }
-    TextField(value = nameNote,
-        textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = Color.Transparent,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            cursorColor = Color.LightGray
-        ),
-        onValueChange = {
-            nameNote = it
-        }
-    )
+    var categoryNote by remember {
+        mutableStateOf(value_category)
+    }
+    Column(modifier = Modifier.padding(start = 16.dp)) {
+        TextField(value = nameNote,
+            modifier = Modifier.offset(x = -16.dp),
+            textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                cursorColor = Color.LightGray
+            ),
+            onValueChange = {
+                nameNote = it
+            }
+        )
+
+            Text(
+                text = getStringResource(R.string.category_note_label),
+                color = Color.Gray,
+                fontSize = 13.sp
+            )
+            TextField(value = categoryNote,
+                modifier = Modifier.offset(x = -16.dp),
+                //textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    cursorColor = Color.LightGray
+                ),
+                onValueChange = {
+                    categoryNote = it
+                }
+            )
+
+    }
 }
 
 @Preview
