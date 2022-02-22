@@ -3,10 +3,9 @@ package com.black.emind.screenObjComposable.saveScreen
 import com.black.emind.R
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -76,15 +75,23 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
     else
         "Edit category"
 
+    val valueTextNote = if (id == NEW_ENTITY)
+                            ""
+                        else
+                            "Edit TextNote"
+    var textNote by remember {
+        mutableStateOf(valueTextNote)
+    }
+    val textNoteScrollState = rememberScrollState(0)
     var nameNote by remember {
         mutableStateOf(valueNote)
     }
     var categoryNote by remember {
         mutableStateOf(valueCategory)
     }
-    Column(modifier = Modifier.padding(start = 16.dp)) {
+    Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
         TextField(value = nameNote,
-            modifier = Modifier.offset(x = -16.dp),
+            modifier = Modifier.offset(x = (-16).dp),
             textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
@@ -103,7 +110,9 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
                 fontSize = 13.sp
             )
             TextField(value = categoryNote,
-                modifier = Modifier.offset(x = -16.dp),
+                readOnly = true,
+                modifier = Modifier.offset(x = (-16).dp),
+//                                   .verticalScroll(textNoteScrollState),
                 singleLine = true,
                 //textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
                 colors = TextFieldDefaults.textFieldColors(
@@ -117,6 +126,28 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
                         categoryNote = it
                 }
             )
+
+        Divider(color = MaterialTheme.colors.onSurface.copy(alpha = .1f))
+
+        LaunchedEffect(textNoteScrollState.maxValue) {
+            textNoteScrollState.scrollTo(textNoteScrollState.maxValue)
+        }
+
+        TextField(value = textNote,
+            modifier = Modifier//.offset(x = (-16).dp)
+                .fillMaxHeight()
+                .verticalScroll(textNoteScrollState),
+            //textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                cursorColor = Color.LightGray
+            ),
+            onValueChange = {
+                textNote = it
+            }
+        )
 
     }
 }
