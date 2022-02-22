@@ -1,52 +1,45 @@
-package com.black.emind.screenObjComposable.saveScreen
+package com.black.emind.screenObjComposable.screen
 
 import com.black.emind.R
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.black.emind.DEFAULT_CATEGORY
 import com.black.emind.NEW_ENTITY
 import com.black.emind.getStringResource
-import com.black.emind.screenObjComposable.enumScreen.SaveScreen
-import com.black.emind.screenObjComposable.enumScreen.SaveScreenRouter
+import com.black.emind.screenObjComposable.enumScreen.ScreenRouter
 import com.black.emind.ui.theme.Gray
 import com.black.emind.ui.theme.Orange
 import androidx.compose.ui.Modifier
 
 @Composable
-fun SaveNoteScreen(id: Int){
+fun NoteScreen(id: Int){
     BackHandler(onBack = {
       /*  if (bottomDrawerState.isOpen) {
             coroutineScope.launch { bottomDrawerState.close() }
         } else {
             JetNotesRouter.navigateTo(Screen.Notes)
         }*/
-        SaveScreenRouter.reset()
+        ScreenRouter.reset()
     })
     Scaffold(
         topBar = {
             SaveNoteTopAppBar(id == NEW_ENTITY,
-                {SaveScreenRouter.reset()},
+                {ScreenRouter.reset()},
                 //::actionBack,
                 {},
                 {},
@@ -157,10 +150,6 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
 private fun TitleNotePreview(){
     TitleNote(id = -1)
 }
-
-
-
-
 
 @Composable
 private fun SaveNoteTopAppBar(

@@ -3,12 +3,10 @@ package com.black.emind
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -21,9 +19,9 @@ import com.black.emind.dialogInsertMenu.OnInsertObjectListener
 import com.black.emind.screenObjComposable.ColorDialog
 import com.black.emind.screenObjComposable.enumScreen.Dialog
 import com.black.emind.screenObjComposable.enumScreen.DialogRouter
-import com.black.emind.screenObjComposable.enumScreen.SaveScreen
-import com.black.emind.screenObjComposable.enumScreen.SaveScreenRouter
-import com.black.emind.screenObjComposable.saveScreen.SaveNoteScreen
+import com.black.emind.screenObjComposable.enumScreen.Screen
+import com.black.emind.screenObjComposable.enumScreen.ScreenRouter
+import com.black.emind.screenObjComposable.screen.NoteScreen
 import com.black.emind.ui.theme.EMindTheme
 
 private lateinit var mainViewModel: MainViewModel
@@ -49,18 +47,18 @@ class MainActivity : ComponentActivity(), OnInsertObjectListener{
             DialogRouter.navigateTo(Dialog.Color)
         }*/
         log("Insert Note")
-        SaveScreenRouter.navigateTo(SaveScreen.NoteScreen)
+        ScreenRouter.navigateTo(Screen.NoteScreen)
         //DialogRouter.navigateTo(Dialog.Color)
     }
 
     override fun insertTask() {
         log("Insert Task")
-        SaveScreenRouter.navigateTo(SaveScreen.TaskScreen)
+        ScreenRouter.navigateTo(Screen.TaskScreen)
     }
 
     override fun insertDoc() {
         log("Insert Doc")
-        SaveScreenRouter.navigateTo(SaveScreen.DocScreen)
+        ScreenRouter.navigateTo(Screen.DocScreen)
     }
 
 }
@@ -80,13 +78,13 @@ fun MainScreen() {
         Box(modifier = Modifier.padding(it)
         ) {
             Navigation(navController)
-            when (SaveScreenRouter.currentScreen) {
-                is SaveScreen.None          -> {}
-                is SaveScreen.NoteScreen    -> {
-                    SaveNoteScreen(id = SaveScreen.NoteScreen.id)
+            when (ScreenRouter.currentScreen) {
+                is Screen.None          -> {}
+                is Screen.NoteScreen    -> {
+                    NoteScreen(id = Screen.NoteScreen.id)
                 }
-                is SaveScreen.TaskScreen    -> {}
-                is SaveScreen.DocScreen     -> {}
+                is Screen.TaskScreen    -> {}
+                is Screen.DocScreen     -> {}
             }
             when (DialogRouter.currentDialog) {
                 is Dialog.None          -> {}
