@@ -48,7 +48,7 @@ sealed class InsertButton(@DrawableRes val icon: Int, @StringRes val description
 fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = Modifier) {
     val viewModel: MainViewModel = viewModel()
     //log("animatedsize $animatedSize")
-    val scope = rememberCoroutineScope()
+    //val scope = rememberCoroutineScope()
     Box(contentAlignment = Alignment.Center,
         modifier = Modifier
             .padding(3.dp)

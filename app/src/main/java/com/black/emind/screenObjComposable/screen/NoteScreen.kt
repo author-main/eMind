@@ -163,7 +163,7 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun TitleNotePreview(){
     TitleNote(id = -1)

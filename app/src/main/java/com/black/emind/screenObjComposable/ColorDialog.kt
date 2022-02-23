@@ -96,7 +96,7 @@ fun CircleColor(index: Int, checked: Boolean = false, clickable: Boolean, onClic
 /*@Preview
 @Composable
 fun CircleColorPreview() {
-    CircleColor(0)
+    CircleColor(0, checked = false, true) {}
 }*/
 
 @Composable
