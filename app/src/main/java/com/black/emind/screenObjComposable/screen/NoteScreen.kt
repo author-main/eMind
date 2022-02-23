@@ -2,14 +2,17 @@ package com.black.emind.screenObjComposable.screen
 
 import com.black.emind.R
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
@@ -25,6 +28,7 @@ import com.black.emind.screenObjComposable.enumScreen.ScreenRouter
 import com.black.emind.ui.theme.Gray
 import com.black.emind.ui.theme.Orange
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalOf
 
 @Composable
 fun NoteScreen(id: Int){
@@ -55,6 +59,8 @@ fun NoteScreen(id: Int){
     SaveScreenRouter.reset()
 }*/
 
+//, content: @Composable () -> Unit
+
 @Composable
 private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
     val MAX_SIZE = 40
@@ -82,31 +88,65 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
     var categoryNote by remember {
         mutableStateOf(valueCategory)
     }
-    Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
-        TextField(value = nameNote,
-            modifier = Modifier.offset(x = (-16).dp),
-            textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
-            colors = TextFieldDefaults.textFieldColors(
+    Column(Modifier.fillMaxSize()) {
+        Column(modifier = Modifier
+            .padding(start = 16.dp, end = 16.dp)
+        ) {
+            BasicTextField(value = nameNote,
+                modifier = Modifier.padding(top = 16.dp, bottom = 16.dp),
+                //  modifier = Modifier.offset(x = (-16).dp),
+                textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
+                /*  colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 cursorColor = Color.LightGray
-            ),
-            onValueChange = {
-                nameNote = it
-            }
-        )
-
-            Text(
-                text = getStringResource(R.string.category_note_label),
-                color = Color.Gray,
-                fontSize = 13.sp
+            ),*/
+                onValueChange = {
+                    nameNote = it
+                }
             )
-            TextField(value = categoryNote,
-                readOnly = true,
-                modifier = Modifier.offset(x = (-16).dp),
+            Row(
+                Modifier.padding(bottom = 16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = getStringResource(R.string.category_note_label),
+                    color = Color.Gray,
+                    fontSize = 13.sp
+                )
+                BasicTextField(
+                    modifier = Modifier.padding(start = 16.dp),
+                    value = categoryNote,
+                    readOnly = true,
+                    //   modifier = Modifier.offset(x = (-16).dp),
 //                                   .verticalScroll(textNoteScrollState),
-                singleLine = true,
+                    singleLine = true,
+                    //textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
+                    /*  colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    cursorColor = Color.LightGray
+                ),*/
+                    onValueChange = {
+                        if (it.length <= MAX_SIZE)
+                            categoryNote = it
+                    }
+                )
+            }
+            }
+
+            Divider(color = MaterialTheme.colors.onSurface.copy(alpha = .1f))
+
+            LaunchedEffect(textNoteScrollState.maxValue) {
+                textNoteScrollState.scrollTo(textNoteScrollState.maxValue)
+            }
+
+            TextField(value = textNote,
+                modifier = Modifier//.offset(x = (-16).dp)
+                    .fillMaxHeight()
+                    .verticalScroll(textNoteScrollState),
                 //textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
@@ -115,32 +155,10 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
                     cursorColor = Color.LightGray
                 ),
                 onValueChange = {
-                    if (it.length <=MAX_SIZE)
-                        categoryNote = it
+                    textNote = it
                 }
             )
 
-        Divider(color = MaterialTheme.colors.onSurface.copy(alpha = .1f))
-
-        LaunchedEffect(textNoteScrollState.maxValue) {
-            textNoteScrollState.scrollTo(textNoteScrollState.maxValue)
-        }
-
-        TextField(value = textNote,
-            modifier = Modifier//.offset(x = (-16).dp)
-                .fillMaxHeight()
-                .verticalScroll(textNoteScrollState),
-            //textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                cursorColor = Color.LightGray
-            ),
-            onValueChange = {
-                textNote = it
-            }
-        )
 
     }
 }
