@@ -1,6 +1,5 @@
 package com.black.emind.screenObjComposable.screen
 
-import com.black.emind.R
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -12,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -21,14 +21,14 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.black.emind.DEFAULT_CATEGORY
-import com.black.emind.NEW_ENTITY
-import com.black.emind.getStringResource
 import com.black.emind.screenObjComposable.enumScreen.ScreenRouter
 import com.black.emind.ui.theme.Gray
 import com.black.emind.ui.theme.Orange
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.modifier.modifierLocalOf
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.black.emind.*
+import com.black.emind.R
 
 @Composable
 fun NoteScreen(id: Int){
@@ -64,10 +64,18 @@ fun NoteScreen(id: Int){
 @Composable
 private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
     val MAX_SIZE = 40
-    val valueNote = if (id == NEW_ENTITY)
+    val viewModel: MainViewModel = viewModel()
+
+    val dataNote: NoteData by viewModel.dataNote.observeAsState(NoteData())
+
+    val valueName = if (id == NEW_ENTITY)
                         getStringResource(R.string.new_note)
                     else
-                        "Edit Note"
+                        dataNote.name
+    var nameNote by remember {
+        mutableStateOf(valueName)
+    }
+
 
     val valueCategory = if (category == DEFAULT_CATEGORY)
         getStringResource(R.string.category_note)
@@ -77,17 +85,16 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
     val valueTextNote = if (id == NEW_ENTITY)
                             ""
                         else
-                            "Edit TextNote"
+                            dataNote.text
     var textNote by remember {
         mutableStateOf(valueTextNote)
     }
     val textNoteScrollState = rememberScrollState(0)
-    var nameNote by remember {
-        mutableStateOf(valueNote)
-    }
+
     var categoryNote by remember {
         mutableStateOf(valueCategory)
     }
+
     Column(Modifier.fillMaxSize()) {
         Column(modifier = Modifier
             .padding(start = 16.dp, end = 16.dp)
@@ -116,8 +123,8 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
                     fontSize = 13.sp
                 )
                 BasicTextField(
-                    modifier = Modifier.padding(start = 16.dp),
                     value = categoryNote,
+                    modifier = Modifier.padding(start = 16.dp),
                     readOnly = true,
                     //   modifier = Modifier.offset(x = (-16).dp),
 //                                   .verticalScroll(textNoteScrollState),
@@ -130,8 +137,8 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
                     cursorColor = Color.LightGray
                 ),*/
                     onValueChange = {
-                        if (it.length <= MAX_SIZE)
-                            categoryNote = it
+                      /*  if (it.length <= MAX_SIZE)
+                            dataNote.category = it*/
                     }
                 )
             }

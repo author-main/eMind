@@ -6,15 +6,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.black.emind.dialogInsertMenu.InsertButton
 import com.black.emind.dialogInsertMenu.OnInsertObjectListener
+import com.black.emind.screenObjComposable.screen.NoteData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {
+    private val _dataNote = MutableLiveData<NoteData>()
+    val dataNote: LiveData<NoteData> = _dataNote
+
     private val _isShowPanelInsertObj = MutableLiveData(false)
     val isShowPanelInsertObj: LiveData<Boolean> = _isShowPanelInsertObj
     private var onInsertObjectListener: OnInsertObjectListener? = null
+
+    fun setDataNote(value: NoteData){
+        _dataNote.value = value
+    }
+
     fun addInsertObjectListener(listener: OnInsertObjectListener){
         onInsertObjectListener = listener
     }
