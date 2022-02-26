@@ -69,39 +69,17 @@ fun NoteScreen(){//(id: Int){
 @Composable
 private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CATEGORY){
     val MAX_SIZE = 40
-
-    //val (myValue, setValue) = remember { mutableStateOf("0") }
-
-
     val viewModel: MainViewModel = viewModel()
-
-    /*val noteEntry: NoteData by viewModel.noteEntry.observeAsState(NoteData())
-    log(noteEntry.text)*/
-
-    val valueName = if (noteEntry.id == NEW_ENTITY)
-                        getStringResource(R.string.new_note)
-                    else
-                        noteEntry.name
-    var nameNote by remember {
-        mutableStateOf(valueName)
-    }
-
 
     val valueCategory = if (noteEntry.category == DEFAULT_CATEGORY)
         getStringResource(R.string.category_note)
     else
         "Edit category"
 
-    val valueTextNote = if (noteEntry.id == NEW_ENTITY)
-                            ""
-                        else
-                            noteEntry.text
-    var textNote by remember {
-        mutableStateOf(valueTextNote)
-    }
+
     val textNoteScrollState = rememberScrollState(0)
 
-    var categoryNote by remember {
+    val categoryNote by remember {
         mutableStateOf(valueCategory)
     }
 
