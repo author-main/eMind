@@ -32,6 +32,7 @@ import com.black.emind.R
 
 @Composable
 fun NoteScreen(id: Int){
+    val dataNote: NoteData by (viewModel() as MainViewModel).dataNote.observeAsState(NoteData())
     BackHandler(onBack = {
       /*  if (bottomDrawerState.isOpen) {
             coroutineScope.launch { bottomDrawerState.close() }
@@ -64,9 +65,9 @@ fun NoteScreen(id: Int){
 @Composable
 private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
     val MAX_SIZE = 40
-    val viewModel: MainViewModel = viewModel()
+   /* val viewModel: MainViewModel = viewModel()
 
-    val dataNote: NoteData by viewModel.dataNote.observeAsState(NoteData())
+    val dataNote: NoteData by viewModel.dataNote.observeAsState(NoteData())*/
 
     val valueName = if (id == NEW_ENTITY)
                         getStringResource(R.string.new_note)
