@@ -31,7 +31,8 @@ import com.black.emind.*
 import com.black.emind.R
 
 @Composable
-fun NoteScreen(id: Int){
+fun NoteScreen(){//(id: Int){
+    //val viewModel: MainViewModel = viewModel()
     BackHandler(onBack = {
       /*  if (bottomDrawerState.isOpen) {
             coroutineScope.launch { bottomDrawerState.close() }
@@ -42,15 +43,18 @@ fun NoteScreen(id: Int){
     })
     Scaffold(
         topBar = {
-            SaveNoteTopAppBar(id == NEW_ENTITY,
+            SaveNoteTopAppBar(true,//id == NEW_ENTITY,
                 {ScreenRouter.reset()},
                 //::actionBack,
-                {},
+                {
+                   //viewModel.setTextNote(";jgf")
+                },
                 {},
                 {})
         },
         content = {
-            TitleNote(id)
+            //TitleNote(id)
+            TitleNote()
         }
     )
 }
@@ -62,13 +66,18 @@ fun NoteScreen(id: Int){
 //, content: @Composable () -> Unit
 
 @Composable
-private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
+private fun TitleNote(){//id: Int, category: Int = DEFAULT_CATEGORY){
     val MAX_SIZE = 40
+
+    //val (myValue, setValue) = remember { mutableStateOf("0") }
+
+
     val viewModel: MainViewModel = viewModel()
 
     val dataNote: NoteData by viewModel.dataNote.observeAsState(NoteData())
+    log(dataNote.text)
 
-    val valueName = if (id == NEW_ENTITY)
+    val valueName = if (dataNote.id == NEW_ENTITY)
                         getStringResource(R.string.new_note)
                     else
                         dataNote.name
@@ -77,12 +86,12 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
     }
 
 
-    val valueCategory = if (category == DEFAULT_CATEGORY)
+    val valueCategory = if (dataNote.category == DEFAULT_CATEGORY)
         getStringResource(R.string.category_note)
     else
         "Edit category"
 
-    val valueTextNote = if (id == NEW_ENTITY)
+    val valueTextNote = if (dataNote.id == NEW_ENTITY)
                             ""
                         else
                             dataNote.text
@@ -163,6 +172,7 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
                 ),
                 onValueChange = {
                     textNote = it
+                    dataNote.text = it
                 }
             )
 
@@ -173,7 +183,7 @@ private fun TitleNote(id: Int, category: Int = DEFAULT_CATEGORY){
 @Preview(showBackground = true)
 @Composable
 private fun TitleNotePreview(){
-    TitleNote(id = -1)
+    TitleNote()
 }
 
 @Composable

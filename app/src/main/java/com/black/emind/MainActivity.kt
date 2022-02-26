@@ -81,7 +81,7 @@ fun MainScreen() {
             when (ScreenRouter.currentScreen) {
                 is Screen.None          -> {}
                 is Screen.NoteScreen    -> {
-                    NoteScreen(id = Screen.NoteScreen.id)
+                    NoteScreen()//id = Screen.NoteScreen.id)
                 }
                 is Screen.TaskScreen    -> {}
                 is Screen.DocScreen     -> {}
