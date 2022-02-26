@@ -20,7 +20,7 @@ class MainViewModel: ViewModel() {
     val isShowPanelInsertObj: LiveData<Boolean> = _isShowPanelInsertObj
     private var onInsertObjectListener: OnInsertObjectListener? = null
 
-    fun setDataNote(value: NoteData = NoteData()){
+    fun changeDataNote(value: NoteData = NoteData()){
         _dataNote.value = value
     }
 

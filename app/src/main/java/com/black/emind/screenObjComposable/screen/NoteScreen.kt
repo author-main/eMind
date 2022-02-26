@@ -33,7 +33,7 @@ import com.black.emind.R
 @Composable
 fun NoteScreen(){//(id: Int){
     //val viewModel: MainViewModel = viewModel()
-    val noteEntry: NoteData by (viewModel() as MainViewModel).dataNote.observeAsState(NoteData())
+    val noteEntry: NoteData by (viewModel() as MainViewModel).dataNote.observeAsState(NoteData()) //Entry - запись
     BackHandler(onBack = {
       /*  if (bottomDrawerState.isOpen) {
             coroutineScope.launch { bottomDrawerState.close() }
@@ -160,7 +160,7 @@ private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CA
                 textNoteScrollState.scrollTo(textNoteScrollState.maxValue)
             }
 
-            TextField(value = textNote,
+            TextField(value = noteEntry.text,//textNote,
                 modifier = Modifier//.offset(x = (-16).dp)
                     .fillMaxHeight()
                     .verticalScroll(textNoteScrollState),
@@ -172,8 +172,9 @@ private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CA
                     cursorColor = Color.LightGray
                 ),
                 onValueChange = {
-                    textNote = it
-                    noteEntry.text = it
+                    /*textNote = it
+                    noteEntry.text = it*/
+                    viewModel.changeDataNote(noteEntry.copy(text = it))
                 }
             )
 
