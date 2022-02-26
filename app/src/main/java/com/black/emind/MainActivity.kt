@@ -8,6 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -21,6 +22,7 @@ import com.black.emind.screenObjComposable.enumScreen.Dialog
 import com.black.emind.screenObjComposable.enumScreen.DialogRouter
 import com.black.emind.screenObjComposable.enumScreen.Screen
 import com.black.emind.screenObjComposable.enumScreen.ScreenRouter
+import com.black.emind.screenObjComposable.screen.NoteData
 import com.black.emind.screenObjComposable.screen.NoteScreen
 import com.black.emind.ui.theme.EMindTheme
 
@@ -81,6 +83,7 @@ fun MainScreen() {
             when (ScreenRouter.currentScreen) {
                 is Screen.None          -> {}
                 is Screen.NoteScreen    -> {
+                    (viewModel() as MainViewModel).setDataNote(NoteData())
                     NoteScreen()//id = Screen.NoteScreen.id)
                 }
                 is Screen.TaskScreen    -> {}

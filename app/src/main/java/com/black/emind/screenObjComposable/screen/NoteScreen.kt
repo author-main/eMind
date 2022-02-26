@@ -33,6 +33,7 @@ import com.black.emind.R
 @Composable
 fun NoteScreen(){//(id: Int){
     //val viewModel: MainViewModel = viewModel()
+    val noteEntry: NoteData by (viewModel() as MainViewModel).dataNote.observeAsState(NoteData())
     BackHandler(onBack = {
       /*  if (bottomDrawerState.isOpen) {
             coroutineScope.launch { bottomDrawerState.close() }
@@ -54,7 +55,7 @@ fun NoteScreen(){//(id: Int){
         },
         content = {
             //TitleNote(id)
-            TitleNote()
+            TitleNote(noteEntry)
         }
     )
 }
@@ -66,7 +67,7 @@ fun NoteScreen(){//(id: Int){
 //, content: @Composable () -> Unit
 
 @Composable
-private fun TitleNote(){//id: Int, category: Int = DEFAULT_CATEGORY){
+private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CATEGORY){
     val MAX_SIZE = 40
 
     //val (myValue, setValue) = remember { mutableStateOf("0") }
@@ -74,27 +75,27 @@ private fun TitleNote(){//id: Int, category: Int = DEFAULT_CATEGORY){
 
     val viewModel: MainViewModel = viewModel()
 
-    val dataNote: NoteData by viewModel.dataNote.observeAsState(NoteData())
-    log(dataNote.text)
+    /*val noteEntry: NoteData by viewModel.noteEntry.observeAsState(NoteData())
+    log(noteEntry.text)*/
 
-    val valueName = if (dataNote.id == NEW_ENTITY)
+    val valueName = if (noteEntry.id == NEW_ENTITY)
                         getStringResource(R.string.new_note)
                     else
-                        dataNote.name
+                        noteEntry.name
     var nameNote by remember {
         mutableStateOf(valueName)
     }
 
 
-    val valueCategory = if (dataNote.category == DEFAULT_CATEGORY)
+    val valueCategory = if (noteEntry.category == DEFAULT_CATEGORY)
         getStringResource(R.string.category_note)
     else
         "Edit category"
 
-    val valueTextNote = if (dataNote.id == NEW_ENTITY)
+    val valueTextNote = if (noteEntry.id == NEW_ENTITY)
                             ""
                         else
-                            dataNote.text
+                            noteEntry.text
     var textNote by remember {
         mutableStateOf(valueTextNote)
     }
@@ -147,7 +148,7 @@ private fun TitleNote(){//id: Int, category: Int = DEFAULT_CATEGORY){
                 ),*/
                     onValueChange = {
                       /*  if (it.length <= MAX_SIZE)
-                            dataNote.category = it*/
+                            noteEntry.category = it*/
                     }
                 )
             }
@@ -172,7 +173,7 @@ private fun TitleNote(){//id: Int, category: Int = DEFAULT_CATEGORY){
                 ),
                 onValueChange = {
                     textNote = it
-                    dataNote.text = it
+                    noteEntry.text = it
                 }
             )
 
@@ -180,11 +181,11 @@ private fun TitleNote(){//id: Int, category: Int = DEFAULT_CATEGORY){
     }
 }
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 private fun TitleNotePreview(){
     TitleNote()
-}
+}*/
 
 @Composable
 private fun SaveNoteTopAppBar(
