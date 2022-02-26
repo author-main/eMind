@@ -71,17 +71,17 @@ private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CA
     val MAX_SIZE = 40
     val viewModel: MainViewModel = viewModel()
 
-    val valueCategory = if (noteEntry.category == DEFAULT_CATEGORY)
+  /*  val valueCategory = if (noteEntry.category == DEFAULT_CATEGORY)
         getStringResource(R.string.category_note)
     else
-        "Edit category"
+        "Edit category"*/
 
 
     val textNoteScrollState = rememberScrollState(0)
 
-    val categoryNote by remember {
+  /*  val categoryNote by remember {
         mutableStateOf(valueCategory)
-    }
+    }*/
 
     Column(Modifier.fillMaxSize()) {
         Column(modifier = Modifier
@@ -111,7 +111,7 @@ private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CA
                     fontSize = 13.sp
                 )
                 BasicTextField(
-                    value = categoryNote,
+                    value = viewModel.getCategoryNoteName(noteEntry.category),
                     modifier = Modifier.padding(start = 16.dp),
                     readOnly = true,
                     //   modifier = Modifier.offset(x = (-16).dp),

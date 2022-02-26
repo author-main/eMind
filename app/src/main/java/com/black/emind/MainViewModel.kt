@@ -24,6 +24,13 @@ class MainViewModel: ViewModel() {
         _dataNote.value = value
     }
 
+    fun getCategoryNoteName(id: Int) =
+        if (id == DEFAULT_CATEGORY)
+            getStringResource(R.string.category_note)
+        else {
+            "Other"
+        }
+
     /*fun setTextNote(value: String){
         _dataNote.value!!.text = value
     }*/
