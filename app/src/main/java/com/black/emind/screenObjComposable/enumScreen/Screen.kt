@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import com.black.emind.NEW_ENTITY
 
 sealed class Screen {
-    var id: Int        = NEW_ENTITY
+    //var id: Int        = NEW_ENTITY
     object None:       Screen()
     object NoteScreen: Screen()
     object TaskScreen: Screen()

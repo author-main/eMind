@@ -13,16 +13,20 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {
-    private val _dataNote = MutableLiveData<NoteData>()
+    private val _dataNote = MutableLiveData<NoteData>(NoteData())
     val dataNote: LiveData<NoteData> = _dataNote
 
     private val _isShowPanelInsertObj = MutableLiveData(false)
     val isShowPanelInsertObj: LiveData<Boolean> = _isShowPanelInsertObj
     private var onInsertObjectListener: OnInsertObjectListener? = null
 
-    fun setDataNote(value: NoteData){
+    fun setDataNote(value: NoteData = NoteData()){
         _dataNote.value = value
     }
+
+    /*fun setTextNote(value: String){
+        _dataNote.value!!.text = value
+    }*/
 
     fun addInsertObjectListener(listener: OnInsertObjectListener){
         onInsertObjectListener = listener
