@@ -109,7 +109,7 @@ private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CA
         Column(modifier = Modifier
             .padding(start = 16.dp, end = 16.dp)
         ) {
-            BasicTextField(value = nameNote,
+            BasicTextField(value = noteEntry.name,
                 modifier = Modifier.padding(top = 16.dp, bottom = 16.dp),
                 //  modifier = Modifier.offset(x = (-16).dp),
                 textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
@@ -120,7 +120,7 @@ private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CA
                 cursorColor = Color.LightGray
             ),*/
                 onValueChange = {
-                    nameNote = it
+                    viewModel.changeDataNote(noteEntry.copy(name = it))
                 }
             )
             Row(

@@ -83,7 +83,7 @@ fun MainScreen() {
             when (ScreenRouter.currentScreen) {
                 is Screen.None          -> {}
                 is Screen.NoteScreen    -> {
-                    (viewModel() as MainViewModel).setDataNote(NoteData())
+                    (viewModel() as MainViewModel).changeDataNote(NoteData())
                     NoteScreen()//id = Screen.NoteScreen.id)
                 }
                 is Screen.TaskScreen    -> {}
