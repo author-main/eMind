@@ -10,11 +10,16 @@ import com.black.emind.screenObjComposable.screen.NoteData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {
-    private val _dataNote = MutableLiveData<NoteData>()
-    val dataNote: LiveData<NoteData> = _dataNote
+    //private val _dataNote = MutableLiveData<NoteData>()
+    private val _dataNote = MutableStateFlow(NoteData())
+    val dataNote = _dataNote.asStateFlow()
+    //val dataNote: LiveData<NoteData> = _dataNote
 
     private val _isShowPanelInsertObj = MutableLiveData(false)
     val isShowPanelInsertObj: LiveData<Boolean> = _isShowPanelInsertObj

@@ -33,7 +33,9 @@ import com.black.emind.R
 @Composable
 fun NoteScreen(){//(id: Int){
     //val viewModel: MainViewModel = viewModel()
-    val noteEntry: NoteData by (viewModel() as MainViewModel).dataNote.observeAsState(NoteData()) //Entry - запись
+    //val noteEntry: NoteData by (viewModel() as MainViewModel).dataNote.observeAsState(NoteData()) //Entry - запись
+    val noteEntry: NoteData by (viewModel() as MainViewModel).dataNote.collectAsState()
+
     BackHandler(onBack = {
       /*  if (bottomDrawerState.isOpen) {
             coroutineScope.launch { bottomDrawerState.close() }
