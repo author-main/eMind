@@ -80,7 +80,7 @@ fun NoteScreen(){//(id: Int){
 private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CATEGORY){
     //val MAX_SIZE = 40
     val viewModel: MainViewModel = viewModel()
-    log ("${noteEntry.fontSize}")
+   // log ("${noteEntry.fontSize}")
 
   /*  val valueCategory = if (noteEntry.category == DEFAULT_CATEGORY)
         getStringResource(R.string.category_note)
