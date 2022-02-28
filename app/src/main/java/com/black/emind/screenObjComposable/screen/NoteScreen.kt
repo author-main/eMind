@@ -26,15 +26,16 @@ import com.black.emind.ui.theme.Gray
 import com.black.emind.ui.theme.Orange
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.modifier.modifierLocalOf
+import androidx.compose.ui.unit.TextUnit
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.black.emind.*
 import com.black.emind.R
 
 @Composable
 fun NoteScreen(){//(id: Int){
-    //val viewModel: MainViewModel = viewModel()
+    val viewModel: MainViewModel = viewModel()
     //val noteEntry: NoteData by (viewModel() as MainViewModel).dataNote.observeAsState(NoteData()) //Entry - запись
-    val noteEntry: NoteData by (viewModel() as MainViewModel).dataNote.collectAsState()
+    val noteEntry: NoteData by viewModel.dataNote.collectAsState()
 
     BackHandler(onBack = {
       /*  if (bottomDrawerState.isOpen) {
@@ -49,6 +50,13 @@ fun NoteScreen(){//(id: Int){
             SaveNoteTopAppBar(true,//id == NEW_ENTITY,
                 {ScreenRouter.reset()},
                 //::actionBack,
+                onChangeFontSize = {
+                    val fontSize = if (noteEntry.fontSize > MAX_FONTSIZE)
+                                        DEFAULT_FONTSIZE
+                                    else
+                                        noteEntry.fontSize + 3
+                    viewModel.changeDataNote(noteEntry.copy(fontSize = fontSize))
+                },
                 {
                    //viewModel.setTextNote(";jgf")
                 },
@@ -70,8 +78,9 @@ fun NoteScreen(){//(id: Int){
 
 @Composable
 private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CATEGORY){
-    val MAX_SIZE = 40
+    //val MAX_SIZE = 40
     val viewModel: MainViewModel = viewModel()
+    log ("${noteEntry.fontSize}")
 
   /*  val valueCategory = if (noteEntry.category == DEFAULT_CATEGORY)
         getStringResource(R.string.category_note)
@@ -144,7 +153,7 @@ private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CA
                 modifier = Modifier//.offset(x = (-16).dp)
                     .fillMaxHeight()
                     .verticalScroll(textNoteScrollState),
-                //textStyle = TextStyle(fontSize = 18.sp),// fontWeight = FontWeight.Bold),
+                textStyle = TextStyle(fontSize = noteEntry.fontSize.sp),// fontWeight = FontWeight.Bold),
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent,
@@ -172,6 +181,7 @@ private fun TitleNotePreview(){
 private fun SaveNoteTopAppBar(
     isEditingMode: Boolean,
     onBackClick:            () -> Unit,
+    onChangeFontSize:       () -> Unit,
     onSaveNoteClick:        () -> Unit,
     onOpenColorPickerClick: () -> Unit,
     onDeleteNoteClick:      () -> Unit
@@ -194,7 +204,7 @@ private fun SaveNoteTopAppBar(
             }
         },
         actions = {
-            IconButton(onClick = onSaveNoteClick) {
+            IconButton(onClick = onChangeFontSize) {
                 Icon(
                     imageVector = Icons.Default.Check,
                     tint = Gray,
