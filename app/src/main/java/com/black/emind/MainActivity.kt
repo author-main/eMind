@@ -83,7 +83,7 @@ fun MainScreen() {
             when (ScreenRouter.currentScreen) {
                 is Screen.None          -> {}
                 is Screen.NoteScreen    -> {
-                    (viewModel() as MainViewModel).changeDataNote(NoteData())
+                    //(viewModel() as MainViewModel).changeDataNote(NoteData())
                     NoteScreen()//id = Screen.NoteScreen.id)
                 }
                 is Screen.TaskScreen    -> {}
@@ -91,7 +91,11 @@ fun MainScreen() {
             }
             when (DialogRouter.currentDialog) {
                 is Dialog.None          -> {}
-                is Dialog.Color         -> ColorDialog()
+                is Dialog.Color         -> {
+                    Dialog.Color.onPositiveClick?.let {onClick ->
+                        ColorDialog(startColor = Dialog.Color.startColor, onPositiveClick = onClick)
+                    }
+                }
                 is Dialog.InsertButtons -> InsertButtonDialog()
             }
        }

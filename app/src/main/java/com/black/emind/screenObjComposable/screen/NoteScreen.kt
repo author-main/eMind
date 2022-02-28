@@ -30,6 +30,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.black.emind.*
 import com.black.emind.R
+import com.black.emind.screenObjComposable.enumScreen.Dialog
+import com.black.emind.screenObjComposable.enumScreen.DialogRouter
 
 @Composable
 fun NoteScreen(){//(id: Int){
@@ -56,6 +58,20 @@ fun NoteScreen(){//(id: Int){
                                     else
                                         noteEntry.fontSize + 3
                     viewModel.changeDataNote(noteEntry.copy(fontSize = fontSize))
+                },
+                onChangeFontColor = {
+                 //   log("${noteEntry.fontColor}")
+                    Dialog.Color.startColor = noteEntry.fontColor
+                    Dialog.Color.onPositiveClick = {color ->
+                        viewModel.changeDataNote(noteEntry.copy(fontColor = color))
+                    }
+                    DialogRouter.navigateTo(Dialog.Color)
+
+                    /*val fontSize = if (noteEntry.fontSize > MAX_FONTSIZE)
+                        DEFAULT_FONTSIZE
+                    else
+                        noteEntry.fontSize + 3
+                    viewModel.changeDataNote(noteEntry.copy(fontSize = fontSize))*/
                 },
                 {
                    //viewModel.setTextNote(";jgf")
@@ -153,7 +169,8 @@ private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CA
                 modifier = Modifier//.offset(x = (-16).dp)
                     .fillMaxHeight()
                     .verticalScroll(textNoteScrollState),
-                textStyle = TextStyle(fontSize = noteEntry.fontSize.sp),// fontWeight = FontWeight.Bold),
+                textStyle = TextStyle(fontSize = noteEntry.fontSize.sp,
+                                        color = noteEntry.fontColor),// fontWeight = FontWeight.Bold),
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent,
@@ -182,6 +199,7 @@ private fun SaveNoteTopAppBar(
     isEditingMode: Boolean,
     onBackClick:            () -> Unit,
     onChangeFontSize:       () -> Unit,
+    onChangeFontColor:      () -> Unit,
     onSaveNoteClick:        () -> Unit,
     onOpenColorPickerClick: () -> Unit,
     onDeleteNoteClick:      () -> Unit
@@ -212,7 +230,7 @@ private fun SaveNoteTopAppBar(
                 )
             }
 
-            IconButton(onClick = onOpenColorPickerClick) {
+            IconButton(onClick = onChangeFontColor) {
                 Icon(
                     ImageVector.vectorResource(R.drawable.ic_note),
                     contentDescription = "Open Color Picker Button",

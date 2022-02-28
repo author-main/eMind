@@ -21,7 +21,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.black.emind.R
-import com.black.emind.screenObjComposable.enumScreen.Dialog
+import com.black.emind.log
 import com.black.emind.screenObjComposable.enumScreen.DialogRouter
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -32,6 +32,8 @@ val COLOR_OBJ = longArrayOf(
     0xffffa827, 0xfff48fb1, 0xff80deea, 0xff8bc24a, 0xffbebec3,
     0xffffcc80, 0xffe1bee8, 0xffb2dfdc, 0xffcddc39, 0xffe2e2e5
 )
+
+const val STARTINDEX_COLOR = 10
 
 /*val COLOR_OBJ_LIGHT = longArrayOf(
     0xffdc4437, 0xffaa47bc, 0xff4286f5, 0xff109d58, 0xff79797d,
@@ -100,12 +102,25 @@ fun CircleColorPreview() {
 }*/
 
 @Composable
-fun ColorDialog(startIndex: Int = 15/*,
-    onPositiveClick: (Color) -> Unit*/
+fun ColorDialog(startColor: Color = Color(COLOR_OBJ[STARTINDEX_COLOR]),
+                onPositiveClick: (color: Color) -> Unit
 ) {
     var clickable = remember{true}
+
+    var valueColor = STARTINDEX_COLOR
+    COLOR_OBJ.forEachIndexed { index, it ->
+        /*val color = Color(it)
+        log ("${startColor.value} ${color.value} $index")*/
+        if (startColor.value == Color(it).value) {
+            //log ("$index ${startColor.value} ${color.value}")
+            valueColor = index
+            return@forEachIndexed
+        }
+    }
+
     //  val route: Dialog = DialogRouter.currentDialog
-    var indexColor by remember{mutableStateOf(startIndex)}
+    //log("color = $valueColor")
+    var indexColor by remember{mutableStateOf(valueColor)}
     val scope = rememberCoroutineScope()
     //  if (route is Dialog.Color) {
         AlertDialog(
@@ -129,6 +144,10 @@ fun ColorDialog(startIndex: Int = 15/*,
                                         scope.launch {
                                             clickable = false
                                             indexColor = index + i
+                                            onPositiveClick(Color(
+                                                COLOR_OBJ[indexColor]
+                                            )
+                                            )
                                             delay(400)
                                             DialogRouter.reset()
                                         }
@@ -145,8 +164,8 @@ fun ColorDialog(startIndex: Int = 15/*,
   //  }
 }
 
-@Preview
+/*@Preview
 @Composable
 fun ColorDialogPreview() {
     ColorDialog(3)
-}
+}*/
