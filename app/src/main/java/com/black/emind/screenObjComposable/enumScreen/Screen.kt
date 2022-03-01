@@ -3,7 +3,6 @@ package com.black.emind.screenObjComposable.enumScreen
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.black.emind.NEW_ENTITY
 
 sealed class Screen {
     //var id: Int        = NEW_ENTITY
@@ -19,6 +18,12 @@ object ScreenRouter {
         currentScreen = destination
     }
     fun reset(){
+        /*when (currentScreen) {
+            Screen.NoteScreen -> {
+                val viewModel: MainViewModel by viewModels()
+            }
+            else -> {}
+        }*/
         currentScreen = Screen.None
     }
 }

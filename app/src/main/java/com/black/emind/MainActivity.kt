@@ -3,6 +3,7 @@ package com.black.emind
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -26,16 +27,18 @@ import com.black.emind.screenObjComposable.screen.NoteData
 import com.black.emind.screenObjComposable.screen.NoteScreen
 import com.black.emind.ui.theme.EMindTheme
 
-private lateinit var mainViewModel: MainViewModel
+//private lateinit var mainViewModel: MainViewModel
 
 class MainActivity : ComponentActivity(), OnInsertObjectListener{
    // @ExperimentalMaterialApi
     @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainViewModel =
+        val model: MainViewModel by viewModels()
+        model.addInsertObjectListener(this)
+      /*  mainViewModel =
             ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel.addInsertObjectListener(this)
+        mainViewModel.addInsertObjectListener(this)*/
         setContent {
             EMindTheme {
                 MainScreen()
@@ -48,18 +51,18 @@ class MainActivity : ComponentActivity(), OnInsertObjectListener{
             delay(200)
             DialogRouter.navigateTo(Dialog.Color)
         }*/
-        log("Insert Note")
+        //log("Insert Note")
         ScreenRouter.navigateTo(Screen.NoteScreen)
         //DialogRouter.navigateTo(Dialog.Color)
     }
 
     override fun insertTask() {
-        log("Insert Task")
+        //log("Insert Task")
         ScreenRouter.navigateTo(Screen.TaskScreen)
     }
 
     override fun insertDoc() {
-        log("Insert Doc")
+        //log("Insert Doc")
         ScreenRouter.navigateTo(Screen.DocScreen)
     }
 

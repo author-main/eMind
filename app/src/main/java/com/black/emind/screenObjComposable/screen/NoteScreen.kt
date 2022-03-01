@@ -86,9 +86,8 @@ fun NoteScreen(){//(id: Int){
     )
 }
 
-/*fun actionBack(){
-    SaveScreenRouter.reset()
-}*/
+
+
 
 //, content: @Composable () -> Unit
 
