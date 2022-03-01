@@ -223,7 +223,7 @@ private fun SaveNoteTopAppBar(
         actions = {
             IconButton(onClick = onChangeFontSize) {
                 Icon(
-                    imageVector = Icons.Default.Check,
+                    imageVector = ImageVector.vectorResource(R.drawable.ic_fontsize),//Icons.Default.Check,
                     tint = Gray,
                     contentDescription = "Save Note"
                 )
@@ -231,7 +231,7 @@ private fun SaveNoteTopAppBar(
 
             IconButton(onClick = onChangeFontColor) {
                 Icon(
-                    ImageVector.vectorResource(R.drawable.ic_note),
+                    imageVector = ImageVector.vectorResource(R.drawable.ic_fontcolor),
                     contentDescription = "Open Color Picker Button",
                     tint = Gray//MaterialTheme.colors.onPrimary
                 )
