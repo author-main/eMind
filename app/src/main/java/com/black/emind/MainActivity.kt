@@ -27,18 +27,23 @@ import com.black.emind.screenObjComposable.screen.NoteData
 import com.black.emind.screenObjComposable.screen.NoteScreen
 import com.black.emind.ui.theme.EMindTheme
 
-//private lateinit var mainViewModel: MainViewModel
-
 class MainActivity : ComponentActivity(), OnInsertObjectListener{
+
+    /*private val model: MainViewModel by lazy {
+        ViewModelProvider(this)[MainViewModel::class.java]
+    }*/
+
+    private lateinit var model: MainViewModel
+
    // @ExperimentalMaterialApi
     @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val model: MainViewModel by viewModels()
-        model.addInsertObjectListener(this)
-      /*  mainViewModel =
+       /* val model: MainViewModel by viewModels()
+        model.addInsertObjectListener(this)*/
+        model =
             ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel.addInsertObjectListener(this)*/
+        model.addInsertObjectListener(this)
         setContent {
             EMindTheme {
                 MainScreen()
@@ -47,13 +52,8 @@ class MainActivity : ComponentActivity(), OnInsertObjectListener{
     }
 
     override fun insertNote() {
-        /*CoroutineScope(Dispatchers.Default).launch {
-            delay(200)
-            DialogRouter.navigateTo(Dialog.Color)
-        }*/
-        //log("Insert Note")
+        model.changeDataNote() // новая заметка NoteData()
         ScreenRouter.navigateTo(Screen.NoteScreen)
-        //DialogRouter.navigateTo(Dialog.Color)
     }
 
     override fun insertTask() {
