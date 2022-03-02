@@ -228,8 +228,7 @@ private fun SaveNoteTopAppBar(
             )
         },
         navigationIcon = {
-            IconButton(
-                onClick = {}/*,
+            IconButton(onClick = {}/*,
                 modifier = Modifier.clickable(
                     onClick = onBackClick,
                     enabled = true,
