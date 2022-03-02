@@ -201,7 +201,6 @@ private fun TitleNotePreview(){
 fun IconExt(@DrawableRes iconResource: Int, action: () -> Unit, description: String? = null){
     Icon( modifier = Modifier.clickable(
         onClick = action,
-        enabled = true,
         indication = rememberRipple(color = Orange, bounded = false),
         interactionSource =  remember { MutableInteractionSource() },
     ),
@@ -221,8 +220,7 @@ private fun SaveNoteTopAppBar(
     onOpenColorPickerClick: () -> Unit,
     onDeleteNoteClick:      () -> Unit
 ) {
-    TopAppBar(
-        title = {
+    TopAppBar(title = {
             Text(
                 fontStyle = FontStyle.Normal,
                 text = "Save Note",
@@ -230,7 +228,8 @@ private fun SaveNoteTopAppBar(
             )
         },
         navigationIcon = {
-            IconButton(onClick = {}/*,
+            IconButton(
+                onClick = {}/*,
                 modifier = Modifier.clickable(
                     onClick = onBackClick,
                     enabled = true,
@@ -239,7 +238,7 @@ private fun SaveNoteTopAppBar(
                 )*/
             )
              {
-                 IconExt(iconResource = R.drawable.ic_favorite, onBackClick)
+                 IconExt(iconResource = R.drawable.ic_back, onBackClick)
 
                  /*
                 Icon( modifier = Modifier.clickable(
@@ -255,7 +254,8 @@ private fun SaveNoteTopAppBar(
             }
         },
         actions = {
-            IconButton(onClick = { }
+            IconButton(modifier = Modifier.offset(x = 8.dp),
+                onClick = { }
             ) {
                 IconExt(iconResource = R.drawable.ic_fontsize, onChangeFontSize)
                /* Icon(
