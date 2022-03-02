@@ -254,8 +254,7 @@ private fun SaveNoteTopAppBar(
         },
         actions = {
             IconButton(modifier = Modifier.offset(x = 8.dp),
-                onClick = { }
-            ) {
+                onClick = { }) {
                 IconExt(iconResource = R.drawable.ic_fontsize, onChangeFontSize)
                /* Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_fontsize),//Icons.Default.Check,
