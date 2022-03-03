@@ -1,7 +1,10 @@
 package com.black.emind.screenObjComposable.screen
 
 import androidx.activity.compose.BackHandler
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
@@ -10,6 +13,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -194,6 +198,19 @@ private fun TitleNotePreview(){
 }*/
 
 @Composable
+fun IconExt(@DrawableRes iconResource: Int, action: () -> Unit, description: String? = null){
+    Icon( modifier = Modifier.clickable(
+        onClick = action,
+        indication = rememberRipple(color = Orange, bounded = false),
+        interactionSource =  remember { MutableInteractionSource() },
+    ),
+        imageVector = ImageVector.vectorResource(iconResource),
+        contentDescription = description,
+        tint = Gray//MaterialTheme.colors.onPrimary
+    )
+}
+
+@Composable
 private fun SaveNoteTopAppBar(
     isEditingMode: Boolean,
     onBackClick:            () -> Unit,
@@ -203,8 +220,7 @@ private fun SaveNoteTopAppBar(
     onOpenColorPickerClick: () -> Unit,
     onDeleteNoteClick:      () -> Unit
 ) {
-    TopAppBar(
-        title = {
+    TopAppBar(title = {
             Text(
                 fontStyle = FontStyle.Normal,
                 text = "Save Note",
@@ -212,29 +228,48 @@ private fun SaveNoteTopAppBar(
             )
         },
         navigationIcon = {
-            IconButton(onClick = onBackClick) {
-                Icon(
+            IconButton(onClick = {}/*,
+                modifier = Modifier.clickable(
+                    onClick = onBackClick,
+                    enabled = true,
+                    indication = rememberRipple(color = Orange, bounded = false),
+                    interactionSource =  remember { MutableInteractionSource() },
+                )*/
+            )
+             {
+                 IconExt(iconResource = R.drawable.ic_back, onBackClick)
+
+                 /*
+                Icon( modifier = Modifier.clickable(
+                    onClick = onBackClick,
+                    enabled = true,
+                    indication = rememberRipple(color = Orange, bounded = false),
+                    interactionSource =  remember { MutableInteractionSource() },
+                ),
                     imageVector = Icons.Default.Close,//ArrowBack,
                     contentDescription = "Save Note Button",
                     tint = Gray//MaterialTheme.colors.onPrimary
-                )
+                )*/
             }
         },
         actions = {
-            IconButton(onClick = onChangeFontSize) {
-                Icon(
+            IconButton(modifier = Modifier.offset(x = 8.dp),
+                onClick = { }) {
+                IconExt(iconResource = R.drawable.ic_fontsize, onChangeFontSize)
+               /* Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_fontsize),//Icons.Default.Check,
                     tint = Gray,
                     contentDescription = "Save Note"
-                )
+                )*/
             }
 
-            IconButton(onClick = onChangeFontColor) {
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.ic_check_color),
+            IconButton(onClick = { } ) {
+                IconExt(iconResource = R.drawable.ic_fontcolor, onChangeFontColor)
+              /*  Icon(
+                    imageVector = ImageVector.vectorResource(R.drawable.ic_fontcolor),
                     contentDescription = "Open Color Picker Button",
                     tint = Gray//MaterialTheme.colors.onPrimary
-                )
+                )*/
             }
         }
 
