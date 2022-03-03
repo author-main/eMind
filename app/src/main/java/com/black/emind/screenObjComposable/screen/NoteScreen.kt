@@ -231,7 +231,7 @@ private fun SaveNoteTopAppBar(
 
             IconButton(onClick = onChangeFontColor) {
                 Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.ic_fontcolor),
+                    imageVector = ImageVector.vectorResource(R.drawable.ic_check_color),
                     contentDescription = "Open Color Picker Button",
                     tint = Gray//MaterialTheme.colors.onPrimary
                 )
