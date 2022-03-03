@@ -33,7 +33,7 @@ val COLOR_OBJ = longArrayOf(
     0xffffcc80, 0xffe1bee8, 0xffb2dfdc, 0xffcddc39, 0xffe2e2e5
 )
 
-const val STARTINDEX_COLOR = 10
+const val STARTINDEX_COLOR = 4
 
 /*val COLOR_OBJ_LIGHT = longArrayOf(
     0xffdc4437, 0xffaa47bc, 0xff4286f5, 0xff109d58, 0xff79797d,
