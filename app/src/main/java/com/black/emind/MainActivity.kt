@@ -96,7 +96,7 @@ fun MainScreen() {
                 is Dialog.None          -> {}
                 is Dialog.Color         -> {
                     Dialog.Color.onPositiveClick?.let {onClick ->
-                        ColorDialog(startColor = Dialog.Color.startColor, onPositiveClick = onClick)
+                        ColorDialog(startIndexColor = Dialog.Color.startColor, onPositiveClick = onClick)
                     }
                 }
                 is Dialog.InsertButtons -> InsertButtonDialog()

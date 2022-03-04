@@ -56,7 +56,7 @@ fun ButtonInsert(button: InsertButton, animatedSize: Dp){//modifier: Modifier = 
             //.background(Orange, CircleShape)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
-                indication = rememberRipple( bounded = true, radius = 28.dp),
+                indication = rememberRipple( bounded = false, radius = 28.dp),
                 enabled = true
             ) {
                 /*scope.launch {

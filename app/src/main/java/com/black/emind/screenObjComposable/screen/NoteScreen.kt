@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.black.emind.*
 import com.black.emind.R
+import com.black.emind.screenObjComposable.COLOR_OBJ
 import com.black.emind.screenObjComposable.enumScreen.Dialog
 import com.black.emind.screenObjComposable.enumScreen.DialogRouter
 
@@ -66,8 +67,8 @@ fun NoteScreen(){//(id: Int){
                 onChangeFontColor = {
                  //   log("${noteEntry.fontColor}")
                     Dialog.Color.startColor = noteEntry.fontColor
-                    Dialog.Color.onPositiveClick = {color ->
-                        viewModel.changeDataNote(noteEntry.copy(fontColor = color))
+                    Dialog.Color.onPositiveClick = {indexColor ->
+                        viewModel.changeDataNote(noteEntry.copy(fontColor = indexColor))
                     }
                     DialogRouter.navigateTo(Dialog.Color)
 
@@ -173,7 +174,7 @@ private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CA
                     .fillMaxHeight()
                     .verticalScroll(textNoteScrollState),
                 textStyle = TextStyle(fontSize = noteEntry.fontSize.sp,
-                                        color = noteEntry.fontColor),// fontWeight = FontWeight.Bold),
+                                        color = Color(COLOR_OBJ[noteEntry.fontColor])),// fontWeight = FontWeight.Bold),
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent,

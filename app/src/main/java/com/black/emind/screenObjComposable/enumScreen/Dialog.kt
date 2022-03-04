@@ -6,10 +6,10 @@ import androidx.compose.runtime.setValue
 import com.black.emind.DEFAULT_FONTCOLOR
 
 sealed class Dialog {
-    var onPositiveClick: ((color: androidx.compose.ui.graphics.Color) -> Unit)? = null
+    var onPositiveClick: ((indexColor: Int) -> Unit)? = null
     object None                : Dialog()
     object Color               : Dialog() {
-        var startColor: androidx.compose.ui.graphics.Color = DEFAULT_FONTCOLOR
+        var startColor: Int = DEFAULT_FONTCOLOR
     }
     object InsertButtons: Dialog()
 }

@@ -10,7 +10,7 @@ const val DEFAULT_CATEGORY     =  0
       //val DEFAULT_FONTSIZE     = TextUnit.Unspecified.value
 const val DEFAULT_FONTSIZE     = 15
 const val MAX_FONTSIZE         = 21
-      val DEFAULT_FONTCOLOR    = Color(COLOR_OBJ[STARTINDEX_COLOR])
+      val DEFAULT_FONTCOLOR    = 4//Color(COLOR_OBJ[STARTINDEX_COLOR])
 
 const val ID_SEARCH      = "SEARCH"
 const val ID_EMIND       = "EMIND"

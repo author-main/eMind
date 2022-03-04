@@ -8,5 +8,5 @@ data class NoteData(val id: Int = NEW_ENTITY,
     var category:   Int     = DEFAULT_CATEGORY,
     var text:       String  = "",
     var fontSize:   Int     = DEFAULT_FONTSIZE,
-    var fontColor:  Color   = DEFAULT_FONTCOLOR
+    var fontColor:  Int     = DEFAULT_FONTCOLOR
     )

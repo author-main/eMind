@@ -102,12 +102,12 @@ fun CircleColorPreview() {
 }*/
 
 @Composable
-fun ColorDialog(startColor: Color = Color(COLOR_OBJ[STARTINDEX_COLOR]),
-                onPositiveClick: (color: Color) -> Unit
+fun ColorDialog(startIndexColor: Int,//Color = Color(COLOR_OBJ[STARTINDEX_COLOR]),
+                onPositiveClick: (indexColor: Int) -> Unit
 ) {
     var clickable = remember{true}
 
-    var valueColor = STARTINDEX_COLOR
+    /*var valueColor = STARTINDEX_COLOR
     COLOR_OBJ.forEachIndexed { index, it ->
         /*val color = Color(it)
         log ("${startColor.value} ${color.value} $index")*/
@@ -116,11 +116,11 @@ fun ColorDialog(startColor: Color = Color(COLOR_OBJ[STARTINDEX_COLOR]),
             valueColor = index
             return@forEachIndexed
         }
-    }
+    }*/
 
     //  val route: Dialog = DialogRouter.currentDialog
     //log("color = $valueColor")
-    var indexColor by remember{mutableStateOf(valueColor)}
+    var indexColor by remember{mutableStateOf(startIndexColor)}
     val scope = rememberCoroutineScope()
     //  if (route is Dialog.Color) {
         AlertDialog(
@@ -144,9 +144,9 @@ fun ColorDialog(startColor: Color = Color(COLOR_OBJ[STARTINDEX_COLOR]),
                                         scope.launch {
                                             clickable = false
                                             indexColor = index + i
-                                            onPositiveClick(Color(
+                                            onPositiveClick(indexColor/*Color(
                                                 COLOR_OBJ[indexColor]
-                                            )
+                                            )*/
                                             )
                                             delay(400)
                                             DialogRouter.reset()
