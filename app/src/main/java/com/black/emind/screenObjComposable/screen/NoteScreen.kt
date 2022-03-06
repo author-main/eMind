@@ -200,7 +200,8 @@ private fun TitleNotePreview(){
 
 @Composable
 fun IconExt(@DrawableRes iconResource: Int, action: () -> Unit, description: String? = null){
-    Icon( modifier = Modifier.clickable(
+    Icon( modifier = Modifier
+        .clickable(
         onClick = action,
         indication = rememberRipple(color = Orange, bounded = false),
         interactionSource =  remember { MutableInteractionSource() },
@@ -221,6 +222,7 @@ private fun SaveNoteTopAppBar(
     onOpenColorPickerClick: () -> Unit,
     onDeleteNoteClick:      () -> Unit
 ) {
+    val offsetX = 10.dp
     TopAppBar(title = {
             Text(
                 fontStyle = FontStyle.Normal,
@@ -254,7 +256,7 @@ private fun SaveNoteTopAppBar(
             }
         },
         actions = {
-            IconButton(modifier = Modifier.offset(x = 8.dp),
+            IconButton(modifier = Modifier.offset(x = offsetX),
                 onClick = { }) {
                 IconExt(iconResource = R.drawable.ic_fontsize, onChangeFontSize)
                /* Icon(
