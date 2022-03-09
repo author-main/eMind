@@ -8,6 +8,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.selection.LocalTextSelectionColors
+import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -29,6 +31,8 @@ import com.black.emind.screenObjComposable.enumScreen.ScreenRouter
 import com.black.emind.ui.theme.Gray
 import com.black.emind.ui.theme.Orange
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.unit.TextUnit
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -108,13 +112,28 @@ private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CA
         "Edit category"*/
 
 
+    /*val customTextSelectionColors = TextSelectionColors(
+        handleColor = Red,
+        backgroundColor = Red.copy(alpha = 0.4f)
+    )
+
+    CompositionLocalProvider(LocalTextSelectionColors provides customTextSelectionColors) {
+        TextField(
+            value = "text",
+            onValueChange = { text = it },
+            colors = TextFieldDefaults.textFieldColors(cursorColor = Red)
+        )
+    }*/
+
+
+
     val textNoteScrollState = rememberScrollState(0)
 
   /*  val categoryNote by remember {
         mutableStateOf(valueCategory)
     }*/
 
-    Column(Modifier.fillMaxSize()) {
+    Column() {
         Column(modifier = Modifier
             .padding(start = 16.dp, end = 16.dp)
         ) {
@@ -171,7 +190,7 @@ private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CA
 
             TextField(value = noteEntry.text,//textNote,
                 modifier = Modifier//.offset(x = (-16).dp)
-                    .fillMaxHeight()
+                    .fillMaxSize()
                     .verticalScroll(textNoteScrollState),
                 textStyle = TextStyle(fontSize = noteEntry.fontSize.sp,
                                         color = Color(COLOR_OBJ[noteEntry.fontColor])),// fontWeight = FontWeight.Bold),
@@ -288,3 +307,10 @@ private fun SaveNoteTopAppBar(
     "editor.fontLigatures":true
 }
 */
+
+
+/*
+Класс Class<T> предоставляет вам информацию о метаданных класса T,
+таких как интерфейсы, которые он реализует,
+имена его функций, имя пакета и т.д.
+ */
