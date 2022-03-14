@@ -2,39 +2,27 @@ package com.black.emind.screenObjComposable.screen
 
 import androidx.activity.compose.BackHandler
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.selection.LocalTextSelectionColors
-import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.black.emind.screenObjComposable.enumScreen.ScreenRouter
 import com.black.emind.ui.theme.Gray
 import com.black.emind.ui.theme.Orange
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Red
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.modifier.modifierLocalOf
-import androidx.compose.ui.unit.TextUnit
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.black.emind.*
 import com.black.emind.R
@@ -58,7 +46,7 @@ fun NoteScreen(){//(id: Int){
     })
     Scaffold(
         topBar = {
-            SaveNoteTopAppBar(true,//id == NEW_ENTITY,
+            SaveNoteTopAppBar(//id == NEW_ENTITY,
                 {ScreenRouter.reset()},
                 //::actionBack,
                 onChangeFontSize = {
@@ -133,7 +121,7 @@ private fun TitleNote(noteEntry: NoteData){//id: Int, category: Int = DEFAULT_CA
         mutableStateOf(valueCategory)
     }*/
 
-    Column() {
+    Column {
         Column(modifier = Modifier
             .padding(start = 16.dp, end = 16.dp)
         ) {
@@ -233,7 +221,6 @@ fun IconExt(@DrawableRes iconResource: Int, action: () -> Unit, description: Str
 
 @Composable
 private fun SaveNoteTopAppBar(
-    isEditingMode: Boolean,
     onBackClick:            () -> Unit,
     onChangeFontSize:       () -> Unit,
     onChangeFontColor:      () -> Unit,
