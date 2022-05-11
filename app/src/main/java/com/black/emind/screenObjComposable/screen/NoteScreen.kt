@@ -63,7 +63,6 @@ fun NoteScreen(){//(id: Int){
                         viewModel.changeDataNote(noteEntry.copy(fontColor = indexColor))
                     }
                     DialogRouter.navigateTo(Dialog.Color)
-
                     /*val fontSize = if (noteEntry.fontSize > MAX_FONTSIZE)
                         DEFAULT_FONTSIZE
                     else
