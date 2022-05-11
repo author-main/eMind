@@ -70,3 +70,4 @@ class MainViewModel: ViewModel() {
 
 /*tint = if (MaterialTheme.colors.isLight) textColorLight
 else textColorDark*/
+
