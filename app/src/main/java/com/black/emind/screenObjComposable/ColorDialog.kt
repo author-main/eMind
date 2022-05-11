@@ -161,7 +161,6 @@ fun ColorDialog(startIndexColor: Int,//Color = Color(COLOR_OBJ[STARTINDEX_COLOR]
                 }
             },
         buttons = {})
-  //  }
 }
 
 /*@Preview
